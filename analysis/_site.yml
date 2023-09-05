@@ -5,10 +5,12 @@ navbar:
   left:
   - text: Home
     href: index.html
-  - text: About
-    href: about.html
-  - text: License
-    href: license.html
+  - text: Workshop Material
+    menu:
+    - text: 1. R and RStudio
+      href: rstudio.html
+    - text: 2. Bringing Data Into R
+      href: data_import.html
 output:
   workflowr::wflow_html:
     toc: yes
