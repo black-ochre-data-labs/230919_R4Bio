@@ -20,14 +20,18 @@ format:
     height: 768
     sansfont: Times New Roman
     logo: assets/bodl_logo_white_background.jpg
+  html: 
+    output-file: rstudio.html
+    embed-resources: true    
+knitr: 
+  opts_chunk: 
+    echo: true
+    include: true
+    warning: false
+    message: false
+    fig.align: center
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  echo = TRUE, include = TRUE, warning = FALSE, message = FALSE, 
-  fig.align = "center"
-)
-```
 
 # RStudio {background-color="#3c3c44"}
 

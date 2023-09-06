@@ -33,14 +33,18 @@ If you are unable to get an installation working on your own laptop, please sign
 
 Today's workshop will run in 4x90 minute sessions
 
-| Session | Topic | Slides |
-|:------- |:----- |:------ |
-| 9:00 - 10:30  | What is R and Rstudio | |
-|               | Bringing Data into R  | |
-|               | Spreadsheet-Like Data | |
-| 10:30 - 11:00 | *Morning Tea*         | |
-| 11:00 - 12:30 | Manipulating Text     | |
-| 12:30 - 1:30  | *Lunch*               | |
-| 1:30 - 3:00   |                       | |
-| 3:00 - 3:30   | *Afternoon Tea*       | |
-| 3:30 - 5:00   |                       | |
+| Session | Topic | 
+|:------- |:----- |
+| 9:00 - 10:30  | [What is R and Rstudio](rstudio.html) |
+|               | [Bringing Data into R](data_import.html) |
+|               | Spreadsheet-Like Data |
+| 10:30 - 11:00 | *Morning Tea*         |
+| 11:00 - 12:30 | Manipulating Text     |
+| 12:30 - 1:30  | *Lunch*               |
+| 1:30 - 3:00   |                       |
+| 3:00 - 3:30   | *Afternoon Tea*       |
+| 3:30 - 5:00   |                       |
+
+## Required Data
+
+All data for today's session is available [here]().
