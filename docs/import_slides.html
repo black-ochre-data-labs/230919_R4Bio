@@ -502,7 +502,7 @@ Dr Stevie Pederson
 <!-- ## Previewing in RStudio -->
 <!-- 1. Close Excel (**don't save/overwrite the file**) -->
 <!-- 2. Using the `Files` tab, enter the `data` directory -->
-<!-- 3. Click on `toothData.csv`  -->
+<!-- 3. Click on `rats.csv`  -->
 <!-- 4. Select `View File` -->
 <!-- This will open a preview in the *Script Window* pane (close when you're done) -->
 </section>
@@ -522,38 +522,47 @@ Dr Stevie Pederson
 <h2>Using the GUI To Load Data</h2>
 <p>Click on the file and choose <code>Import Dataset</code></p>
 
-<img data-src="assets/importGUI.png" width="800" class="r-stretch quarto-figure-center"><p style="text-align: center;">
+<img data-src="assets/importGUI.png" width="900" class="r-stretch"><p style="text-align: center;">
 (Click <code>Update</code> if you don’t see this)
 </p>
 </section>
 <section id="the-preview-window" class="slide level2">
 <h2>The Preview Window</h2>
+<p><br></p>
 
-<img data-src="assets/importGUI_preview.png" style="width:900mm" class="r-stretch quarto-figure-center"></section>
+<img data-src="assets/importGUI_preview.png" width="900" class="r-stretch"></section>
 <section id="the-preview-window-1" class="slide level2">
 <h2>The Preview Window</h2>
+<p><br></p>
 
-<img data-src="assets/importGUI_code.png" style="width:900mm" class="r-stretch quarto-figure-center"></section>
+<img data-src="assets/importGUI_code.png" width="900" class="r-stretch"></section>
 <section id="the-preview-window-2" class="slide level2">
 <h2>The Preview Window</h2>
 <ol type="1">
-<li>Select and copy all the code in the <code>Code Preview</code> Box</li>
+<li>Select and copy all the code in the <code>Code Preview</code> Box
+<ul>
+<li>(We’ll paste this somewhere in a minute…)</li>
+</ul></li>
 <li>Click <code>Import</code></li>
-<li>Magic happens…
+<li>Magic happens!!!
 <ul>
 <li>Ignore the red/blue text. This is just ‘helpful’ information</li>
 </ul></li>
 </ol>
 <div class="fragment">
-<p><strong>Paste the copied code into your script</strong></p>
+<p><br></p>
+<p><em>Now paste the copied code into your script</em></p>
 </div>
 </section>
 <section id="what-has-just-happened" class="slide level2">
 <h2>What has just happened?</h2>
 <p>The code we copied has 3 lines:</p>
-<p><code>1. library(readr)</code></p>
+<ol type="1">
+<li><code>library(readr)</code></li>
+</ol>
 <ul>
-<li>This package contains the function <code>read_csv()</code></li>
+<li><code>readr</code> contains the function <code>read_csv()</code></li>
+<li>Tells R what to do with each line/column of the file as it’s read in</li>
 </ul>
 </section>
 <section id="what-has-just-happened-1" class="slide level2">
@@ -561,39 +570,74 @@ Dr Stevie Pederson
 <p>The code we copied has 3 lines:</p>
 <ol type="1">
 <li>library(readr)</li>
-<li><code>toothData &lt;- read_csv("data/toothData.csv")</code></li>
+<li><code>rats &lt;- read_csv("data/rats.csv")</code></li>
 </ol>
 <ul>
 <li>This line loads the data into your <code>R Environment</code></li>
-<li>It created an object named <code>toothData</code> by using the file name.</li>
+<li>It created an object named <code>rats</code> by using the file name.</li>
 </ul>
 </section>
 <section id="what-has-just-happened-2" class="slide level2">
 <h2>What has just happened?</h2>
+<p><br></p>
 
-<img data-src="assets/importGUI_name.png" style="width:950mm" class="r-stretch quarto-figure-center"></section>
+<img data-src="assets/importGUI_name.png" width="900" class="r-stretch"></section>
 <section id="what-has-just-happened-3" class="slide level2">
 <h2>What has just happened?</h2>
 <ol type="1">
 <li><code>library(readr)</code></li>
-<li><code>toothData &lt;- read_csv("data/toothData.csv")</code></li>
-<li><code>View(toothData)</code>
+<li><code>rats &lt;- read_csv("data/rats.csv")</code></li>
+<li><code>View(rats)</code>
 <ul>
 <li>Opens a preview in a familiar <code>Excel-like</code> format</li>
 <li>I <strong>never</strong> use this</li>
 </ul></li>
 </ol>
-<p>Close the preview by clicking the cross and delete <code>View(toothData)</code></p>
+<p>Close the preview by clicking the cross and delete <code>View(rats)</code></p>
+</section>
+<section id="another-way-to-see-rats" class="slide level2">
+<h2>Another way to see rats</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 3
+     len supp  dose 
+   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+ 1   4.2 VC    Low  
+ 2  11.5 VC    Low  
+ 3   7.3 VC    Low  
+ 4   5.8 VC    Low  
+ 5   6.4 VC    Low  
+ 6  10   VC    Low  
+ 7  11.2 VC    Low  
+ 8  11.2 VC    Low  
+ 9   5.2 VC    Low  
+10   7   VC    Low  
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<p>This gives a preview with:</p>
+<ul>
+<li>The dimensions (<code>60 X 3</code>)</li>
+<li>Column names (<code>len</code>, <code>supp</code>, <code>dose</code>)</li>
+<li>Data types (<code>&lt;dbl&gt;</code>, <code>&lt;chr&gt;</code> etc)</li>
+</ul>
+</div>
 </section>
 <section id="what-has-just-happened-4" class="slide level2">
 <h2>What has just happened?</h2>
 <ul>
 <li>We have just loaded data using the default settings of <code>read_csv()</code>
 <ul>
-<li>The object <code>toothData</code> is in our <code>R Environment</code></li>
+<li>The object <code>rats</code> is in our <code>R Environment</code></li>
 <li>The original file remains on our HDD <strong>without modification</strong>!!!</li>
 </ul></li>
-<li>Now we’ve saved the code in our script, <strong>we don’t need the GUI for this operation again!</strong></li>
+<li>Now we’ve saved the code in our script
+<ul>
+<li><span class="math inline">\(\implies\)</span> <strong>we don’t need the GUI for this operation again!</strong></li>
+</ul></li>
 </ul>
 </section>
 <section id="lets-demonstrate" class="slide level2">
@@ -608,7 +652,7 @@ Dr Stevie Pederson
 <ul>
 <li>(Reloading the packages won’t hurt)</li>
 </ul></li>
-<li>Check the <code>Environment Tab</code> again and <code>toothData</code> is back</li>
+<li>Check the <code>Environment Tab</code> again and <code>rats</code> is back</li>
 </ol>
 </section>
 <section id="a-brief-side-note" class="slide level2">
@@ -625,7 +669,7 @@ Dr Stevie Pederson
 <section id="data-frame-objects" class="slide level2">
 <h2>Data Frame Objects</h2>
 <ul>
-<li>The object <code>toothData</code> is known as a <code>data.frame</code></li>
+<li>The object <code>rats</code> is known as a <code>data.frame</code></li>
 <li><code>R</code> equivalent to a spreadsheet</li>
 <li><code>readr</code> uses a variant called a <code>tbl_df</code> or <code>tibble</code>
 <ul>
@@ -637,7 +681,7 @@ Dr Stevie Pederson
 <div class="fragment">
 <p><br></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(toothData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -647,10 +691,10 @@ Dr Stevie Pederson
 <li>Some additional ways to inspect this are:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>toothData</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(toothData)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(toothData)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(toothData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rats</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rats)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rats)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>What were the differences between each method?</strong></p>
 </section>
@@ -664,13 +708,13 @@ Dr Stevie Pederson
 <li>We can access each column by typing the column name after a <code>$</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>toothData<span class="sc">$</span>len</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rats<span class="sc">$</span>len</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>(We’ll come back to this more tomorrow)</p>
 <!-- ## Data Frame Objects -->
 <!-- - We can grab columns and rows using square brackets `[]` -->
 <!-- ```{r,eval=FALSE} -->
-<!-- toothData[1:3, "len"] -->
+<!-- rats[1:3, "len"] -->
 <!-- ``` -->
 <!-- - The `tibble` versions of `data.frame`s can only have row numbers for the rownames -->
 <!-- - All `data.frame`/`tibble` objects must have column names. -->
@@ -682,7 +726,7 @@ Dr Stevie Pederson
 <li>Check the help page</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?read_csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>?read_csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>We have four functions but stick to <code>read_csv()</code></li>
@@ -690,24 +734,22 @@ Dr Stevie Pederson
 </section>
 <section id="understanding-read_csv-1" class="slide level2">
 <h2>Understanding <code>read_csv()</code></h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  file,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>, <span class="at">comment =</span> <span class="st">""</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  file,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>, <span class="at">comment =</span> <span class="st">""</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>This function has numerous <em>arguments</em> (<code>file</code>, <code>col_names</code> etc.)</li>
 <li>Most have ‘default’ values given</li>
@@ -716,31 +758,29 @@ Dr Stevie Pederson
 </section>
 <section id="understanding-read_csv-2" class="slide level2">
 <h2>Understanding <code>read_csv()</code></h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  file,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>, <span class="at">comment =</span> <span class="st">""</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  file,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>, <span class="at">comment =</span> <span class="st">""</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>If specifying in order, we don’t need to name arguments</li>
 </ul>
 <div class="fragment">
-<p><code>toothData &lt;- read_csv("data/toothData.csv")</code></p>
+<p><code>rats &lt;- read_csv("data/rats.csv")</code></p>
 <p>is identical to</p>
-<p><code>toothData &lt;- read_csv(file = "data/toothData.csv")</code></p>
+<p><code>rats &lt;- read_csv(file = "data/rats.csv")</code></p>
 </div>
 </section>
 <section id="understanding-read_csv-3" class="slide level2">
@@ -751,7 +791,7 @@ Dr Stevie Pederson
 <li>Uncheck the <code>First Row as Names</code> checkbox</li>
 </ol>
 
-<img data-src="assets/importGUI.png" style="width:60.0%" class="r-stretch"></section>
+<img data-src="assets/importGUI.png" width="900" class="r-stretch"></section>
 <section id="understanding-read_csv-4" class="slide level2">
 <h2>Understanding <code>read_csv()</code></h2>
 <p>All <code>arguments</code> for the function were defined somewhere in the GUI.</p>
@@ -774,7 +814,7 @@ Dr Stevie Pederson
 <li>It could be the same, or we can specify the comment symbol</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>toothData <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/toothData.csv"</span>, <span class="at">comment =</span> <span class="st">"#"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rats.csv"</span>, <span class="at">comment =</span> <span class="st">"#"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="reading-help-pages-bonus-slide" class="slide level2">
@@ -791,11 +831,11 @@ Dr Stevie Pederson
 <h2>Loading Excel Files</h2>
 <p><code>R</code> also has a package for loading <code>.xls</code> and <code>xlsx</code> files.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The main function is <code>read_excel()</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>?read_excel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>?read_excel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img src="assets/bodl_logo_white_background.jpg" class="slide-logo r-stretch"><div class="footer footer-default">

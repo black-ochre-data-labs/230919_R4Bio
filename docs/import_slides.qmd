@@ -117,7 +117,7 @@ Make sure people haven't accidentally created `data/data`
 
 <!-- 1. Close Excel (**don't save/overwrite the file**) -->
 <!-- 2. Using the `Files` tab, enter the `data` directory -->
-<!-- 3. Click on `toothData.csv`  -->
+<!-- 3. Click on `rats.csv`  -->
 <!-- 4. Select `View File` -->
 
 <!-- This will open a preview in the *Script Window* pane (close when you're done) -->
@@ -134,76 +134,103 @@ Make sure people haven't accidentally created `data/data`
 
 Click on the file and choose `Import Dataset`
 
+![](assets/importGUI.png){width="900px"}
 
-```{r, echo=FALSE, out.width=800}
-knitr::include_graphics("assets/importGUI.png")
-```
 
 <p style="text-align: center;">(Click `Update` if you don't see this)</p>
 
 ## The Preview Window
 
-```{r, echo=FALSE, out.width='900mm', fig.align='center'}
-knitr::include_graphics("assets/importGUI_preview.png")
-```
+<br>
+
+![](assets/importGUI_preview.png){width="900px"}
 
 ## The Preview Window
 
-```{r, echo=FALSE, out.width='900mm', fig.align='center'}
-knitr::include_graphics("assets/importGUI_code.png")
-```
+<br>
+
+![](assets/importGUI_code.png){width="900px"}
+
 
 ## The Preview Window
 
 1. Select and copy all the code in the `Code Preview` Box
+    + (We'll paste this somewhere in a minute...)
 2. Click `Import`
-3. Magic happens...
+3. Magic happens!!!
     + Ignore the red/blue text. This is just 'helpful' information
     
 . . . 
 
-**Paste the copied code into your script**
+<br>
+
+*Now paste the copied code into your script*
 
 ## What has just happened? 
 
 The code we copied has 3 lines:
 
-```1. library(readr)```
+1. ```library(readr)```
 
-- This package contains the function `read_csv()`
+- `readr` contains the function `read_csv()`
+- Tells R what to do with each line/column of the file as it's read in
     
 ## What has just happened? 
 
 The code we copied has 3 lines:
 
 1. library(readr)
-2. `toothData <- read_csv("data/toothData.csv")`
+2. `rats <- read_csv("data/rats.csv")`
 
 - This line loads the data into your `R Environment`
-- It created an object named `toothData` by using the file name.
+- It created an object named `rats` by using the file name.
     
 ## What has just happened?
 
-```{r, echo=FALSE, out.width='950mm', fig.align='center'}
-knitr::include_graphics("assets/importGUI_name.png")
-```
+<br>
+
+![](assets/importGUI_name.png){width="900px"}
+
 
 ## What has just happened?
 
 1. `library(readr)`
-2. `toothData <- read_csv("data/toothData.csv")`
-3. `View(toothData)`
+2. `rats <- read_csv("data/rats.csv")`
+3. `View(rats)`
     + Opens a preview in a familiar `Excel-like` format
     + I **never** use this
 
-Close the preview by clicking the cross and delete `View(toothData)`
+Close the preview by clicking the cross and delete `View(rats)`
+
+## Another way to see rats
+
+```{r import-rats, echo=FALSE, include=FALSE}
+library(readr)
+rats <- read_csv(here::here("docs/data/rats.csv"))
+```
+
+
+```{r print-rats}
+rats
+```
+
+. . .
+
+<br>
+
+This gives a preview with:
+
+- The dimensions (`60 X 3`)
+- Column names (`len`, `supp`, `dose`)
+- Data types (`<dbl>`, `<chr>` etc)
     
 ## What has just happened?
 
 - We have just loaded data using the default settings of `read_csv()`
-    + The object `toothData` is in our `R Environment`
+    + The object `rats` is in our `R Environment`
     + The original file remains on our HDD **without modification**!!!
-- Now we've saved the code in our script, **we don't need the GUI for this operation again!**
+- Now we've saved the code in our script
+    + $\implies$ **we don't need the GUI for this operation again!**
 
 ## Let's Demonstrate
 
@@ -212,7 +239,7 @@ Close the preview by clicking the cross and delete `View(toothData)`
     + It won't unload the packages
 2. Select the code we've just pasted and send it to the console
     + (Reloading the packages won't hurt)
-3. Check the `Environment Tab` again and `toothData` is back
+3. Check the `Environment Tab` again and `rats` is back
 
 
 ## A Brief Side Note
@@ -227,7 +254,7 @@ Close the preview by clicking the cross and delete `View(toothData)`
 
 ## Data Frame Objects
 
-- The object `toothData` is known as a `data.frame`
+- The object `rats` is known as a `data.frame`
 - `R` equivalent to a spreadsheet
 - `readr` uses a variant called a `tbl_df` or `tibble` 
     + Like a `data.frame` with pretty bows & ribbons
@@ -239,7 +266,7 @@ Close the preview by clicking the cross and delete `View(toothData)`
 <br>
 
 ```{r, eval = FALSE}
-as.data.frame(toothData)
+as.data.frame(rats)
 ```
 
 
@@ -249,10 +276,10 @@ as.data.frame(toothData)
 - Some additional ways to inspect this are:
 
 ```{r, eval=FALSE}
-toothData
-print(toothData)
-head(toothData)
-glimpse(toothData)
+rats
+print(rats)
+head(rats)
+glimpse(rats)
 ```
 
 **What were the differences between each method?**
@@ -264,7 +291,7 @@ glimpse(toothData)
 - We can access each column by typing the column name after a `$`
 
 ```{r,eval=FALSE}
-toothData$len
+rats$len
 ```
 
 (We'll come back to this more tomorrow)
@@ -274,7 +301,7 @@ toothData$len
 <!-- - We can grab columns and rows using square brackets `[]` -->
 
 <!-- ```{r,eval=FALSE} -->
-<!-- toothData[1:3, "len"] -->
+<!-- rats[1:3, "len"] -->
 <!-- ``` -->
 
 <!-- - The `tibble` versions of `data.frame`s can only have row numbers for the rownames -->
@@ -293,7 +320,7 @@ toothData$len
 
 ## Understanding `read_csv()` 
 
-```{r, eval=FALSE}
+```r
 read_csv(
   file,
   col_names = TRUE, col_types = NULL, col_select = NULL,
@@ -318,7 +345,7 @@ read_csv(
 
 ## Understanding `read_csv()` 
 
-```{r, eval=FALSE}
+```r
 read_csv(
   file,
   col_names = TRUE, col_types = NULL, col_select = NULL,
@@ -341,11 +368,11 @@ read_csv(
 
 . . .
 
-`toothData <- read_csv("data/toothData.csv")` 
+`rats <- read_csv("data/rats.csv")` 
 
 is identical to  
 
-`toothData <- read_csv(file = "data/toothData.csv")`
+`rats <- read_csv(file = "data/rats.csv")`
 
 ## Understanding `read_csv()`
 
@@ -354,7 +381,7 @@ All `arguments` for the function were defined somewhere in the GUI.
 1. Open the GUI Preview by clicking on the file again
 2. Uncheck the `First Row as Names` checkbox
 
-![](assets/importGUI.png){width="60%"}
+![](assets/importGUI.png){width="900px"}
 
 ## Understanding `read_csv()`
 
@@ -376,7 +403,7 @@ __What if the first three lines were comments starting with `#`?__
 - It could be the same, or we can specify the comment symbol
 
 ```{r, eval=FALSE}
-toothData <- read_csv("data/toothData.csv", comment = "#")
+rats <- read_csv("data/rats.csv", comment = "#")
 ```
 
 ## Reading Help Pages: Bonus Slide
