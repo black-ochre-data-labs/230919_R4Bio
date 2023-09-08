@@ -453,17 +453,47 @@ Dr Stevie Pederson
 </section>
 <section id="importing-data" class="slide level2">
 <h2>Importing Data</h2>
-<p>First let’s get the data for this exercise.</p>
+<ul>
+<li>Things we do to make it “look nice” in Excel:
+<ul>
+<li><em>Cell formatting will be ignored by R</em></li>
+<li><em>Plots will also be ignored</em></li>
+<li>Blank rows are not fatal, just annoying</li>
+<li>Mixtures of numbers and text in a column</li>
+<li>Deleted cells are sometimes imported as blank rows/columns</li>
+</ul></li>
+<li>Comma-separated or tab-separated files are favoured for <code>R</code></li>
+</ul>
+</section>
+<section id="other-common-excel-issues" class="slide level2">
+<h2>Other Common Excel Issues</h2>
 <ol type="1">
-<li>Download the file <code>data.zip</code> from the workshop homepage</li>
-<li>Extract to create a folder named <code>data</code></li>
-<li>This should contain all of today’s files</li>
+<li>Excel thinks everything is a date:
+<ul>
+<li>Septin genes are now <em>SEPTIN2</em> etc</li>
+<li>Fractions are also not dates…</li>
+</ul></li>
+<li>Excel will remove leading zeroes (e.g.&nbsp;phone numbers, catalog ids)</li>
+</ol>
+</section>
+<section id="preparation" class="slide level2">
+<h2>Preparation</h2>
+<ol type="1">
+<li><code>File</code> &gt; <code>New File</code> &gt; <code>R Script</code> (Or <code>Ctrl+Shift+N</code>)</li>
+<li>Save as <code>DataImport.R</code></li>
 </ol>
 <div class="fragment">
-<p>Preview the file by clicking on it in the <code>Files</code> pane (<code>View File</code>)</p>
-<p>(Try in Excel if you prefer, but DO NOT save anything from Excel)</p>
+<p>Then get the data for this exercise.</p>
+<ol type="1">
+<li>Download the file <code>data.zip</code> from the workshop homepage</li>
+<li>Place in your directory <code>R_Training</code></li>
+<li>Extract to create a folder named <code>data</code></li>
+<li>This should contain all of today’s files</li>
+<li>Navigate to the <code>data</code> directory using the <code>Files</code> pane</li>
+</ol>
+<p>(You should see <code>rats.csv</code> in there)</p>
 <aside class="notes">
-<p>Make sure people haven’t accidentally created <code>data/data</code></p>
+<p>Take a moment to make sure people haven’t accidentally created <code>data/data</code></p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -476,51 +506,35 @@ Dr Stevie Pederson
           display:block!important;
       }</style></aside>
 </div>
-</section>
-<section id="importing-data-1" class="slide level2">
-<h2>Importing Data</h2>
-<ul>
-<li>This is actually the type of format <code>R</code> loves to see</li>
-<li>Plain text with comma delimiters</li>
-<li>Simple column structure, with column names</li>
-<li>No blank rows at the top or separating sub-tables</li>
-<li>No blank columns</li>
-</ul>
-</section>
-<section id="importing-data-2" class="slide level2">
-<h2>Importing Data</h2>
-<ul>
-<li>Things we do to make it “look nice” in Excel:
-<ul>
-<li><em>Cell formatting will be ignored by R</em></li>
-<li><em>Plots will also be ignored</em></li>
-<li>Blank rows are not fatal, just annoying</li>
-<li>Mixtures of numbers and text in a column</li>
-<li>Deleted cells are sometimes imported as blank rows/columns</li>
-</ul></li>
-</ul>
-<!-- ## Previewing in RStudio -->
-<!-- 1. Close Excel (**don't save/overwrite the file**) -->
-<!-- 2. Using the `Files` tab, enter the `data` directory -->
-<!-- 3. Click on `rats.csv`  -->
-<!-- 4. Select `View File` -->
-<!-- This will open a preview in the *Script Window* pane (close when you're done) -->
-</section>
-<section id="before-we-go-on" class="slide level2">
-<h2>Before We Go On</h2>
-<ol type="1">
-<li><code>File</code> &gt; <code>New File</code> &gt; <code>R Script</code> (Or <code>Ctrl+Shift+N</code>)</li>
-<li>Save as <code>DataImport.R</code></li>
-</ol>
 </section></section>
 <section>
 <section id="import-using-the-gui" class="title-slide slide level1 center" data-background-color="#3c3c44">
 <h1>Import Using the GUI</h1>
 
 </section>
+<section id="importing-data-1" class="slide level2">
+<h2>Importing Data</h2>
+<ol type="1">
+<li>Preview the file <code>rats.csv</code> by clicking on it (<code>View File</code>)
+<ul>
+<li>Try in Excel if you prefer, but DO NOT save anything from Excel</li>
+</ul></li>
+</ol>
+<div class="fragment">
+<p><br></p>
+<ul>
+<li>This is actually the type of format <code>R</code> loves to see</li>
+<li>Plain text with comma delimiters</li>
+<li>Simple column structure with column names</li>
+<li>No blank rows at the top or separating sub-tables</li>
+<li>No blank columns</li>
+<li>No rownames</li>
+</ul>
+</div>
+</section>
 <section id="using-the-gui-to-load-data" class="slide level2 smaller">
 <h2>Using the GUI To Load Data</h2>
-<p>Click on the file and choose <code>Import Dataset</code></p>
+<p>Click on the <code>rats.csv</code> and choose <code>Import Dataset</code> <strong>then pause when you see the following</strong></p>
 
 <img data-src="assets/importGUI.png" width="900" class="r-stretch"><p style="text-align: center;">
 (Click <code>Update</code> if you don’t see this)
@@ -530,12 +544,25 @@ Dr Stevie Pederson
 <h2>The Preview Window</h2>
 <p><br></p>
 
-<img data-src="assets/importGUI_preview.png" width="900" class="r-stretch"></section>
+<img data-src="assets/importGUI_preview.png" width="900" class="r-stretch quarto-figure-center"><p class="caption">We have a preview of the data</p><aside class="notes">
+<p>This is another preview of the data before we import it</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="the-preview-window-1" class="slide level2">
 <h2>The Preview Window</h2>
 <p><br></p>
 
-<img data-src="assets/importGUI_code.png" width="900" class="r-stretch"></section>
+<img data-src="assets/importGUI_code.png" width="900" class="r-stretch quarto-figure-center"><p class="caption">We also have a preview of the code we’re about to execute</p></section>
 <section id="the-preview-window-2" class="slide level2">
 <h2>The Preview Window</h2>
 <ol type="1">
@@ -554,51 +581,105 @@ Dr Stevie Pederson
 <p><em>Now paste the copied code into your script</em></p>
 </div>
 </section>
-<section id="what-has-just-happened" class="slide level2">
-<h2>What has just happened?</h2>
+<section id="what-just-happened" class="slide level2">
+<h2>What just happened?</h2>
 <p>The code we copied has 3 lines:</p>
-<ol type="1">
-<li><code>library(readr)</code></li>
-</ol>
-<ul>
-<li><code>readr</code> contains the function <code>read_csv()</code></li>
-<li>Tells R what to do with each line/column of the file as it’s read in</li>
-</ul>
-</section>
-<section id="what-has-just-happened-1" class="slide level2">
-<h2>What has just happened?</h2>
-<p>The code we copied has 3 lines:</p>
-<ol type="1">
-<li>library(readr)</li>
-<li><code>rats &lt;- read_csv("data/rats.csv")</code></li>
-</ol>
-<ul>
-<li>This line loads the data into your <code>R Environment</code></li>
-<li>It created an object named <code>rats</code> by using the file name.</li>
-</ul>
-</section>
-<section id="what-has-just-happened-2" class="slide level2">
-<h2>What has just happened?</h2>
-<p><br></p>
-
-<img data-src="assets/importGUI_name.png" width="900" class="r-stretch"></section>
-<section id="what-has-just-happened-3" class="slide level2">
-<h2>What has just happened?</h2>
-<ol type="1">
-<li><code>library(readr)</code></li>
-<li><code>rats &lt;- read_csv("data/rats.csv")</code></li>
-<li><code>View(rats)</code>
-<ul>
-<li>Opens a preview in a familiar <code>Excel-like</code> format</li>
-<li>I <strong>never</strong> use this</li>
-</ul></li>
-</ol>
-<p>Close the preview by clicking the cross and delete <code>View(rats)</code></p>
-</section>
-<section id="another-way-to-see-rats" class="slide level2">
-<h2>Another way to see rats</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rats.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">View</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Loads the package <code>readr</code> using <code>library(readr)</code>
+<ul>
+<li>Packages are collections (i.e.&nbsp;libraries) of related functions</li>
+<li>All <code>readr</code> functions are about importing data</li>
+</ul></li>
+<li><code>readr</code> contains the function <code>read_csv()</code></li>
+<li><code>read_csv()</code> tells R what to do with a csv file</li>
+</ul>
+</section>
+<section id="what-just-happened-1" class="slide level2">
+<h2>What just happened?</h2>
+<p>The code we copied has 3 lines:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rats.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">View</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>This line actually loads the data into your <code>R Environment</code></li>
+<li>It created an object named <code>rats</code> by using the file name (rats.csv)</li>
+<li>We can change this name easily</li>
+</ul>
+</section>
+<section id="what-just-happened-2" class="slide level2">
+<h2>What just happened?</h2>
+<p>The code we copied has 3 lines:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rats.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">View</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Opens a preview in a familiar <code>Excel-like</code> format
+<ul>
+<li>I personally <strong>never</strong> use this</li>
+</ul></li>
+</ul>
+<p>Close the preview by clicking the cross</p>
+</section>
+<section id="what-just-happened-3" class="slide level2">
+<h2>What just happened?</h2>
+<ul>
+<li>We have just loaded data using the default settings of <code>read_csv()</code></li>
+<li>The object <code>rats</code> is now in our <code>R Environment</code>
+<ul>
+<li>The original file remains on our HDD <strong>without modification</strong>!!!</li>
+</ul></li>
+<li>The code is saved in our script <br> <span class="math inline">\(\implies\)</span> <strong>we don’t need the GUI for this operation again!</strong></li>
+</ul>
+</section>
+<section id="lets-demonstrate" class="slide level2">
+<h2>Let’s Demonstrate</h2>
+<ol type="1">
+<li>In the <code>Environment Tab</code> click the broom icon (<img data-src="assets/broom.png">)
+<ul>
+<li>This will delete everything from your <code>R Environment</code></li>
+<li>It won’t unload the packages</li>
+</ul></li>
+<li>Select the code we’ve just pasted and send it to the console
+<ul>
+<li>(Reloading the packages won’t hurt)</li>
+</ul></li>
+<li>Check the <code>Environment Tab</code> again and <code>rats</code> is back</li>
+</ol>
+<p>You can delete the line <code>View(rats)</code></p>
+</section></section>
+<section>
+<section id="data-frame-objects" class="title-slide slide level1 center" data-background-color="#3c3c44">
+<h1>Data Frame Objects</h1>
+
+</section>
+<section id="data-frame-objects-1" class="slide level2">
+<h2>Data Frame Objects</h2>
+<ul>
+<li>The object <code>rats</code> is known as a <code>data.frame</code></li>
+<li><code>R</code> equivalent to a spreadsheet
+<ul>
+<li>Missing values (blank cells) are usually filled with <code>NA</code></li>
+<li><strong>Must</strong> have column names <span class="math inline">\(\implies\)</span> row names becoming less common</li>
+</ul></li>
+</ul>
+</section>
+<section id="data-frame-objects-2" class="slide level2">
+<h2>Data Frame Objects</h2>
+<p><br>Instead of <code>View()</code> <span class="math inline">\(\implies\)</span> preview by typing the object name</p>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 3
      len supp  dose 
@@ -616,230 +697,196 @@ Dr Stevie Pederson
 # ℹ 50 more rows</code></pre>
 </div>
 </div>
-<div class="fragment">
-<p><br></p>
-<p>This gives a preview with:</p>
+</div><div class="column" style="width:55%;">
+<p>Gives a preview up to 10 lines with:</p>
+<div>
 <ul>
-<li>The dimensions (<code>60 X 3</code>)</li>
-<li>Column names (<code>len</code>, <code>supp</code>, <code>dose</code>)</li>
-<li>Data types (<code>&lt;dbl&gt;</code>, <code>&lt;chr&gt;</code> etc)</li>
+<li class="fragment">The object type: <code>A tibble</code></li>
+<li class="fragment">The full dimensions: <code>60 X 3</code></li>
+<li class="fragment">Column names: <code>len</code>, <code>supp</code>, <code>dose</code></li>
+<li class="fragment">Data types: <code>&lt;dbl&gt;</code>, <code>&lt;chr&gt;</code>, <code>&lt;chr&gt;</code></li>
+</ul>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<p>I find this more informative than <code>View()</code></p>
+</div>
+</section>
+<section id="data-frame-objects-3" class="slide level2">
+<h2>Data Frame Objects</h2>
+<ul>
+<li><code>data.frame</code> objects can be subset using square brackets <code>[row, col]</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rats[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+    len supp  dose 
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1   4.2 VC    Low  
+2  11.5 VC    Low  
+3   7.3 VC    Low  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rats[, <span class="st">"len"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 1
+     len
+   &lt;dbl&gt;
+ 1   4.2
+ 2  11.5
+ 3   7.3
+ 4   5.8
+ 5   6.4
+ 6  10  
+ 7  11.2
+ 8  11.2
+ 9   5.2
+10   7  
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="data-frame-objects-4" class="slide level2">
+<h2>Data Frame Objects</h2>
+<ul>
+<li>Entire columns can also be selected using <code>$</code> <br><span class="math inline">\(\implies\)</span> doesn’t return a <code>data.frame</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rats<span class="sc">$</span>len</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  4.2 11.5  7.3  5.8  6.4 10.0 11.2 11.2  5.2  7.0 16.5 16.5 15.2 17.3 22.5
+[16] 17.3 13.6 14.5 18.8 15.5 23.6 18.5 33.9 25.5 26.4 32.5 26.7 21.5 23.3 29.5
+[31] 15.2 21.5 17.6  9.7 14.5 10.0  8.2  9.4 16.5  9.7 19.7 23.3 23.6 26.4 20.0
+[46] 25.2 25.8 21.2 14.5 27.3 25.5 26.4 22.4 24.5 24.8 30.9 26.4 27.3 29.4 23.0</code></pre>
+</div>
+</div>
+<div>
+<ul>
+<li class="fragment">Each column is an <code>R</code> object known as <em>vector</em>
+<ul>
+<li class="fragment">Literally like columns in a spreadsheet</li>
+</ul></li>
+<li class="fragment">Vectors <strong>must have all values as the same data type</strong>
+<ul>
+<li class="fragment"><code>logical</code>, <code>integer</code>, <code>numeric</code> (i.e.&nbsp;doubles), <code>character</code></li>
+<li class="fragment"><code>len</code> values are all <code>numeric</code> (or <code>dbl</code>)</li>
+</ul></li>
+<li class="fragment">All types are given when printing the object</li>
 </ul>
 </div>
 </section>
-<section id="what-has-just-happened-4" class="slide level2">
-<h2>What has just happened?</h2>
+<section id="tibble-objects" class="slide level2">
+<h2>Tibble Objects</h2>
 <ul>
-<li>We have just loaded data using the default settings of <code>read_csv()</code>
+<li><code>readr</code> uses a variant called a <code>tbl_df</code> or <code>tbl</code> (pronounced tibble)
 <ul>
-<li>The object <code>rats</code> is in our <code>R Environment</code></li>
-<li>The original file remains on our HDD <strong>without modification</strong>!!!</li>
-</ul></li>
-<li>Now we’ve saved the code in our script
-<ul>
-<li><span class="math inline">\(\implies\)</span> <strong>we don’t need the GUI for this operation again!</strong></li>
-</ul></li>
-</ul>
-</section>
-<section id="lets-demonstrate" class="slide level2">
-<h2>Let’s Demonstrate</h2>
-<ol type="1">
-<li>In the <code>Environment Tab</code> click the broom icon (<img data-src="assets/broom.png">)
-<ul>
-<li>This will delete everything from your <code>R Environment</code></li>
-<li>It won’t unload the packages</li>
-</ul></li>
-<li>Select the code we’ve just pasted and send it to the console
-<ul>
-<li>(Reloading the packages won’t hurt)</li>
-</ul></li>
-<li>Check the <code>Environment Tab</code> again and <code>rats</code> is back</li>
-</ol>
-</section>
-<section id="a-brief-side-note" class="slide level2">
-<h2>A Brief Side Note</h2>
-<ul>
-<li><code>RStudio</code> now uses <code>read_csv()</code> from the package <code>readr</code> by default</li>
-<li>Old scripts will often use <code>read.csv()</code> from the package <code>utils</code></li>
-<li>The newer version is slightly faster and fails less</li>
-<li>It also gives informative messages</li>
-<li>Other functions in <code>utils</code> are <code>read.delim()</code> and <code>read.table()</code></li>
-<li><code>readr</code> has the functions <code>read_tsv()</code>, <code>read_delim()</code> and <code>read_table()</code> etc.</li>
-</ul>
-</section>
-<section id="data-frame-objects" class="slide level2">
-<h2>Data Frame Objects</h2>
-<ul>
-<li>The object <code>rats</code> is known as a <code>data.frame</code></li>
-<li><code>R</code> equivalent to a spreadsheet</li>
-<li><code>readr</code> uses a variant called a <code>tbl_df</code> or <code>tibble</code>
-<ul>
-<li>Like a <code>data.frame</code> with pretty bows &amp; ribbons</li>
+<li>A <code>data.frame</code> with nice bonus features (e.g.&nbsp;prints a summary only)</li>
 <li>Similar to a SQL table</li>
-<li>Can only have row numbers for row names</li>
+<li>Can <em>only have row numbers for row names</em></li>
+<li>Is a foundational structure in the <code>tidyverse</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="the-tidyverse" class="slide level2">
+<h2>The Tidyverse</h2>
+<ul>
+<li>The <code>tidyverse</code> is a collection of <em>thematically-linked</em> packages from RStudio
+<ul>
+<li>Often referred to a <em>tidy</em>-programming or similar</li>
+</ul></li>
+<li>Calling <code>library(tidyverse)</code> loads <strong>all</strong> of these packages
+<ul>
+<li><span class="math inline">\(&gt;\)</span> 30 convenient packages in one line</li>
+<li><code>readr</code> is one of these <span class="math inline">\(\implies\)</span> usually just load the tidyverse</li>
 </ul></li>
 </ul>
 <div class="fragment">
-<p><br></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidyverse_packages</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "broom"         "conflicted"    "cli"           "dbplyr"       
+ [5] "dplyr"         "dtplyr"        "forcats"       "ggplot2"      
+ [9] "googledrive"   "googlesheets4" "haven"         "hms"          
+[13] "httr"          "jsonlite"      "lubridate"     "magrittr"     
+[17] "modelr"        "pillar"        "purrr"         "ragg"         
+[21] "readr"         "readxl"        "reprex"        "rlang"        
+[25] "rstudioapi"    "rvest"         "stringr"       "tibble"       
+[29] "tidyr"         "xml2"          "tidyverse"    </code></pre>
+</div>
 </div>
 </div>
 </section>
-<section id="data-frame-objects-1" class="slide level2">
-<h2>Data Frame Objects</h2>
+<section id="tibble-objects-1" class="slide level2">
+<h2>Tibble Objects</h2>
+<p><strong>Now replace <code>library(readr)</code> with <code>library(tidyverse)</code></strong> and execute</p>
 <ul>
-<li>Some additional ways to inspect this are:</li>
+<li>Some additional ways to inspect data frames are:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rats</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rats)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rats)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rats)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>What were the differences between each method?</strong></p>
 </section>
-<section id="data-frame-objects-2" class="slide level2">
-<h2>Data Frame Objects</h2>
-<ul>
-<li>Each column is a vector
-<ul>
-<li><strong>Must contain data of the same type</strong></li>
-</ul></li>
-<li>We can access each column by typing the column name after a <code>$</code></li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rats<span class="sc">$</span>len</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>(We’ll come back to this more tomorrow)</p>
-<!-- ## Data Frame Objects -->
-<!-- - We can grab columns and rows using square brackets `[]` -->
-<!-- ```{r,eval=FALSE} -->
-<!-- rats[1:3, "len"] -->
-<!-- ``` -->
-<!-- - The `tibble` versions of `data.frame`s can only have row numbers for the rownames -->
-<!-- - All `data.frame`/`tibble` objects must have column names. -->
-</section>
-<section id="understanding-read_csv" class="slide level2">
-<h2>Understanding <code>read_csv()</code></h2>
-<ul>
-<li>In the above we called the <code>R</code> function <code>read_csv()</code></li>
-<li>Check the help page</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>?read_csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>We have four functions but stick to <code>read_csv()</code></li>
-</ul>
-</section>
-<section id="understanding-read_csv-1" class="slide level2">
-<h2>Understanding <code>read_csv()</code></h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  file,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>, <span class="at">comment =</span> <span class="st">""</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>This function has numerous <em>arguments</em> (<code>file</code>, <code>col_names</code> etc.)</li>
-<li>Most have ‘default’ values given</li>
-<li>If only the argument name is given(e.g.&nbsp;<code>file</code>) <strong>we need to specify something</strong></li>
-</ul>
-</section>
-<section id="understanding-read_csv-2" class="slide level2">
-<h2>Understanding <code>read_csv()</code></h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  file,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>, <span class="at">comment =</span> <span class="st">""</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>If specifying in order, we don’t need to name arguments</li>
-</ul>
-<div class="fragment">
-<p><code>rats &lt;- read_csv("data/rats.csv")</code></p>
-<p>is identical to</p>
-<p><code>rats &lt;- read_csv(file = "data/rats.csv")</code></p>
-</div>
-</section>
-<section id="understanding-read_csv-3" class="slide level2">
-<h2>Understanding <code>read_csv()</code></h2>
-<p>All <code>arguments</code> for the function were defined somewhere in the GUI.</p>
-<ol type="1">
-<li>Open the GUI Preview by clicking on the file again</li>
-<li>Uncheck the <code>First Row as Names</code> checkbox</li>
-</ol>
 
-<img data-src="assets/importGUI.png" width="900" class="r-stretch"></section>
-<section id="understanding-read_csv-4" class="slide level2">
-<h2>Understanding <code>read_csv()</code></h2>
-<p>All <code>arguments</code> for the function were defined somewhere in the GUI.</p>
-<ol type="1">
-<li>Open the GUI Preview by clicking on the file again</li>
-<li>Uncheck the <code>First Row as Names</code> checkbox
+
+
+
+
+</section>
+<section>
+<section id="closing-comments" class="title-slide slide level1 center" data-background-color="#3c3c44">
+<h1>Closing Comments</h1>
+
+</section>
+<section id="read_csv-vs-read.csv" class="slide level2">
+<h2><code>read_csv()</code> Vs <code>read.csv()</code></h2>
 <ul>
-<li><em>What happened to the code?</em></li>
-<li><em>How did the columns change?</em></li>
+<li><code>RStudio</code> now uses <code>read_csv()</code> from <code>readr</code> <strong>by default</strong></li>
+<li>You will often see <code>read.csv()</code> in older scripts (from <code>utils</code>)</li>
+<li>The newer (<code>readr</code>) version is:
+<ul>
+<li>slightly faster</li>
+<li>more user-friendly</li>
+<li>creates fewer issues</li>
+<li>gives informative messages</li>
 </ul></li>
-</ol>
+</ul>
 <div class="fragment">
-<p>Try clicking/unclicking a few more &amp; try understand the consequences</p>
+<ul>
+<li>Earlier functions in <code>utils</code> are <code>read.*()</code> (csv, delim etc.)</li>
+<li><code>readr</code> has the functions <code>read_*()</code> (csv, tsv, delim etc.)</li>
+<li>I always use the newer ones</li>
+</ul>
 </div>
 </section>
-<section id="understanding-read_csv-5" class="slide level2">
-<h2>Understanding <code>read_csv()</code></h2>
-<p><strong>What if the first three lines were comments starting with <code>#</code>?</strong></p>
-<ul>
-<li>It could be the same, or we can specify the comment symbol</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rats.csv"</span>, <span class="at">comment =</span> <span class="st">"#"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="reading-help-pages-bonus-slide" class="slide level2">
-<h2>Reading Help Pages: Bonus Slide</h2>
-<ul>
-<li>The bottom three functions are simplified wrappers to <code>read_delim()</code></li>
-<li><code>read_csv()</code> calls <code>read_delim()</code> using <code>delim = ","</code></li>
-<li><code>read_csv2()</code> calls <code>read_delim()</code> using <code>delim = ";"</code></li>
-<li><code>read_tsv()</code> calls <code>read_delim()</code> using <code>delim = "\t"</code></li>
-</ul>
-<p><br> <strong>What function would we call for <em>space-delimited</em> files?</strong></p>
-</section>
+
 <section id="loading-excel-files" class="slide level2">
 <h2>Loading Excel Files</h2>
-<p><code>R</code> also has a package for loading <code>.xls</code> and <code>xlsx</code> files.</p>
+<ul>
+<li>The package <code>readxl</code> is for loading <code>.xls</code> and <code>xlsx</code> files.</li>
+<li>Not part of the core tidyverse but <strong>very</strong> compatible</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The main function is <code>read_excel()</code></p>
+<div class="fragment">
+<ul>
+<li>The main function is <code>read_excel()</code></li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>?read_excel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>?read_excel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
+<div class="fragment">
+<p>See if we can get to it later</p>
+<p><img src="assets/bodl_logo_white_background.jpg" class="slide-logo"></p>
+<div class="footer footer-default">
 
-<img src="assets/bodl_logo_white_background.jpg" class="slide-logo r-stretch"><div class="footer footer-default">
-
+</div>
 </div>
 </section></section>
     </div>
