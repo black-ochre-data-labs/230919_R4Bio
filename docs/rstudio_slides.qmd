@@ -23,6 +23,8 @@ format:
   html: 
     output-file: rstudio.html
     embed-resources: true    
+    toc: true
+    toc-depth: 1
 knitr: 
   opts_chunk: 
     echo: true
