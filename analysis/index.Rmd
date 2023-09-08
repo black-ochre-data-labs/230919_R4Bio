@@ -35,8 +35,9 @@ Today's workshop will run in 4x90 minute sessions
 
 | Session | Topic | Material |
 |:------- |:----- |:------ |
-| 9:00 - 10:30  | What is R and Rstudio | [Notes](rstudio.html) [Slides](rstudio_slides.html#/title-slide) | 
-|               | Bringing Data into R | [Notes](data_import.html) [Slides](import_slides.html#/title-slide) |
+| 9:00 - 10:30  | Introduction | [Slides](intro_slides.html#/title-slide) | 
+|               | What is R and Rstudio | [Notes](rstudio.html) |
+|               | Bringing Data into R | [Notes](data_import.html) |
 |               | Spreadsheet-Like Data | |
 | 10:30 - 11:00 | *Morning Tea*         | |
 | 11:00 - 12:30 | Manipulating Text     | |

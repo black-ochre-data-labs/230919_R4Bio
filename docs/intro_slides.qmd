@@ -156,9 +156,12 @@ Experience is the best teacher $\implies$ please practice your skills
 - First appeared in 1993
 - Derivative of `S` (*John Chambers et al*, Bell Labs 1976)
 - **R**oss Ihaka and **R**obert Gentleman (U of Auckland)
-    + Ross Ihaka is of NZ Maori descent
 - Authors wrote for their own research and students
 - Now estimated >2 million users
+
+::: {.notes}
+- Ross Ihaka is of NZ Maori descent
+:::
     
 ## What is R?
 
@@ -194,7 +197,7 @@ Experience is the best teacher $\implies$ please practice your skills
 ## What is R?
 
 - Packages are the key to R's flexibility and power
-    - Are collections of related functions
+    - Are collections (or libraries) of related functions
     - `ggplot2` $\implies$ Generating plots
     - `edgeR` $\implies$ Analysing RNA-Seq data
     
@@ -214,7 +217,7 @@ Experience is the best teacher $\implies$ please practice your skills
 
 - Google, ATO, ABS etc
 - Very large community of users in finance (Dirk Eddelbuettel - `Rcpp`)
-- Genomics, Ecological Research, Public Health, Physics...
+- Genomics, Ecological Research, Public Health, Politics...
 - Strong integration with HPC systems like Amazon, Hadoop
 - Growing Machine Learning capacity
 - Even has it's own peer-reviewed Journal (The R Journal)
