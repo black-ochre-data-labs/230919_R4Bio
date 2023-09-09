@@ -122,17 +122,22 @@ Take a moment to make sure people haven't accidentally created `data/data`
 
 1. Preview the file `rats.csv` by clicking on it (`View File`)
     + Try in Excel if you prefer, but DO NOT save anything from Excel
-
+    
 . . .
 
-<br>
+- The data measures tooth length in rats using 3 dose levels of Vitamin C
+    + Values are: "Low", "Med", "High"
+- Vitamin C was given in drinking water or using orange juice
+    + "OJ" or "VC"
 
-- This is actually the type of format `R` loves to see
-- Plain text with comma delimiters
-- Simple column structure with column names
-- No blank rows at the top or separating sub-tables
-- No blank columns
-- No rownames
+## Importing Data
+
+- This type of data is very easy to manage in `R`
+    - Plain text with comma delimiters
+    - Simple column structure with column names
+    - No blank rows at the top or separating sub-tables
+    - No blank columns
+    - No rownames
 
 
 ## Using the GUI To Load Data {.smaller}
@@ -365,19 +370,107 @@ glimpse(rats)
 
 **What were the differences between each method?**
 
+# Functions {background-color="#3c3c44"}
 
-## Understanding `read_csv()` {visibility='hidden'}
+## Functions in `R`
 
-- In the above we called the `R` function `read_csv()`
+```{r, eval=FALSE}
+head(rats)
+glimpse(rats)
+```
+
+- Here we have called two functions: 1) `head()` and 2) `glimpse()`
+    + They were both executed on the object `rats`
+
+. . .
+
+- Call the help page for `head()`
+
+```r
+?head
+```
+
+(if you get multiple options, choose the one from `utils`)
+
+## Functions in `R`
+
+- The key place to look at is
+
+```r
+head(x, ...)
+## Default S3 method:
+head(x, n = 6L, ...)
+```
+
+- This tells us we have two arguments to `head()`: `x` and `n`
+    + `x` has no default value $\implies$ we need to provide something
+    + `n = 6L` means `n` has a default value of 6 (L $\implies$ `integer`)
+    
+. . . 
+
+- Lower down the page you'll see
+
+**Arguments**
+
+`x`	an object<br>
+`n` an integer vector of length up to dim(x) (or 1, for non-dimensioned objects). *Blah, blah, blah...*
+
+. . .
+
+- Some of the rest is technical detail (sometimes *very helpful*)
+
+## Function Arguments
+
+- `head()` prints the *first part* of an object
+- Useful for very large objects (e.g. if we had 1000 rats)
+
+. . .
+
+- We can change the number of rows shown to us
+
+```{r}
+head(rats, 4)
+```
+
+## Function Arguments
+
+- Notice we didn't provide these as named arguments
+- If passing values in order $\implies$ no need
+
+. . .
+
+```{r}
+head(rats, 4)
+head(x = rats, n = 4)
+```
+
+## Function Arguments
+
+- If we name the arguments, we can pass *in any order we choose*
+
+```{r}
+head(n = 4, x = rats)
+```
+
+## Function Arguments
+
+- Check the help page for `glimpse()`
+    + This is from the package `pillar`
+- Try changing the `width` argument to see what happens
+
+
+## Understanding `read_csv()` 
+
+- Earlier we called the `R` function `read_csv()`
 - Check the help page
 
 ```{r, eval = FALSE}
 ?read_csv
 ```
 
-- We have four functions but stick to `read_csv()`
+- We have four functions shown but stick to `read_csv()`
 
-## Understanding `read_csv()` {visibility='hidden'}
+## Understanding `read_csv()` 
 
 ```r
 read_csv(
@@ -399,8 +492,13 @@ read_csv(
 ```
 
 - This function has numerous *arguments* (`file`, `col_names` etc.)
-- Most have 'default' values given
-- If only the argument name is given(e.g. `file`) **we need to specify something**
+- Most have default values given
+    + All were defined *somewhere in the GUI*
+    + The default assumes there are column names in the first row (`col_names = TRUE`)
+    
+. . .
+    
+- We'll explore some of the important ones later today
 
 ## Understanding `read_csv()` {visibility='hidden'}
 

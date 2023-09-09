@@ -1,0 +1,94 @@
+---
+title: "Introduction to R"
+subtitle: "Basic Plotting With `ggplot2`"
+author: "Dr Stevie Pederson"
+institute: |
+  | Black Ochre Data Labs
+  | Telethon Kids Institute
+date: "2023-09-17"
+date-format: long
+title-slide-attributes:
+    data-background-color: "#3c3c44"
+    data-background-image: assets/bodl_logo_white_background.jpg
+    data-background-opacity: "0.3"
+    data-background-size: "90%"
+editor: source
+format: 
+  revealjs:
+    theme: [../custom.scss]
+    code-line-numbers: false
+    width: 1024
+    height: 768
+    sansfont: Times New Roman
+    logo: assets/bodl_logo_white_background.jpg
+  html: 
+    output-file: basic_ggplot2.html
+    embed-resources: true
+    toc: true
+    toc-depth: 1
+knitr: 
+  opts_chunk: 
+    echo: true
+    include: true
+    warning: false
+    message: false
+    fig.align: center
+---
+
+# Basic Data Visualisation {background-color="#3c3c44"}
+
+
+## Data Visualisation
+
+
+- Now we know how to import data <br> $\implies$ *what does it look like?*
+
+. . .
+
+- Traditionally `R` used functions from `base` and `graphics`
+
+. . .
+
+- The main plotting package from the `tidyverse` is `ggplot2`
+    + Incredibly powerful approach to plotting
+- Less intuitive than traditional `R` plots $\implies$ far simpler after some practice
+
+
+## Setup For This Section
+
+1. Create a new R script called `basic_ggplot.R`
+2. Copy the following chunk from the earlier section
+
+```{r reload-rats}
+library(tidyverse)
+rats <- read_csv("data/rats.csv")
+glimpse(rats)
+```
+
+## Plotting using `base`
+
+```{r baseplot-len}
+#| fig-width: 5
+#| fig-height: 5
+#| fig-align: 'left'
+plot(rats$len)
+```
+
+This has plotted tooth length (`len`) in the order in appears
+
+## Plotting using `base`
+
+- We can make boxplots using the formula syntax `len ~ dose` <br> $\implies$ `len` "depends on" `dose`
+    - The predictor variable (`dose`) on the x-axis
+    - The response variable (`len`) on the y-axis
+
+
+```{r boxplot-len}
+#| fig-width: 5
+#| fig-height: 5
+#| fig-align: 'left'
+#| output-location: column
+boxplot(len ~ dose, data = rats)
+```
+
+# Using `ggplot2` {background-color="#3c3c44" background-image=https://ggplot2.tidyverse.org/logo.png background-size="40%" background-opacity="0.5"}
