@@ -33,19 +33,19 @@ If you are unable to get an installation working on your own laptop, please sign
 
 Today's workshop will run in 4x90 minute sessions
 
-| Session | Topic | Material |
-|:------- |:----- |:------ |
-| 9:00 - 10:30  | Introduction            | [Slides](intro_slides.html#/title-slide) | 
-|               | What is R and Rstudio   | [Notes](rstudio.html) |
-|               | Bringing Data into R    | [Notes](data_import.html) |
-|               | Beginning Visualisation | [Notes](basic_ggplot2.html) |
-| 10:30 - 11:00 | *Morning Tea*           | |
-|               | Spreadsheet-Like Data   | |
-| 11:00 - 12:30 | Manipulating Text       | |
-| 12:30 - 1:30  | *Lunch*                 | |
-| 1:30 - 3:00   |                         | |
-| 3:00 - 3:30   | *Afternoon Tea*         | |
-| 3:30 - 5:00   |                         | |
+| Session | Topic | Material | Estimated Duration |
+|:------- |:----- |:-------- |:---------------- |
+| 9:00 - 10:30  | Introduction            | [Slides](intro_slides.html#/title-slide) | `r round(sum(grepl("^##", readLines(here::here("docs/intro_slides.qmd")))) * 0.5, 0)`min |
+|               | What is R and Rstudio   | [Notes](rstudio.html) | `r round(sum(grepl("^##", readLines(here::here("docs/rstudio_slides.qmd")))) * 0.5, 0)`min |
+|               | Bringing Data into R    | [Notes](data_import.html) | `r round(sum(grepl("^##", readLines(here::here("docs/import_slides.qmd")))) * 1, 0)`min |
+|               | Beginning Visualisation | [Notes](basic_ggplot2.html) | `r round(sum(grepl("^##", readLines(here::here("docs/basic_ggplot2_slides.qmd")))) * 1, 0)`min |
+| 10:30 - 11:00 | *Morning Tea*           | | |
+|               | Spreadsheet-Like Data   | | |
+| 11:00 - 12:30 | Manipulating Text       | | |
+| 12:30 - 1:30  | *Lunch*                 | | |
+| 1:30 - 3:00   |                         | | |
+| 3:00 - 3:30   | *Afternoon Tea*         | | |
+| 3:30 - 5:00   |                         | | |
 
 ## Required Data
 
