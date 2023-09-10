@@ -41,8 +41,7 @@ We also pay respects to the cultural authority of Aboriginal and Torres Strait I
 
 . . .
 
-As a scientist, I'm honoured to be working with many Indigenous Australians, who have a proud history of being some of the first scientists.
-
+As a scientist, I'm honoured to be working with many Indigenous Australians, who have a proud history of being some of the first acknowledged scientists from the emerging historical record 
 
 ## Who Am I? 
 
@@ -83,6 +82,13 @@ Used to write Excel macros for fun whilst being a musician
 
 *Made countless typos, horrible decisions and catastrophic errors*
 
+## Today's Tutors
+
+- Jimmy Breen & Holly Martin (Black Ochre Data Labs)
+- Dan Thomson (South Australian Genomics Centre)
+- Karissa Barthelson (Flinders University)
+- Lachlan Baer, Angel Allen, Chris Fusco (University of Adelaide)
+
 ## Helpful Resources
 
 - Two excellent books/web resources are
@@ -118,7 +124,17 @@ Much of today is inspired by a two-day developers workshop I attended with Hadle
 Also gave me an opportunity to have some great conversations with Winston Chang
 :::
 
-# R {background-color="#3c3c44" background-image=https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/512px-R_logo.svg.png background-size="60%" background-opacity="0.5"}
+## Housekeeping
+
+- Toilets are back out by the lifts
+- Morning Tea / Lunch / Afternoon Tea provided in the foyer
+- Two HEPA filters running all day
+    - Masks encouraged
+- WiFi:
+    + `eduroam` for those with access
+    + UofA-Guest network for others: (password: *****)
+
+# R {background-color="#3c3c44" background-image=https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/512px-R_logo.svg.png background-size="40%" background-opacity="0.5"}
 
 
 ## Why use R?
@@ -272,9 +288,10 @@ Today we will start with:
 
 1. An Introduction to `RStudio`
 2. Reading data into `R`
-3. Manipulating and cleaning data
-4. Visualising data
-5. Writing reports using `RMarkdown`
+3. Visualising data
+4. Manipulating and cleaning data
+5. Fine tuning visualisations
+6. Writing reports using `RMarkdown`
 
 
 ## Course Outline
@@ -282,10 +299,9 @@ Today we will start with:
 By the end of the day, we'll be able to
 
 1. Load tabular data (.csv and other 'Excel-type' formats)
-2. Clean up datasets
-3. Edit data after loading
-4. Make amazing looking plots
-5. Send reports to collaborators made directly from our code
+2. Clean up and edit data datasets
+3. Make amazing looking plots
+4. Send reports to collaborators made directly from our code
 
 ::: {.notes}
 We'll cover a little about data types as this is important for R.

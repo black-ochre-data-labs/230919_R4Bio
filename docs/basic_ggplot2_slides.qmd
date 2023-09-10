@@ -377,3 +377,5 @@ ggplot(
 - All take a while to learn
     + Practice, practice, practice
     + The *R Graphics Cookbook* is a free online resource
+
+

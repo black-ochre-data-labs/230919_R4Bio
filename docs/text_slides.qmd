@@ -1,0 +1,447 @@
+---
+title: "Introduction to R"
+subtitle: "Working with Text"
+author: "Dr Stevie Pederson"
+institute: |
+  | Black Ochre Data Labs
+  | Telethon Kids Institute
+date: "2023-09-17"
+date-format: long
+title-slide-attributes:
+    data-background-color: "#3c3c44"
+    data-background-image: assets/bodl_logo_white_background.jpg
+    data-background-opacity: "0.3"
+    data-background-size: "90%"
+editor: source
+format: 
+  revealjs:
+    theme: [../custom.scss]
+    code-line-numbers: false
+    width: 1024
+    height: 768
+    sansfont: Times New Roman
+    logo: assets/bodl_logo_white_background.jpg
+  html: 
+    output-file: text.html
+    embed-resources: true
+    toc: true
+    toc-depth: 1
+knitr: 
+  opts_chunk: 
+    echo: true
+    include: true
+    warning: false
+    message: false
+    fig.align: center
+---
+
+
+```{r packages, echo=FALSE}
+library(tidyverse)
+if (interactive()) setwd(here::here("docs"))
+```
+
+# Working With Text {background-color="#3c3c44"}
+
+## Section Setup
+
+- Clear your `R` Environment
+- Create a new R script `TextManipulation.R`
+- Add `library(tidyverse)` to the top of the script and execute
+
+## Working with Text
+
+- Text manipulation is an essential part of most analyses
+    + Tidying axis labels
+    + Correcting errors
+    + Extracting shorter sample ids from full names
+- Regular Expressions form a key part of this
+    + Pattern matching technique used in `bash`, `python` etc
+    + `R` syntax is slightly different but mostly compatible
+    
+. . .
+
+- We need to understand a little about vectors first
+    
+## Vectors
+
+> **Vectors** are zero or more values of the same type
+
+. . .
+
+- We saw them earlier `x <- 1:5`
+    - This was an vector of length 5
+    - Values were all integers
+    
+```{r}
+x <- 1:5
+typeof(x)
+```
+
+    
+. . .
+
+- All columns of `rats` were also vectors
+    - `len` was `numeric` (or `double`)
+    - `dose` and `supp` were `character` vectors
+
+## Vectors
+
+- In `R` we form vectors using the function `c()`
+    + We use to combine values into a single vector
+    + One of the most heavily used functions in `R`
+
+. . .
+
+- The shorthand `x <- 1:5` could also be written as
+
+```{r}
+x <- c(1, 2, 3, 4, 5)
+typeof(x)
+```
+    
+. . .
+
+- To ensure these were integers we could place an `L` after each
+
+```{r}
+x <- c(1L, 2L, 3L, 4L, 5L)
+typeof(x)
+```
+        
+::: {.notes}
+Difference between integers and numeric not super relevant for today
+:::
+
+## Vectors
+
+- `R` has 6 types of atomic vectors
+    + Only 4 are relevant to us
+
+. . .
+
+::: {.incremental}
+
+1. `logical`: Can only be `TRUE` or `FALSE`
+2. `integer`: Whole number values
+    + Used for counts, positions in an object etc
+3. `numeric`: Numbers with decimal points (aka `double`)
+    + `integer` and `double` values have different memory requirements
+4. `character`: Any text 
+
+:::
+
+:::  {.fragment}
+
+> **Vectors** are zero or more values of the same type
+
+:::
+
+
+## Character Vectors
+
+- We can use `c()` to form a character vector
+- Note that all values were quoted
+    + `R` assumes unquoted text is an `R` object
+
+```{r}
+pets <- c("My dog", "Your cat", "No-one's rat")
+pets
+length(pets)
+```
+
+. . .    
+
+- We can extract values using square brackets `[]`
+
+```{r}
+pets[3]
+```
+
+# Text Manipulation Using `stringr` {background-color="#3c3c44" background-image=https://stringr.tidyverse.org/logo.png background-size="30%" background-opacity="0.5"}
+
+## Text Manipulation
+
+- `stringr` is always loaded with the `tidyverse`
+- Contains nearly all functions you can imagine for text manipulation
+
+. . .
+
+- Count the characters
+
+```{r}
+str_length(pets)
+```
+
+. . .
+
+- Trim to a set length
+
+```{r}
+str_trunc(pets, width = 6)
+```
+
+## Text Manipulation
+
+- Change the case of strings
+
+```{r}
+str_to_upper(pets)
+str_to_lower(pets)
+str_to_title(pets)
+```
+
+- Sort vectors
+
+```{r}
+str_sort(pets)
+```
+
+## Pattern Matching
+
+- We can search for single letters
+
+```{r}
+str_detect(pets, "y")
+```
+
+. . .
+
+- Or words
+
+```{r}
+str_detect(pets, "dog")
+```
+
+## Extracting Text
+
+- We can extract patterns from within each value
+
+```{r}
+str_extract(pets, "dog")
+```
+
+. . .
+
+- We can use the `|` to represent `OR`
+
+```{r}
+str_extract(pets, "dog|cat")
+```
+
+. . .
+
+- Note that `NA` is returned where no pattern is found
+    + i.e. the pattern is missing from that string
+
+## Extracting Text
+
+- We can specify a range of values
+    + `"[A-Z]"` restricts the pattern to all *uppercase* letters
+
+```{r}
+str_extract(pets, "[A-Z]")
+```
+
+. . .
+
+- Changeing to lower-case using `"[a-z]"`
+    - If multiple matches occur, only the first match is returned
+
+```{r}
+str_extract(pets, "[a-z]")
+```
+
+## Extracting Text
+
+- Patterns can be extended by adding a `+` symbol
+    + "Match one or more values"
+
+```{r}
+str_extract(pets, "[a-z]+")
+```
+
+. . .
+
+- `[A-Za-z]` can be combined as `[:alpha:]`
+
+```{r}
+str_extract(pets, "[:alpha:]+")
+```
+
+. . .
+
+- What happened at each non-letter? [*The match stopped*]{.fragment .fade-in}
+
+## Removing Text
+
+- We can remove patterns using `str_remove()`
+
+```{r}
+str_remove(pets, "o")
+```
+
+. . .
+
+- This only removed the first match
+    + `str_remove_al()` removes all matches
+    
+```{r}
+str_remove_all(pets, "o")
+str_remove_all(pets, "[A-Z]")
+```
+
+## Wildcards
+
+- Regular Expressions use `"."` as a wildcard
+    + `"*"` extends patterns is like `"+"` <br>$\implies$ zero or more times
+
+```{r}
+str_remove_all(pets, " ")
+str_remove_all(pets, " .")
+```
+
+. . .
+
+- A very common patterns is `".+"`
+    + Means match anything any number of times
+    
+```{r}
+str_remove_all(pets, " .+")
+```
+
+. . .
+
+- Often multiple ways to obtain your target
+
+## Replacing Patterns
+
+- `str_replace_all()` is the most powerful of the core functions
+
+```{r}
+str_replace_all(pets, "a", "o")
+str_replace_all(pets, "[a-z]", "a")
+```
+
+## Replacing Patterns
+
+- We can capture patterns and return however we wish
+    + Captures are placed within the `"()"`
+    + Captures are returned in order using `\\1`
+- The follow pattern captures the entire pattern `"(.+)"`
+    + Match anything, any number of times
+    + Then return with exclamations added
+
+
+```{r}
+str_replace_all(pets, "(.+)", "\\1!!!")
+```
+
+## Replacing Patterns
+
+- We can also capture multiple patterns
+    + Can you understand the following?
+
+```{r}
+str_replace_all(pets, "([A-Z]).+ (.+)", "\\2 \\1")
+```
+
+. . .
+
+1. We captured an uppercase letter
+2. We didn't capture the rest of the word
+    + We still matched it though!!!
+3. We captured everything after a space
+4. We returned the two captures in reverse order
+
+## Other Useful Functions
+
+- `paste()` is a key function
+    + Combines text from two vectors
+    + `R` automatically recycles values when vector lengths don't match
+
+```{r}
+paste(pets, "is great")
+```
+
+. . .
+
+- `paste()` uses `sep = " "` as the default separator
+    + Can be any character at all
+
+```{r}
+paste(pets, "Hmm...", sep = "? ")
+```
+
+. . .
+
+- `paste0()` is a shortcut for `paste(sep = "")`
+
+```{r}
+paste0(pets, "!")
+```
+
+
+
+# Factors {background-color="#3c3c44" background-image=https://forcats.tidyverse.org/logo.png background-size="30%" background-opacity="0.5"}
+
+## Factors
+
+- Categorical variables are called `factors`
+- `forcats` is the `tidyverse` package
+- `base` functions are still very common
+    + `as.factor()` and `factor()`
+
+. . .
+
+- Character vectors are always quoted when printed
+- Factors are never shown quoted
+
+**Very easy to mix characters and factors up**
+
+## Factors
+
+```{r}
+rats <- read_csv("data/rats.csv")
+dose <- rats$dose
+dose
+```
+
+- Notice that we have many repeated values
+    + Very common for categorical variables
+
+. . .
+
+    
+```{r}
+dose_fct <- as.factor(dose)
+dose_fct
+```
+
+- `as.factor()` from `base` always creates factors in alphanumeric order
+- This is how our boxplots were produced
+
+## Factors
+
+- We can manually set the levels us `factor()`
+    + Levels are passed as a character vector
+
+```{r}
+dose_fct <- factor(dose, levels = c("Low", "Med", "High"))
+dose_fct
+```
+
+## Forcats
+
+- `forcats` offers some new approaches
+    + `fct` creates factors in order (as does `fct_inorder()`)
+
+```{r}
+fct(dose)
+fct_inorder(dose)
+```
+
+```{r}
+fct_relabel(dose, .fun = str_to_lower)
+```
+
