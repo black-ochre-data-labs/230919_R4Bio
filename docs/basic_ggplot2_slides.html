@@ -458,7 +458,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rats<span class="sc">$</span>len)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="basic_ggplot2_slides_files/figure-revealjs/baseplot-len-1.png" width="480" class="r-stretch quarto-figure-left"><p>This has plotted tooth length (<code>len</code>) in the order in appears</p>
+<img data-src="basic_ggplot2_slides_files/figure-revealjs/baseplot-len-1.png" width="480" class="r-stretch quarto-figure-left"><p>This has plotted tooth length (<code>len</code>) in the order of appearance</p>
 </section>
 <section id="plotting-using-base-1" class="slide level2">
 <h2>Plotting using <code>base</code></h2>
@@ -469,27 +469,427 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <li>The response variable (<code>len</code>) on the y-axis</li>
 </ul></li>
 </ul>
+<div class="cell" data-layout-align="left">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(len <span class="sc">~</span> dose, <span class="at">data =</span> rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/boxplot-len-1.png" width="432"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="using-ggplot2" class="title-slide slide level1 center" data-background-color="#3c3c44" data-background-image="https://ggplot2.tidyverse.org/logo.png" data-background-size="40%" data-background-opacity="0.5">
+<h1>Using <code>ggplot2</code></h1>
+
+</section>
+<section id="ggplot2-basics" class="slide level2">
+<h2><code>ggplot2</code> Basics</h2>
+<p>Instead of a single function <span class="math inline">\(\implies\)</span> build a plot using layers</p>
+<ol type="1">
+<li>Start by defining the data object
+<ul>
+<li>Values for <code>x</code> &amp; <code>y</code> axes usually defined here</li>
+</ul></li>
+<li>Add layers defining the <em>geometry</em> to use
+<ul>
+<li>May be points (<code>geom_point</code>), boxplots (<code>geom_boxplot</code>) etc</li>
+</ul></li>
+</ol>
+<div class="fragment">
+<ol start="3" type="1">
+<li><em>Optionally</em> split into panels or facets</li>
+<li><em>Optionally</em> modify any scales used</li>
+<li><em>Optionally</em> tidy up labels</li>
+<li><em>Optionally</em> define an overall plotting theme</li>
+</ol>
+</div>
+</section>
+<section id="a-simple-boxplot" class="slide level2">
+<h2>A simple boxplot</h2>
+<ul>
+<li>What values are the response variable? <span class="fragment fade-in"><code>len</code></span></li>
+<li>What values are the predictor variable? <span class="fragment fade-in">Either <code>dose</code> or <code>supp</code></span></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Let’s start putting <code>dose</code> on the x-axis</li>
+</ul>
+</div>
+</section>
+<section id="a-simple-boxplot-1" class="slide level2">
+<h2>A simple boxplot</h2>
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(len <span class="sc">~</span> dose, <span class="at">data =</span> rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/ggplot-init-1.png" width="432"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>We haven’t added any geometry so none is drawn</li>
+<li>We defined the values to be placed on <code>x</code> and <code>y</code> <span class="math inline">\(\implies\)</span> axes were drawn
+<ul>
+<li>These were defined as <em>aesthetic mappings</em> using <code>aes()</code></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="a-simple-boxplot-2" class="slide level2">
+<h2>A simple boxplot</h2>
+<ul>
+<li>Geometry is added by
+<ol type="1">
+<li>Placing a <code>+</code> at the end of the first line</li>
+<li>Calling a <code>geom_*</code> function, e.g.&nbsp;<code>geom_boxplot()</code></li>
+</ol></li>
+</ul>
+<div class="fragment">
+<div class="cell columns column-output-location" data-layout-align="left">
+<div class="column">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/boxplot-len-1.png" width="480"></p>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-1.png" width="432"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-colours" class="slide level2">
+<h2>Using Colours</h2>
+<ul>
+<li>We can add more mappings to <code>aes()</code>
+<ul>
+<li>Show the supplement method as the boxplot fill</li>
+</ul></li>
+</ul>
+<div class="cell columns column-output-location" data-layout-align="left">
+<div class="column">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-fill-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-colours-1" class="slide level2">
+<h2>Using Colours</h2>
+<ul>
+<li>We can change the palette using <code>scale_fill_*</code></li>
+</ul>
+<div class="cell columns column-output-location" data-layout-align="left">
+<div class="column">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-scale-fill-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="scale_fill_" class="slide level2">
+<h2><code>scale_fill_*()</code></h2>
+<ul>
+<li>There are multiple options for defining colour palettes (i.e.&nbsp;scales)
+<ul>
+<li><code>scale_fill_discrete()</code> is applied by default</li>
+<li><code>scale_fill_viridis_d()</code> (<code>_d</code> for discrete)</li>
+<li><code>scale_fill_grey()</code></li>
+<li><code>scale_fill_manual()</code></li>
+<li>…</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>We will explore more of these as we learn more</li>
+<li>The difference between <em>discrete</em> &amp; <em>continuous</em> values is important</li>
+<li>Colour/Fill palettes <span class="math inline">\(\implies\)</span>
+<ul>
+<li><code>colour</code> is for shape outlines + <code>fill</code> is for filled shapes</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="using-existing-themes" class="slide level2">
+<h2>Using Existing Themes</h2>
+<ul>
+<li>We can get rid of the horrible grey background using a <code>theme()</code></li>
+</ul>
+<div class="cell columns column-output-location" data-layout-align="left">
+<div class="column">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-theme-bw-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme_bw" class="slide level2">
+<h2><code>theme_bw()</code></h2>
+<ul>
+<li><code>theme_bw()</code> is my default for how plots look
+<ul>
+<li><code>theme_grey()</code> is the default</li>
+<li>Other complete themes: <code>theme_classic()</code>, <code>theme_minimal()</code></li>
+</ul></li>
+<li>Adding <code>theme()</code> can modify the overall layout
+<ul>
+<li><code>legend.position</code>, <code>legend.justiication</code></li>
+<li><code>axis.text</code>, <code>axis.tixks</code></li>
+<li><code>panel.background</code></li>
+</ul></li>
+<li>Very powerful and we’ll explore more later</li>
+</ul>
+</section>
+<section id="labels" class="slide level2">
+<h2>Labels</h2>
+<ul>
+<li>Tidy up labels for aesthetic mappings</li>
+</ul>
+<div class="cell columns column-output-location" data-layout-align="left">
+<div class="column">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Vitamin C Dose"</span>, </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Odontoblast Length"</span>, </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Method"</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-labs-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="facets" class="slide level2">
+<h2>Facets</h2>
+<ul>
+<li>We could even show each method in it’s own panel (i.e.&nbsp;facet)</li>
+</ul>
+<div class="cell columns column-output-location" data-layout-align="left">
+<div class="column">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>supp) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Vitamin C Dose"</span>, </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Odontoblast Length"</span>, </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Method"</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-facet-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section></section>
-<section id="using-ggplot2" class="title-slide slide level1 center" data-background-color="#3c3c44" data-background-image="https://ggplot2.tidyverse.org/logo.png" data-background-size="40%" data-background-opacity="0.5">
-<h1>Using <code>ggplot2</code></h1>
+<section>
+<section id="different-geometries" class="title-slide slide level1 center" data-background-color="#3c3c44">
+<h1>Different Geometries</h1>
+
+</section>
+<section id="geom_" class="slide level2">
+<h2><code>geom_*()</code></h2>
+<div>
+<ul>
+<li class="fragment">Multiple options for geometry exist
+<ul>
+<li class="fragment">Points: <code>geom_point()</code>, <code>geom_jitter()</code></li>
+<li class="fragment">Bar-plots: <code>geom_col()</code>, <code>geom_bar()</code></li>
+<li class="fragment">Boxplots: <code>geom_boxplot()</code>, <code>geom_violin()</code></li>
+<li class="fragment">Distributions: <code>geom_density()</code>, <code>geom_histogram()</code></li>
+<li class="fragment">Lines: <code>geom_line()</code>, <code>geom_path()</code></li>
+<li class="fragment">Straight Lines: <code>geom_abline()</code>,<code>geom_hline()</code>, <code>geom_vline()</code></li>
+<li class="fragment">Short Line Segments: <code>geom_errorbar()</code>, <code>geom_segment()</code></li>
+<li class="fragment">Text: <code>geom_text()</code>, <code>geom_label()</code></li>
+<li class="fragment">Heatmaps: <code>geom_rect()</code>, <code>geom_raster()</code>, <code>geom_tile()</code></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="overlaying-points" class="slide level2">
+<h2>Overlaying points</h2>
+<ul>
+<li>Add <code>geom_point()</code> with some transparency (alpha) to the boxplot fill
+<ul>
+<li>Will be drawn before the boxplot (i.e.&nbsp;in order of the code)</li>
+</ul></li>
+</ul>
+<div class="cell columns column-output-location" data-layout-align="left">
+<div class="column">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>supp) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Vitamin C Dose"</span>, </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Odontoblast Length"</span>, </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Method"</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-points-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="overlaying-points-1" class="slide level2">
+<h2>Overlaying points</h2>
+<ul>
+<li><code>geom_jitter()</code> is <code>geom_point()</code> with a bit of noise added
+<ul>
+<li>width &amp; height control x &amp; y noise respectively</li>
+</ul></li>
+</ul>
+<div class="cell columns column-output-location" data-layout-align="left">
+<div class="column">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>supp) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Vitamin C Dose"</span>, </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Odontoblast Length"</span>, </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Method"</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-jitter-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="additional-comments" class="title-slide slide level1 center" data-background-color="#3c3c44">
+<h1>Additional Comments</h1>
+
+</section>
+<section id="categorical-variables" class="slide level2">
+<h2>Categorical Variables</h2>
+<ul>
+<li><code>dose</code> and <code>supp</code> are categorical variables (i.e.&nbsp;discrete)
+<ul>
+<li>Known in <code>R</code> as <code>factors</code></li>
+<li>By default, levels are assigned in alphabetic order</li>
+<li>We’ll learn more about these in the next section</li>
+</ul></li>
+</ul>
+</section>
+<section id="nb" class="slide level2">
+<h2>NB</h2>
+<ul>
+<li><code>ggplot</code> is the function</li>
+<li><code>ggplot2</code> is the package name</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Hadley started with <code>ggplot</code> as the package name
+<ul>
+<li>Abandoned and rewrote as <code>ggplot2</code> during his PhD</li>
+<li>Probably would’ve done things differently in hindsight</li>
+</ul></li>
+<li>The package <code>ggplot</code> is not publicly available</li>
+</ul>
+</div>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<ul>
+<li>Beyond the first boxplot <br><span class="math inline">\(\implies\)</span> all very difficult to draw using <code>base</code>/<code>graphics</code></li>
+<li>The dataset determines what geometry is appropriate</li>
+<li>Highly customisable plots
+<ul>
+<li>Colour/Fill palettes</li>
+<li>Scales for axes can be log transformed, trimmed etc</li>
+<li>Themes control overall appearance</li>
+</ul></li>
+<li>All take a while to learn
+<ul>
+<li>Practice, practice, practice</li>
+<li>The <em>R Graphics Cookbook</em> is a free online resource</li>
+</ul></li>
+</ul>
 
 <img src="assets/bodl_logo_white_background.jpg" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

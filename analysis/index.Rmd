@@ -35,16 +35,17 @@ Today's workshop will run in 4x90 minute sessions
 
 | Session | Topic | Material |
 |:------- |:----- |:------ |
-| 9:00 - 10:30  | Introduction | [Slides](intro_slides.html#/title-slide) | 
-|               | What is R and Rstudio | [Notes](rstudio.html) |
-|               | Bringing Data into R | [Notes](data_import.html) |
-|               | Spreadsheet-Like Data | |
-| 10:30 - 11:00 | *Morning Tea*         | |
-| 11:00 - 12:30 | Manipulating Text     | |
-| 12:30 - 1:30  | *Lunch*               | |
-| 1:30 - 3:00   |                       | |
-| 3:00 - 3:30   | *Afternoon Tea*       | |
-| 3:30 - 5:00   |                       | |
+| 9:00 - 10:30  | Introduction            | [Slides](intro_slides.html#/title-slide) | 
+|               | What is R and Rstudio   | [Notes](rstudio.html) |
+|               | Bringing Data into R    | [Notes](data_import.html) |
+|               | Beginning Visualisation | [Notes](basic_ggplot2.html) |
+| 10:30 - 11:00 | *Morning Tea*           | |
+|               | Spreadsheet-Like Data   | |
+| 11:00 - 12:30 | Manipulating Text       | |
+| 12:30 - 1:30  | *Lunch*                 | |
+| 1:30 - 3:00   |                         | |
+| 3:00 - 3:30   | *Afternoon Tea*         | |
+| 3:30 - 5:00   |                         | |
 
 ## Required Data
 
