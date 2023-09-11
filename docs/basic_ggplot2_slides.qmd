@@ -1,6 +1,6 @@
 ---
-title: "Introduction to R"
-subtitle: "Basic Plotting With `ggplot2`"
+title: "Basic Plotting With `ggplot2`"
+subtitle: "Introduction to R For Biologists and Bioinformatics"
 author: "Dr Stevie Pederson"
 institute: |
   | Black Ochre Data Labs

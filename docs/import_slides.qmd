@@ -1,6 +1,6 @@
 ---
-title: "Introduction to R"
-subtitle: "Importing Data"
+title: "Importing Data"
+subtitle: "Introduction to R For Biologists and Bioinformatics"
 author: "Dr Stevie Pederson"
 institute: |
   | Black Ochre Data Labs

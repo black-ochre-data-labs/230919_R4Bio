@@ -9,7 +9,7 @@
 <meta name="author" content="Dr Stevie Pederson">
 <meta name="dcterms.date" content="2023-09-17">
 
-<title>Introduction to R</title>
+<title>Importing Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3138,6 +3138,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
   <li><a href="#bringing-data-into-r" id="toc-bringing-data-into-r" class="nav-link active" data-scroll-target="#bringing-data-into-r">Bringing Data Into R</a></li>
   <li><a href="#import-using-the-gui" id="toc-import-using-the-gui" class="nav-link" data-scroll-target="#import-using-the-gui">Import Using the GUI</a></li>
   <li><a href="#data-frame-objects" id="toc-data-frame-objects" class="nav-link" data-scroll-target="#data-frame-objects">Data Frame Objects</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
   <li><a href="#closing-comments" id="toc-closing-comments" class="nav-link" data-scroll-target="#closing-comments">Closing Comments</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="import_slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -3146,8 +3147,8 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to R</h1>
-<p class="subtitle lead">Importing Data</p>
+<h1 class="title">Importing Data</h1>
+<p class="subtitle lead">Introduction to R For Biologists and Bioinformatics</p>
 </div>
 
 
@@ -3278,14 +3279,28 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </ul></li>
 </ol>
 <p>. . .</p>
-<p><br></p>
 <ul>
-<li>This is actually the type of format <code>R</code> loves to see</li>
+<li>The data measures tooth length in rats using 3 dose levels of Vitamin C
+<ul>
+<li>Values are: “Low”, “Med”, “High”</li>
+</ul></li>
+<li>Vitamin C was given in drinking water or using orange juice
+<ul>
+<li>“OJ” or “VC”</li>
+</ul></li>
+</ul>
+</section>
+<section id="importing-data-2" class="level2">
+<h2 class="anchored" data-anchor-id="importing-data-2">Importing Data</h2>
+<ul>
+<li>This type of data is very easy to manage in <code>R</code>
+<ul>
 <li>Plain text with comma delimiters</li>
 <li>Simple column structure with column names</li>
 <li>No blank rows at the top or separating sub-tables</li>
 <li>No blank columns</li>
 <li>No rownames</li>
+</ul></li>
 </ul>
 </section>
 <section id="using-the-gui-to-load-data" class="level2 smaller">
@@ -3535,7 +3550,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <ul>
 <li><code>readr</code> uses a variant called a <code>tbl_df</code> or <code>tbl</code> (pronounced tibble)
 <ul>
-<li>Like a <code>data.frame</code> with pretty bows &amp; ribbons (e.g. prints a summary only)</li>
+<li>A <code>data.frame</code> with nice bonus features (e.g. prints a summary only)</li>
 <li>Similar to a SQL table</li>
 <li>Can <em>only have row numbers for row names</em></li>
 <li>Is a foundational structure in the <code>tidyverse</code></li>
@@ -3545,7 +3560,10 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <section id="the-tidyverse" class="level2">
 <h2 class="anchored" data-anchor-id="the-tidyverse">The Tidyverse</h2>
 <ul>
-<li>The <code>tidyverse</code> is a collection of thematically linked packages from RStudio</li>
+<li>The <code>tidyverse</code> is a collection of <em>thematically-linked</em> packages from RStudio
+<ul>
+<li>Often referred to a <em>tidy</em>-programming or similar</li>
+</ul></li>
 <li>Calling <code>library(tidyverse)</code> loads <strong>all</strong> of these packages
 <ul>
 <li><span class="math inline">\(&gt;\)</span> 30 convenient packages in one line</li>
@@ -3580,61 +3598,197 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </div>
 <p><strong>What were the differences between each method?</strong></p>
 </section>
-<section id="understanding-read_csv" class="level2" data-visibility="hidden">
-<h2 data-visibility="hidden" class="anchored" data-anchor-id="understanding-read_csv">Understanding <code>read_csv()</code></h2>
+</section>
+<section id="functions" class="level1" data-background-color="#3c3c44">
+<h1 data-background-color="#3c3c44">Functions</h1>
+<section id="functions-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="functions-in-r">Functions in <code>R</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rats)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li>In the above we called the <code>R</code> function <code>read_csv()</code></li>
+<li>Here we have called two functions: 1) <code>head()</code> and 2) <code>glimpse()</code>
+<ul>
+<li>They were both executed on the object <code>rats</code></li>
+</ul></li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>Call the help page for <code>head()</code></li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>?head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(if you get multiple options, choose the one from <code>utils</code>)</p>
+</section>
+<section id="functions-in-r-1" class="level2">
+<h2 class="anchored" data-anchor-id="functions-in-r-1">Functions in <code>R</code></h2>
+<ul>
+<li>The key place to look at is</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x, ...)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Default S3 method:</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x, <span class="at">n =</span> 6L, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>This tells us we have two arguments to <code>head()</code>: <code>x</code> and <code>n</code>
+<ul>
+<li><code>x</code> has no default value <span class="math inline">\(\implies\)</span> we need to provide something</li>
+<li><code>n = 6L</code> means <code>n</code> has a default value of 6 (L <span class="math inline">\(\implies\)</span> <code>integer</code>)</li>
+</ul></li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>Lower down the page you’ll see</li>
+</ul>
+<p><strong>Arguments</strong></p>
+<p><code>x</code> an object<br> <code>n</code> an integer vector of length up to dim(x) (or 1, for non-dimensioned objects). <em>Blah, blah, blah…</em></p>
+<p>. . .</p>
+<ul>
+<li>Some of the rest is technical detail (sometimes <em>very helpful</em>)</li>
+</ul>
+</section>
+<section id="function-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="function-arguments">Function Arguments</h2>
+<ul>
+<li><code>head()</code> prints the <em>first part</em> of an object</li>
+<li>Useful for very large objects (e.g. if we had 1000 rats)</li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>We can change the number of rows shown to us</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rats, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+    len supp  dose 
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1   4.2 VC    Low  
+2  11.5 VC    Low  
+3   7.3 VC    Low  
+4   5.8 VC    Low  </code></pre>
+</div>
+</div>
+</section>
+<section id="function-arguments-1" class="level2">
+<h2 class="anchored" data-anchor-id="function-arguments-1">Function Arguments</h2>
+<ul>
+<li>Notice we didn’t provide these as named arguments</li>
+<li>If passing values in order <span class="math inline">\(\implies\)</span> no need</li>
+</ul>
+<p>. . .</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rats, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+    len supp  dose 
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1   4.2 VC    Low  
+2  11.5 VC    Low  
+3   7.3 VC    Low  
+4   5.8 VC    Low  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> rats, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+    len supp  dose 
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1   4.2 VC    Low  
+2  11.5 VC    Low  
+3   7.3 VC    Low  
+4   5.8 VC    Low  </code></pre>
+</div>
+</div>
+</section>
+<section id="function-arguments-2" class="level2">
+<h2 class="anchored" data-anchor-id="function-arguments-2">Function Arguments</h2>
+<ul>
+<li>If we name the arguments, we can pass <em>in any order we choose</em></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">x =</span> rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+    len supp  dose 
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1   4.2 VC    Low  
+2  11.5 VC    Low  
+3   7.3 VC    Low  
+4   5.8 VC    Low  </code></pre>
+</div>
+</div>
+</section>
+<section id="function-arguments-3" class="level2">
+<h2 class="anchored" data-anchor-id="function-arguments-3">Function Arguments</h2>
+<ul>
+<li>Check the help page for <code>glimpse()</code>
+<ul>
+<li>This is from the package <code>pillar</code></li>
+</ul></li>
+<li>Try changing the <code>width</code> argument to see what happens</li>
+</ul>
+</section>
+<section id="understanding-read_csv" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-read_csv">Understanding <code>read_csv()</code></h2>
+<ul>
+<li>Earlier we called the <code>R</code> function <code>read_csv()</code></li>
 <li>Check the help page</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>?read_csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>?read_csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>We have four functions but stick to <code>read_csv()</code></li>
+<li>We have four functions shown but stick to <code>read_csv()</code></li>
 </ul>
 </section>
-<section id="understanding-read_csv-1" class="level2" data-visibility="hidden">
-<h2 data-visibility="hidden" class="anchored" data-anchor-id="understanding-read_csv-1">Understanding <code>read_csv()</code></h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  file,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;NA&quot;</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">&quot;</span><span class="sc">\&quot;</span><span class="st">&quot;</span>, <span class="at">comment =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">&quot;unique&quot;</span>,</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="understanding-read_csv-1" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-read_csv-1">Understanding <code>read_csv()</code></h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  file,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;NA&quot;</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">&quot;</span><span class="sc">\&quot;</span><span class="st">&quot;</span>, <span class="at">comment =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">&quot;unique&quot;</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>This function has numerous <em>arguments</em> (<code>file</code>, <code>col_names</code> etc.)</li>
-<li>Most have ‘default’ values given</li>
-<li>If only the argument name is given(e.g. <code>file</code>) <strong>we need to specify something</strong></li>
+<li>Most have default values given
+<ul>
+<li>All were defined <em>somewhere in the GUI</em></li>
+<li>The default assumes there are column names in the first row (<code>col_names = TRUE</code>)</li>
+</ul></li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>We’ll explore some of the important ones later today</li>
 </ul>
 </section>
 <section id="understanding-read_csv-2" class="level2" data-visibility="hidden">
 <h2 data-visibility="hidden" class="anchored" data-anchor-id="understanding-read_csv-2">Understanding <code>read_csv()</code></h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  file,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;NA&quot;</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">&quot;</span><span class="sc">\&quot;</span><span class="st">&quot;</span>, <span class="at">comment =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">&quot;unique&quot;</span>,</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  file,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;NA&quot;</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">&quot;</span><span class="sc">\&quot;</span><span class="st">&quot;</span>, <span class="at">comment =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">&quot;unique&quot;</span>,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>If specifying in order, we don’t need to name arguments</li>
 </ul>
@@ -3673,20 +3827,17 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li>It could be the same, or we can specify the comment symbol</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/rats.csv&quot;</span>, <span class="at">comment =</span> <span class="st">&quot;#&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/rats.csv&quot;</span>, <span class="at">comment =</span> <span class="st">&quot;#&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="closing-comments" class="level1" data-background-color="#3c3c44">
 <h1 data-background-color="#3c3c44">Closing Comments</h1>
-<section id="a-brief-side-note" class="level2">
-<h2 class="anchored" data-anchor-id="a-brief-side-note">A Brief Side Note</h2>
+<section id="read_csv-vs-read.csv" class="level2">
+<h2 class="anchored" data-anchor-id="read_csv-vs-read.csv"><code>read_csv()</code> Vs <code>read.csv()</code></h2>
 <ul>
 <li><code>RStudio</code> now uses <code>read_csv()</code> from <code>readr</code> <strong>by default</strong></li>
-<li>You will often see <code>read.csv()</code> in older scripts
-<ul>
-<li>From the package <code>utils</code></li>
-</ul></li>
+<li>You will often see <code>read.csv()</code> in older scripts (from <code>utils</code>)</li>
 <li>The newer (<code>readr</code>) version is:
 <ul>
 <li>slightly faster</li>
@@ -3699,7 +3850,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <ul>
 <li>Earlier functions in <code>utils</code> are <code>read.*()</code> (csv, delim etc.)</li>
 <li><code>readr</code> has the functions <code>read_*()</code> (csv, tsv, delim etc.)</li>
-<li>Please use the newer ones preferentially</li>
+<li>I always use the newer ones</li>
 </ul>
 </section>
 <section id="reading-help-pages-bonus-slide" class="level2" data-visibility="hidden">
@@ -3714,13 +3865,19 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </section>
 <section id="loading-excel-files" class="level2">
 <h2 class="anchored" data-anchor-id="loading-excel-files">Loading Excel Files</h2>
-<p><code>R</code> also has a package for loading <code>.xls</code> and <code>xlsx</code> files.</p>
+<ul>
+<li>The package <code>readxl</code> is for loading <code>.xls</code> and <code>xlsx</code> files.</li>
+<li>Not part of the core tidyverse but <strong>very</strong> compatible</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The main function is <code>read_excel()</code></p>
+<p>. . .</p>
+<ul>
+<li>The main function is <code>read_excel()</code></li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>?read_excel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>?read_excel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>. . .</p>
 <p>See if we can get to it later</p>

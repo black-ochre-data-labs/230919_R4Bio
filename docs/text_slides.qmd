@@ -1,6 +1,6 @@
 ---
-title: "Introduction to R"
-subtitle: "Working with Text"
+title: "Working with Text"
+subtitle: "Introduction to R For Biologists and Bioinformatics"
 author: "Dr Stevie Pederson"
 institute: |
   | Black Ochre Data Labs
@@ -443,5 +443,28 @@ fct_inorder(dose)
 
 ```{r}
 fct_relabel(dose, .fun = str_to_lower)
+```
+
+## Our Previous Plot
+
+```{r}
+#| fig-width: 5
+#| fig-height: 4.5
+#| fig-align: 'left'
+#| output-location: column
+rats$dose <- factor(
+  rats$dose, levels = c("Low", "Med", "High")
+)
+ggplot(
+  rats, aes(x = dose, y = len, fill = supp)
+) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = "Set1") +
+  labs(
+    x = "Vitamin C Dose", 
+    y = "Odontoblast Length", 
+    fill = "Method"
+  ) +
+  theme_bw() 
 ```
 
