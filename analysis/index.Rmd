@@ -13,6 +13,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+<base target="_blank">
+
 ## Setup (Pre-Workshop)
 
 It is vitally important that your R and Rstudio installations are running before we commence.
