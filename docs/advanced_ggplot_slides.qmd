@@ -919,6 +919,8 @@ summ_df |>
 
 :::
 
+# Themes {background-color="#3c3c44" background-image=https://ggplot2.tidyverse.org/logo.png background-size="40%" background-opacity="0.4"}
+
 ## Using Themes
 
 ::: {style="font-size:90%"}
@@ -1088,6 +1090,24 @@ p +
 ```
 
 :::
+
+## Exporting Plots
+
+- Making plots in `R` is nice <br>$\implies$ *How do we get them into our paper??!!!*
+
+. . .
+
+- `ggsave()` will save the last plot
+    + The file extension will determine the format
+    + Can be `png`, `jpg`, `pdf`, `svg`, `tiff` etc
+    + `width` & `height` default to inches but can be changed
+    
+. . .
+
+- Getting font sizes right can be infuriating
+    + Always add the save after you create the plot
+    + Open immediately and check the font sizes
+
 
 ## Closing Comments
 
