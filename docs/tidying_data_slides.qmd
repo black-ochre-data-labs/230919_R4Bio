@@ -136,11 +136,12 @@ glimpse(transport)
 ## Logical Tests
 
 ```{r, results='hide'}
-x <- c(1:5)
+x <- c(1:5, NA)
 x == 5
 x != 5
 x > 3
 x > 3 | x == 2
+is.na(x)
 ```
 
 . . .
@@ -155,9 +156,22 @@ which(transport$height > 180)
 
 # The package `dplyr` {background-color="#3c3c44" background-image=https://swag.rstudio.com/uploads/1/3/1/3/131335021/s815253891256106552_p2_i4_w660.png background-size="40%" background-opacity="0.5"}
 
+## Working with `tibble` Objects
+
+- Conventional subsetting and explorations <br>$\implies$ mostly square brackets along with `subset()`
+
+```{r, results='markup'}
+## Just get the first 4 rows
+transport[1:4, ]
+## The weight & height columns only
+transport[, c("weight", "height")]
+```
+
+
 ## Using `dplyr`
 
 - `dplyr` is a core `tidyverse` package
+    + Was a *game-changer* upon release
 - Inspired by SQL operations
 - Uses similar function names to SQL 
 
@@ -169,6 +183,7 @@ which(transport$height > 180)
 ## Starting with `dplyr::select()` 
 
 - The function `select()` allows you to select columns by name
+    + Quoting column names is often optional in the `tidyverse`
 - The `tibble` must be given as the first argument
     + Defined in the help page as `.data`
 
@@ -223,36 +238,38 @@ select(transport, ends_with("ght"))
 select(transport, contains("t"))
 ```
 
+. . . 
 
-<!-- ## Starting with `dplyr::select()`  -->
+- Opens up a world of possibilities
 
-<!-- __So far, we haven't changed the original object__ -->
+## Selecting Rows with `dplyr::slice()`
 
-<!-- We can overwrite this anytime (sometimes we will by accident) -->
+- We can choose columns by *name* or *position* using `select()`
+- `tibble` objects have no rownames
+- Can only select rows using *position*, or *filtering by value*
 
-<!-- ```{r} -->
-<!-- transport <- select(transport, -name) -->
-<!-- transport -->
-<!-- ``` -->
+. . .
 
-<!-- Now we have removed the `name` column -->
+- `slice()` is similar to selecting rows using the square brackets
 
-<!-- ## Starting with `dplyr::select()`  -->
+```{r}
+slice(transport, 1:4)
+```
 
-<!-- - To get the column back, we need to reload the `.csv` file -->
+. . .
 
-<!-- ```{r, echo=FALSE, eval = TRUE} -->
-<!-- transport <- read_csv( -->
-<!--   "data/transport.csv", -->
-<!--   comment = "#", col_names = FALSE, na = "-", col_types = "-ccnnc" -->
-<!-- ) -->
-<!-- colnames(transport) <- c("gender", "name", "weight", "height", "method") -->
-<!-- ``` -->
+- No need for consecutive rows
+
+```{r}
+slice(transport, c(1, 10, 15))
+```
+
 
 
 ## Using `dplyr::filter()` 
 
 - We can use our logical tests to filter the data
+    + Returns rows based on values
 - Again we need to specify the `tibble` as the first argument
 
 ```{r}
@@ -267,7 +284,9 @@ filter(transport, method == "car", gender == "female")
 
 . . .
 
-(We'll fix those weird gender entries very soon)
+::: {.notes{
+We'll fix those weird gender entries very soon
+:::
 
 ## Using `dplyr::arrange()` 
 
@@ -301,14 +320,13 @@ knitr::opts_chunk$set(results = "markup")
 - Originally introduced as `%>%` from the package `magrittr`
     + `|>` Added at R 4.2.0
     + Older code may contain `%>%`
+    + (My current code still contains `%>%`)
 
 . . .
 
-> Both `|>` and `%>%` place the **output of the first function** as the **first argument** of the next function!
+> `|>` (or `%>%`) places the **output of the a function** as the **first argument** of the next function!
 
-. . .
 
-<br>(I personally haven't made the shift from `%>%` to `|>` yet)
 
 ::: {.notes}
 - Apparently `|>` has some advantages, but I haven't figured them out yet
@@ -338,7 +356,7 @@ transport |> filter(method == "bike")
 ::::
 
 ::: {.fragment}
-<br>Both of these are identical
+<br>Both of these are identical in their results
 :::
 
 
@@ -374,7 +392,7 @@ transport |> filter(method == "bike") |> arrange(height)
 We can add extra columns using `mutate()`
 
 ```{r}
-transport |> mutate(height_m = height/100)
+transport |> mutate(height_m2 = (height/100)^2)
 ```
 
 
@@ -385,8 +403,8 @@ Once we've added a column, we can refer to it by name and keep adding
 ```{r}
 transport |> 
   mutate(
-    height_m = height/100, 
-    BMI = weight / height_m^2
+    height_m2 = (height/100)^2, 
+    BMI = weight / height_m2
   )
 ```
 
@@ -419,11 +437,15 @@ Now we can go crazy with multiple processes
 transport |>
   rename(height_cm = height) |>
   mutate(
-      height_m = height_cm/100, 
-      BMI = weight / height_m^2
+      height_m2 = (height_cm/100)^2, 
+      BMI = weight / height_m2
   ) |>
   filter(BMI > 25)
 ```
+
+. . .
+
+NB: *We have never modified our original data object once imported!*
 
 ## Combining with `case_when()`
 
@@ -447,6 +469,9 @@ transport |>
 :::
     
 ## Combining with `case_when()`
+
+- `case_when()` performs a logical test on the LHS
+    + Replaces with the value on the RHS if `TRUE`
 
 ```{r}
 transport |>
@@ -472,6 +497,7 @@ transport |>
 ## Combining with `case_when()`
 
 - `case_when()` steps through conditions hierarchically
+    + Similar to a series of nested `ifelse()` statements
     + Once `TRUE` is returned that value is excluded from future tests
     + Don't need to reassign `"female"` or `"male"` values
     
@@ -485,7 +511,7 @@ transport |>
             gender == "Female" ~ "female",
             gender == "M" ~ "male",
             gender == "Male" ~ "male",
-            TRUE ~ gender
+            TRUE ~ gender # Use what's already in the `gender` column
         )
     ) |>
     pull("gender") |>
@@ -520,7 +546,9 @@ transport |>
 
 ## Modifying an object during import
 
-- My full import code chunk might be as below <br>$\implies$ everything is done once at import
+- My full import code chunk might be as below:
+    + Everything is done once at import
+    + *Almost never* modify the actual object once imported
 
 ```{r}
 cols <- c("gender", "name", "weight", "height", "method")
@@ -528,7 +556,7 @@ transport <- "data/transport.csv" |>
     read_csv(comment = "#", col_names = cols, col_types = "-ccnnc") |>
     mutate(
         
-        ## Correct erroneous gender encoding, the set as a factor
+        ## Correct erroneous gender encoding, then set as a factor
         gender = case_when(
             gender == "F" ~ "female",
             gender == "M" ~ "male",
@@ -711,12 +739,10 @@ left_join(transport, contacts, by = "name")
 
 . . .
 
-- Any `name` entries missing from the second `tibble` (`contacts`) will become `NA` in the column `contact`
+- `name` entries missing from `contacts` will become `NA` in `contact`
 
 ```{r}
-transport |>
-    left_join(contacts, by = "name") |>
-    filter(is.na(contact))
+transport |> left_join(contacts, by = "name") |> filter(is.na(contact))
 ```
 
 
@@ -730,7 +756,7 @@ transport |>
     tail()
 ```
 
-- Any missing from the first `tibble` (`transport`) will become `NA` where missing
+- Any fields missing from `transport` will become `NA` where missing
 
 ## `dplyr::full_join()`
 
@@ -746,189 +772,10 @@ transport |>
 
 Will be missing values in both directions
 
-# Reshaping Data {background-color="#3c3c44" background-image=https://tidyr.tidyverse.org/logo.png background-size="30%" background-opacity="0.5"}
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(eval = FALSE)
-```
-
-
-## Reshaping your data
-
-- This dataset is in what we refer to as `wide` form
-- We have a row of measurements for each individual
-- The information is _structured around the individual_
-
-In `long` form, the information is _structured around the measurement_
-
-## Reshaping your data | From Wide to Long
-
-```{r}
-timeCourse <- read_csv("data/timeCourse.csv")
-timeCourse
-```
-
-This is a time course:
-
-- Measuring log-change in GFP intensity
-- Two treatments (`Tx`) A & B 
-- Also have identifier column: `Mouse`
-
-## From Wide to Long
-
-The basic function is `pivot_longer()`
-
-- Part of the package `tidyr`
-- Key arguments are:
-    - `cols`: which columns are shifting to long form
-    - `names_to`: What shall we call the column with the old column names
-    - `values_to`: What shall we call the column with the values
-    
-## From Wide to Long
-
-```{r}
-timeCourse |>
-  pivot_longer(
-    cols = starts_with("day"),
-    names_to = "Day",
-    values_to = "logFC"
-  )
-```
-
-Many functions require data to be in this format
-
-## From Wide to Long
-
-__How could we get means for each treatment/day from the original data?__
-
- . . .
-
-```{r}
-timeCourse |>
-  pivot_longer(
-    cols = starts_with("day"), names_to = "Day", values_to = "logFC"
-  ) |>
-  group_by(Tx, Day) |>
-  summarise(mn_change = mean(logFC))
-```
-
-. . .
-
-__Can we add the standard deviation?__
-
-## From Wide to Long
-
-__Can we add the standard deviation?__
-
- . . .
-
-```{r}
-timeCourse |>
-  pivot_longer(
-    cols = starts_with("day"), names_to = "Day", values_to = "logFC"
-  ) |>
-  group_by(Tx, Day) |>
-  summarise(across(all_of("logFC"), .fns = c(mn = mean, sd = sd)))
-```
-
-## From Long To Wide
-
-- We can also take our data from long to wide form
-- Key arguments are `names_from` and `values_from`
-- Often have to deal with missing values in this context
-
-```{r}
-transport |>
-  mutate(status = 1) |>
-  pivot_wider(
-    names_from = "method", values_from = "status"
-  )
-```
-
-
-## From Long To Wide
-
-- We can also take our data from long to wide form
-- Key arguments are `names_from` and `values_from`
-- Often have to deal with missing values in this context
-
-```{r}
-transport |>
-  mutate(status = 1) |>
-  pivot_wider(
-    names_from = "method", values_from = "status", values_fill = 0
-  )
-```
-
-
-## Combining and Separating Columns
-
-There really is no end to the possible situations we find
-
-```{r}
-pcr <- read_csv("data/PCR.csv")
-pcr
-```
-
-. . .
-
-Here, both treatment and timepoint are in the column name
-
-## Combining and Separating Columns
-
-Let's transform using pivot longer
-
-```{r}
-pcr |>
-  pivot_longer(cols = ends_with("hr"), names_to = "group", values_to = "Ct")
-```
-
-. . .
-
-We need to separate the original column names: `separate()`
-
-```{r}
-pcr |>
-  pivot_longer(cols = ends_with("hr"), names_to = "group", values_to = "Ct") |>
-  separate(
-    col = "group", into = c("Treat", "Timepoint")
-  )
-```
-
-. . .
-
-- The separator was set by default to be any non-alpha-numeric symbol
-- This is a pattern known as a *regular expression*
-
-## Combining and Separating Columns
-
-The reverse operation is `unite()`
-
-```{r}
-transport |>
-  unite(
-    col = "group", all_of(c("gender", "method")), sep = "-"
-  )
-```
-
-. . .
-
-We can also perform this, retaining the original column
-
-```{r}
-transport |>
-  unite(
-    col = "group", all_of(c("gender", "method")), sep = "-",
-    remove = FALSE
-  )
-```
-
-# The `tidyverse` {background-color="#3c3c44" background-image=https://tidyverse.tidyverse.org/logo.png background-size="50%" background-opacity="0.5"}
-
 ## The `tidyverse`
 
-- The packages `dplyr`, `tidyr` and `readr` are used in most workflows
-- Additional near-essential packages: `ggplot2` and `forcats`
+- The packages `dplyr`, `ggplot1` and `readr` are used in most workflows
+- Additional near-essential packages: `tidyr` and `forcats`
 - All can be loaded with `library(tidyverse)`
     + A few less obvious packages like `purrr` are also loaded
     
@@ -936,39 +783,6 @@ transport |>
 
 Nearly **all** my analyses start with `library(tidyverse)`
 
-## Saving Data
-
-- We'll be using `transport` later today
-- Please save your edited version (i.e. without missing values)
-
-```{r, eval = FALSE}
-write_csv(
-  x, # This is where your R object goes
-  file, # This is where to save it on your HDD
-  na = "NA",
-  append = FALSE,
-  col_names = !append,
-  quote = c("needed", "all", "none"),
-  escape = c("double", "backslash", "none"),
-  eol = "\n",
-  num_threads = readr_threads(),
-  progress = show_progress(),
-  path = deprecated(),
-  quote_escape = deprecated()
-)
-```
-
-## Saving Data
-
-- We'll be using `transport` later today
-- Please save your edited version (i.e. without missing values)
-
-```{r}
-write_csv(transport, "data/transport_clean.csv")
-```
-
-
-# Some Final Words {background-color="#3c3c44"}
 
 ## Conflicting Function Names
 
@@ -977,14 +791,18 @@ write_csv(transport, "data/transport_clean.csv")
     + `select()` and `filter()` are most heavily used
 - If a weird error occurs, add the package name before the function
     + `dplyr::select()` or `dplyr::filter()`
-    + I [always]{.underline} do this for both as a habit
+    + Calls the function `select()` from the namespace (i.e. package) `dplyr`
+    + I [always]{.underline} do this for both functions as a habit
     
-. . .
+## Conflicting Function Names
+
+- One other package with a function called `select` is `GO.db`
     
 ```{r, eval = TRUE, echo = TRUE, warning=TRUE, error=TRUE, include=TRUE}
 library(GO.db)
 transport |> select(gender)
-transport |> dplyr::select(gender) |> glimpse()
+transport |> dplyr::select(gender)
 ```
+
 
 
