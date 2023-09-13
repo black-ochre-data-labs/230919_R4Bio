@@ -5,12 +5,9 @@ navbar:
   left:
   - text: Home
     href: index.html
-  - text: Workshop Material
-    menu:
-    - text: 1. R and RStudio
-      href: rstudio.html
-    - text: 2. Bringing Data Into R
-      href: data_import.html
+  right:
+  - icon: fa-github
+    href: https://github.com/black-ochre-data-labs/230919_R4Bio
 output:
   workflowr::wflow_html:
     toc: yes
