@@ -18,8 +18,8 @@ editor_options:
 ## Setup (Pre-Workshop)
 
 It is vitally important that your R and Rstudio installations are running before we commence.
-Instructions for performing this are available [here]().
-Please ensure you have everything installed and running correctly **BEFORE Tuesday 19th September**
+Instructions for performing this are available [here](installation.html).
+Please ensure you have everything installed and running correctly **BEFORE 9am, Tuesday 19th September**
 
 Failure to have a working installation prior to the workshop will not only *limit the amount you can learn*, but will also **limit what others can learn** from the session, as we lose time trying to fix your machine.
 Importantly, **installing R on a managed device can be unpredictably difficult or easy**.

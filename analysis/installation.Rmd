@@ -7,8 +7,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-<base target="_blank">
-
 ## Workshop Requirements
 
 The workshop will require a working installation of 
