@@ -5,6 +5,8 @@ navbar:
   left:
   - text: Home
     href: index.html
+  - text: Installation
+    href: installation.html
   right:
   - icon: fa-github
     href: https://github.com/black-ochre-data-labs/230919_R4Bio

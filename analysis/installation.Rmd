@@ -1,0 +1,73 @@
+---
+title: "R/RStudio installation"
+author: "Dr Stevie Pederson"
+date: "2023-09-19"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+<base target="_blank">
+
+## Workshop Requirements
+
+The workshop will require a working installation of 
+
+- `R` v4.2.0 or later. The current version is 4.3.1 but this will not strictly be essential
+- `RStudio`. There are no specific version requirements for today, but something installed within the last 18 months would be preferred
+
+In addition the required `R` packages are 1) the `tidyverse` and 2) `rmarkdown`.
+If you have both of these packages already installed, you will be prepared for the workshop and you don't need to change anything.
+
+Otherwise, please follow the instructions below.
+Two drop-in times are also available for help should you need it.
+
+| Day | Time | Location |
+|:---- |:---- |:-------- |
+| Monday 18th September | 2:00pm-4:00pm | Telethon Kids Institute<br>Ground Floor<br>108 North Terrace |
+| Tuesday 19th September | 8:30am - 9:00am | Room 450<br>The Braggs<br>University of Adelaide |
+
+**It is essential that you have access to a working installation before the workshop begins.**
+No time will be taken during the workshop to assist with this and *you will be significantly disadvantaged should you not have a working installation prior to attendance.*
+
+
+## Installation On A Laptop
+
+R and RStudio are separate piece of software that both need to be installed.
+RStudio will check for a working R installation, so please install R first.
+
+`R` can be downloaded and installed from [CRAN](https://cran.r-project.org/).
+Please choose the version for your operating system (OS)
+
+`RStudio` can be downloaded and installed [Posit](https://posit.co/download/rstudio-desktop/) with options for most operating systems.
+
+Once you have `R` installed, please open either `R` (or the Console pane in `RStudio` if you're confident) and paste the following then hit the `Enter` key to begin the package installation.
+
+```{r instal, eval=FALSE}
+install.packages(c("tidyverse", "rmarkdown"))
+```
+
+You will need an internet connection and the installation may take up to 10 minutes.
+A large amount of text will scroll past you as the installation takes place.
+However, if it gives you a message informing you that something has failed, please keep reading or attend one of the drop-in sessions for help.
+
+## Using A Remote Desktop
+
+### University Provided Options
+
+**If the above installation fails**, all local universities provide a remote desktop with access to R/RStudio.
+It may be an older version, but should be suitable for the workshop
+These options are known as `ADAPT` (University of Adelaide), `VirtualApps` (Flinders University) or `Citrix` (UniSA).
+Please consider exploring these options if you need to.
+
+If this is the best option for you, please place the above installation code into R (or the Console pane in RStudio), hitting `Enter` and letting the installation take place.
+A failure of this installation is very unlikely, but if this does occur, please use the Posit Cloud as instructed below.
+
+
+### Posit Cloud
+
+If you do not have access to any of the above a cloud instance is available from [Posit](https://posit.cloud/) as a *last resort.*
+Once you have registered, go to `Your Workspace` and select `New Project` from the menu at the top RHS of the page, choosing "New R Studio Project".
+
+In the `Console` section of the screen, please run the installation code from above.
+This should not fail as Posit has developed both the `tidyverse` and `rmarkdown` and the code has been tested.

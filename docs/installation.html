@@ -9,9 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Dr Stevie Pederson" />
 
+<meta name="date" content="2023-09-19" />
 
-<title>Introduction to R: For Biologists and Bioinformatics</title>
+<title>R/RStudio installation</title>
 
 <script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +31,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -231,6 +236,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -238,6 +306,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -277,12 +355,9 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Introduction to R: For Biologists and
-Bioinformatics</h1>
-<h4 class="author"><div class="line-block">Dr Stevie Pederson<br />
-Black Ochre Data Labs<br />
-Telethon Kids Institute<br />
-108 North Tce, Adelaide</div></h4>
+<h1 class="title toc-ignore">R/RStudio installation</h1>
+<h4 class="author">Dr Stevie Pederson</h4>
+<h4 class="date">2023-09-19</h4>
 
 </div>
 
@@ -349,10 +424,10 @@ changes </a>
 <div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
+<p>The R Markdown is untracked by Git. To know which version of the R
+Markdown file created these results, you’ll want to first commit it to
+the Git repo. If you’re still working on the analysis, you can ignore
+this warning. When you’re finished, you can run
 <code>wflow_publish</code> to commit the R Markdown file and build the
 HTML.</p>
 </div>
@@ -486,7 +561,6 @@ Untracked files:
 
 Unstaged changes:
     Modified:   analysis/_site.yml
-    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -501,626 +575,113 @@ have uncommitted changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
-
 <p>
-These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML
-(<code>docs/index.html</code>) files. If you’ve configured a remote Git
-repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
-in the table below to view the files as they were in that past version.
+There are no past versions. Publish this analysis with
+<code>wflow_publish()</code> to start tracking its development.
 </p>
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-File
-</th>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-<th>
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/560b94aae1a02c3ad8f68ea3b05209b58b672891/analysis/index.Rmd" target="_blank">560b94a</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-14
-</td>
-<td>
-Tweaked homepage
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/560b94aae1a02c3ad8f68ea3b05209b58b672891/docs/index.html" target="_blank">560b94a</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-14
-</td>
-<td>
-Tweaked homepage
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/c82a8c33ed1e7af10564feff22808bbfa7aca143/analysis/index.Rmd" target="_blank">c82a8c3</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-13
-</td>
-<td>
-Set links to open in new tab
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/c82a8c33ed1e7af10564feff22808bbfa7aca143/docs/index.html" target="_blank">c82a8c3</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-13
-</td>
-<td>
-Set links to open in new tab
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/86e23690e05eeb44e37c90f36e1b5ed4d3b11a98/docs/index.html" target="_blank">86e2369</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-13
-</td>
-<td>
-Added figure export slide
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/3fb457b5a25751417b4f9f44e06a1daa27a000e3/analysis/index.Rmd" target="_blank">3fb457b</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-12
-</td>
-<td>
-Finished Advanced ggplot2
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/3fb457b5a25751417b4f9f44e06a1daa27a000e3/docs/index.html" target="_blank">3fb457b</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-12
-</td>
-<td>
-Finished Advanced ggplot2
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/9b1b07a3baa55d160374cf769d63d9dc71de8f3b/analysis/index.Rmd" target="_blank">9b1b07a</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-12
-</td>
-<td>
-Finished tidying data section
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/9b1b07a3baa55d160374cf769d63d9dc71de8f3b/docs/index.html" target="_blank">9b1b07a</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-12
-</td>
-<td>
-Finished tidying data section
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/8cf8b9ab980f9574e903ec996a211ec8f1a8a1e4/analysis/index.Rmd" target="_blank">8cf8b9a</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-12
-</td>
-<td>
-Updated index
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/8cf8b9ab980f9574e903ec996a211ec8f1a8a1e4/docs/index.html" target="_blank">8cf8b9a</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-12
-</td>
-<td>
-Updated index
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/6e66301d516c7a3ef15932f84499efa5ab63c319/analysis/index.Rmd" target="_blank">6e66301</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-11
-</td>
-<td>
-Rewrote text manipulation
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/6e66301d516c7a3ef15932f84499efa5ab63c319/docs/index.html" target="_blank">6e66301</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-11
-</td>
-<td>
-Rewrote text manipulation
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/d4ccd9a90f7c58e02ec09dec36090f11ede85a69/analysis/index.Rmd" target="_blank">d4ccd9a</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-10
-</td>
-<td>
-Added timings
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/d4ccd9a90f7c58e02ec09dec36090f11ede85a69/docs/index.html" target="_blank">d4ccd9a</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-10
-</td>
-<td>
-Added timings
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/dab183968892492df8ad5bd85bce19c65a46b6a6/analysis/index.Rmd" target="_blank">dab1839</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-10
-</td>
-<td>
-Added intro ggplot2
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/9fe1fb6492b919f3d36c51922c21aea3f1984ce2/analysis/index.Rmd" target="_blank">9fe1fb6</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-09
-</td>
-<td>
-Quick revision of intro
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/9fe1fb6492b919f3d36c51922c21aea3f1984ce2/docs/index.html" target="_blank">9fe1fb6</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-09
-</td>
-<td>
-Quick revision of intro
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/1d215a5fce969ea80d77fc38df0979708fe28e9f/analysis/index.Rmd" target="_blank">1d215a5</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-09
-</td>
-<td>
-Tidied index &amp; links
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/1d215a5fce969ea80d77fc38df0979708fe28e9f/docs/index.html" target="_blank">1d215a5</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-09
-</td>
-<td>
-Tidied index &amp; links
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/e26dffcd53c1a08f072db3d513ed5446b1332a3c/analysis/index.Rmd" target="_blank">e26dffc</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-07
-</td>
-<td>
-Started data import
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/e26dffcd53c1a08f072db3d513ed5446b1332a3c/docs/index.html" target="_blank">e26dffc</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-07
-</td>
-<td>
-Started data import
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/12929a7cc5cac6f81ade6bfe5ba5dc3209aafbf9/analysis/index.Rmd" target="_blank">12929a7</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-06
-</td>
-<td>
-Added intro &amp; rstudio slides
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/12929a7cc5cac6f81ade6bfe5ba5dc3209aafbf9/docs/index.html" target="_blank">12929a7</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-06
-</td>
-<td>
-Added intro &amp; rstudio slides
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/a3c30d81a823f5a0e160dc0bbcee676a66ba78eb/analysis/index.Rmd" target="_blank">a3c30d8</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-05
-</td>
-<td>
-Started writing stuff
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/a3c30d81a823f5a0e160dc0bbcee676a66ba78eb/docs/index.html" target="_blank">a3c30d8</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-05
-</td>
-<td>
-Started writing stuff
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/647a3c7d6a84cf2939a4d287eda336e2d8dc10c6/analysis/index.Rmd" target="_blank">647a3c7</a>
-</td>
-<td>
-Stevie Ped
-</td>
-<td>
-2023-09-05
-</td>
-<td>
-Start workflowr project.
-</td>
-</tr>
-</tbody>
-</table>
-</div>
 <hr>
 </div>
 </div>
 </div>
 <p><base target="_blank"></p>
-<div id="setup-pre-workshop" class="section level2">
-<h2>Setup (Pre-Workshop)</h2>
-<p>It is vitally important that your R and Rstudio installations are
-running before we commence. Instructions for performing this are
-available <a href="">here</a>. Please ensure you have everything
-installed and running correctly <strong>BEFORE Tuesday 19th
-September</strong></p>
-<p>Failure to have a working installation prior to the workshop will not
-only <em>limit the amount you can learn</em>, but will also
-<strong>limit what others can learn</strong> from the session, as we
-lose time trying to fix your machine. Importantly, <strong>installing R
-on a managed device can be unpredictably difficult or easy</strong>.
-Please assume you have a difficult device and prepare early.</p>
-<p>If you require assistance, we are more than happy to help resolve any
-issues. Staff are available to help you with your installation between
-2-5pm, Monday 18th September at Telethon Kids Institute, 108 North Tce,
-Adelaide. Otherwise, please <a
-href="mailto:stephen.pederson@telethonkids.org.au">email for
-help</a></p>
-<p>If you are unable to get an installation working on your own laptop,
-please sign-up for a free account at <a
-href="https://posit.cloud/">Posit Cloud</a></p>
-</div>
-<div id="schedule" class="section level2">
-<h2>Schedule</h2>
-<p>Today’s workshop will run in 4x90 minute sessions</p>
+<div id="workshop-requirements" class="section level2">
+<h2>Workshop Requirements</h2>
+<p>The workshop will require a working installation of</p>
+<ul>
+<li><code>R</code> v4.2.0 or later. The current version is 4.3.1 but
+this will not strictly be essential</li>
+<li><code>RStudio</code>. There are no specific version requirements for
+today, but something installed within the last 18 months would be
+preferred</li>
+</ul>
+<p>In addition the required <code>R</code> packages are 1) the
+<code>tidyverse</code> and 2) <code>rmarkdown</code>. If you have both
+of these packages already installed, you will be prepared for the
+workshop and you don’t need to change anything.</p>
+<p>Otherwise, please follow the instructions below. Two drop-in times
+are also available for help should you need it.</p>
 <table>
 <colgroup>
-<col width="20%" />
-<col width="15%" />
-<col width="22%" />
-<col width="42%" />
+<col width="26%" />
+<col width="26%" />
+<col width="47%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Session</th>
-<th align="left">Topic</th>
-<th align="left">Material</th>
-<th align="left">Estimated Duration</th>
+<th align="left">Day</th>
+<th align="left">Time</th>
+<th align="left">Location</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">9:00 - 10:30</td>
-<td align="left">Introduction</td>
-<td align="left"><a
-href="intro_slides.html#/title-slide">Slides</a></td>
-<td align="left">8min</td>
+<td align="left">Monday 18th September</td>
+<td align="left">2:00pm-4:00pm</td>
+<td align="left">Telethon Kids Institute<br>Ground Floor<br>108 North
+Terrace</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">What is R and Rstudio</td>
-<td align="left"><a href="rstudio.html">Notes</a></td>
-<td align="left">12min</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">Bringing Data into R</td>
-<td align="left"><a href="data_import.html">Notes</a></td>
-<td align="left">60min</td>
-</tr>
-<tr class="even">
-<td align="left">10:30 - 11:00</td>
-<td align="left"><em>Morning Tea</em></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">11:00 - 12:30</td>
-<td align="left">Simple Visualisation</td>
-<td align="left"><a href="basic_ggplot2.html">Notes</a></td>
-<td align="left">30min</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">Working With Text</td>
-<td align="left"><a href="text.html">Notes</a></td>
-<td align="left">30min</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">Spreadsheet-Like Data</td>
-<td align="left"><a href="tidying_data.html">Notes</a></td>
-<td align="left">60min</td>
-</tr>
-<tr class="even">
-<td align="left">12:30 - 1:30</td>
-<td align="left"><em>Lunch</em></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">1:30 - 3:00</td>
-<td align="left">Spreadsheet-Like Data (cont.)</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">Advanced <code>ggplot2</code></td>
-<td align="left"><a href="advanced_ggplot.html">Notes</a></td>
-<td align="left">60min</td>
-</tr>
-<tr class="odd">
-<td align="left">3:00 - 3:30</td>
-<td align="left"><em>Afternoon Tea</em></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">3:30 - 5:00</td>
-<td align="left">RMarkdown</td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">Tuesday 19th September</td>
+<td align="left">8:30am - 9:00am</td>
+<td align="left">Room 450<br>The Braggs<br>University of Adelaide</td>
 </tr>
 </tbody>
 </table>
+<p><strong>It is essential that you have access to a working
+installation before the workshop begins.</strong> No time will be taken
+during the workshop to assist with this and <em>you will be
+significantly disadvantaged should you not have a working installation
+prior to attendance.</em></p>
 </div>
-<div id="required-data" class="section level2">
-<h2>Required Data</h2>
-<p>All data for today’s session is available <a
-href="data.zip">here</a>. Downloading and placing this data in the
-correct location will be covered during the workshop.</p>
+<div id="installation-on-a-laptop" class="section level2">
+<h2>Installation On A Laptop</h2>
+<p>R and RStudio are separate piece of software that both need to be
+installed. RStudio will check for a working R installation, so please
+install R first.</p>
+<p><code>R</code> can be downloaded and installed from <a
+href="https://cran.r-project.org/">CRAN</a>. Please choose the version
+for your operating system (OS)</p>
+<p><code>RStudio</code> can be downloaded and installed <a
+href="https://posit.co/download/rstudio-desktop/">Posit</a> with options
+for most operating systems.</p>
+<p>Once you have <code>R</code> installed, please open either
+<code>R</code> (or the Console pane in <code>RStudio</code> if you’re
+confident) and paste the following then hit the <code>Enter</code> key
+to begin the package installation.</p>
+<pre class="r"><code>install.packages(c(&quot;tidyverse&quot;, &quot;rmarkdown&quot;))</code></pre>
+<p>You will need an internet connection and the installation may take up
+to 10 minutes. A large amount of text will scroll past you as the
+installation takes place. However, if it gives you a message informing
+you that something has failed, please keep reading or attend one of the
+drop-in sessions for help.</p>
+</div>
+<div id="using-a-remote-desktop" class="section level2">
+<h2>Using A Remote Desktop</h2>
+<div id="university-provided-options" class="section level3">
+<h3>University Provided Options</h3>
+<p><strong>If the above installation fails</strong>, all local
+universities provide a remote desktop with access to R/RStudio. It may
+be an older version, but should be suitable for the workshop These
+options are known as <code>ADAPT</code> (University of Adelaide),
+<code>VirtualApps</code> (Flinders University) or <code>Citrix</code>
+(UniSA). Please consider exploring these options if you need to.</p>
+<p>If this is the best option for you, please place the above
+installation code into R (or the Console pane in RStudio), hitting
+<code>Enter</code> and letting the installation take place. A failure of
+this installation is very unlikely, but if this does occur, please use
+the Posit Cloud as instructed below.</p>
+</div>
+<div id="posit-cloud" class="section level3">
+<h3>Posit Cloud</h3>
+<p>If you do not have access to any of the above a cloud instance is
+available from <a href="https://posit.cloud/">Posit</a> as a <em>last
+resort.</em> Once you have registered, go to <code>Your Workspace</code>
+and select <code>New Project</code> from the menu at the top RHS of the
+page, choosing “New R Studio Project”.</p>
+<p>In the <code>Console</code> section of the screen, please run the
+installation code from above. This should not fail as Posit has
+developed both the <code>tidyverse</code> and <code>rmarkdown</code> and
+the code has been tested.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1156,17 +717,18 @@ other attached packages:
 [1] workflowr_1.7.0
 
 loaded via a namespace (and not attached):
- [1] jsonlite_1.8.7    compiler_4.3.1    promises_1.2.1    Rcpp_1.0.11      
- [5] stringr_1.5.0     git2r_0.32.0      callr_3.7.3       later_1.3.1      
- [9] jquerylib_0.1.4   yaml_2.3.7        fastmap_1.1.1     here_1.0.1       
-[13] R6_2.5.1          knitr_1.43        tibble_3.2.1      rprojroot_2.0.3  
-[17] bslib_0.5.1       pillar_1.9.0      rlang_1.1.1       utf8_1.2.3       
-[21] cachem_1.0.8      stringi_1.7.12    httpuv_1.6.11     xfun_0.40        
-[25] getPass_0.2-2     fs_1.6.3          sass_0.4.7        cli_3.6.1        
-[29] magrittr_2.0.3    ps_1.7.5          digest_0.6.33     processx_3.8.2   
-[33] rstudioapi_0.15.0 lifecycle_1.0.3   vctrs_0.6.3       evaluate_0.21    
-[37] glue_1.6.2        whisker_0.4.1     fansi_1.0.4       rmarkdown_2.24   
-[41] httr_1.4.6        tools_4.3.1       pkgconfig_2.0.3   htmltools_0.5.6  </code></pre>
+ [1] vctrs_0.6.3       httr_1.4.6        cli_3.6.1         knitr_1.43       
+ [5] rlang_1.1.1       xfun_0.40         stringi_1.7.12    processx_3.8.2   
+ [9] promises_1.2.1    jsonlite_1.8.7    glue_1.6.2        rprojroot_2.0.3  
+[13] git2r_0.32.0      htmltools_0.5.6   httpuv_1.6.11     ps_1.7.5         
+[17] sass_0.4.7        fansi_1.0.4       rmarkdown_2.24    jquerylib_0.1.4  
+[21] tibble_3.2.1      evaluate_0.21     fastmap_1.1.1     yaml_2.3.7       
+[25] lifecycle_1.0.3   whisker_0.4.1     stringr_1.5.0     compiler_4.3.1   
+[29] fs_1.6.3          pkgconfig_2.0.3   Rcpp_1.0.11       rstudioapi_0.15.0
+[33] later_1.3.1       digest_0.6.33     R6_2.5.1          utf8_1.2.3       
+[37] pillar_1.9.0      callr_3.7.3       magrittr_2.0.3    bslib_0.5.1      
+[41] tools_4.3.1       cachem_1.0.8      getPass_0.2-2    </code></pre>
+</div>
 </div>
 </div>
 
@@ -1186,6 +748,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -1218,6 +782,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
