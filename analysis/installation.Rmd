@@ -27,6 +27,11 @@ Two drop-in times are also available for help should you need it.
 
 **It is essential that you have access to a working installation before the workshop begins.**
 No time will be taken during the workshop to assist with this and *you will be significantly disadvantaged should you not have a working installation prior to attendance.*
+Importantly, **installing R on a managed device can be unpredictably difficult or easy**.
+Please assume you have a difficult device and prepare early.
+
+If you require assistance, we are more than happy to help resolve any issues.
+Otherwise, please [email for help](mailto:stephen.pederson@telethonkids.org.au)
 
 
 ## Installation On A Laptop
