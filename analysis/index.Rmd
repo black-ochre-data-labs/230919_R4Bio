@@ -2,9 +2,10 @@
 title: "Introduction to R: For Biologists and Bioinformatics"
 author: |
   | Dr Stevie Pederson
-  | Black Ochre Data Labs
-  | Telethon Kids Institute
-  | 108 North Tce, Adelaide
+  | Room 4.50
+  | The Braggs
+  | University of Adelaide
+date: "19 September, 2023"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:

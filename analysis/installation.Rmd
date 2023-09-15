@@ -1,6 +1,10 @@
 ---
 title: "R/RStudio installation"
-author: "Dr Stevie Pederson"
+author: |
+  | Dr Stevie Pederson
+  | Black Ochre Data Labs
+  | Telethon Kids Institute
+  | 108 North Tce, Adelaide
 date: "2023-09-19"
 output: workflowr::wflow_html
 editor_options:
@@ -8,6 +12,8 @@ editor_options:
 ---
 
 ## Workshop Requirements
+
+*NB: We are assuming that everyone will bring their own laptop. No laptops are able to be provided to attendees for this course.*
 
 The workshop will require a working installation of 
 
@@ -27,11 +33,12 @@ Two drop-in times are also available for help should you need it.
 
 **It is essential that you have access to a working installation before the workshop begins.**
 No time will be taken during the workshop to assist with this and *you will be significantly disadvantaged should you not have a working installation prior to attendance.*
-Importantly, **installing R on a managed device can be unpredictably difficult or easy**.
-Please assume you have a difficult device and prepare early.
+Importantly, **installing R on a managed device can be unpredictably difficult or easy**, depending on the restrictions applied by your systems administrators.
+Whilst not strictly an issue with `R` these restrictions can cause problems during installation.
+*Please assume you have a difficult device and prepare early.*
 
 If you require assistance, we are more than happy to help resolve any issues.
-Otherwise, please [email for help](mailto:stephen.pederson@telethonkids.org.au)
+Otherwise, please [email](mailto:stephen.pederson@telethonkids.org.au)
 
 
 ## Installation On A Laptop
@@ -47,30 +54,33 @@ Please choose the version for your operating system (OS)
 Once you have `R` installed, please open either `R` (or the Console pane in `RStudio` if you're confident) and paste the following then hit the `Enter` key to begin the package installation.
 
 ```{r instal, eval=FALSE}
-install.packages(c("tidyverse", "rmarkdown"))
+install.packages(c("tidyverse", "rmarkdown", "pander"))
 ```
 
 You will need an internet connection and the installation may take up to 10 minutes.
 A large amount of text will scroll past you as the installation takes place.
 However, if it gives you a message informing you that something has failed, please keep reading or attend one of the drop-in sessions for help.
 
-## Using A Remote Desktop
+## Using A Remote Installation
 
-### University Provided Options
+### University-Provided Options
 
 **If the above installation fails**, all local universities provide a remote desktop with access to R/RStudio.
-It may be an older version, but should be suitable for the workshop
+It may be an older version, but will still be suitable for the workshop
 These options are known as `ADAPT` (University of Adelaide), `VirtualApps` (Flinders University) or `Citrix` (UniSA).
 Please consider exploring these options if you need to.
 
-If this is the best option for you, please place the above installation code into R (or the Console pane in RStudio), hitting `Enter` and letting the installation take place.
+If this is the best option for you, please place the above installation code into R (or the Console panel within RStudio), hitting `Enter` and letting the installation take place.
 A failure of this installation is very unlikely, but if this does occur, please use the Posit Cloud as instructed below.
 
 
 ### Posit Cloud
 
 If you do not have access to any of the above a cloud instance is available from [Posit](https://posit.cloud/) as a *last resort.*
-Once you have registered, go to `Your Workspace` and select `New Project` from the menu at the top RHS of the page, choosing "New R Studio Project".
+Almost all of the workshop will work successfully here, with the known exception being the creation of an R Project.
+Everything else will reun very well.
 
+Once you have registered, go to `Your Workspace` and select `New Project` from the menu at the top RHS of the page, choosing "New R Studio Project".
 In the `Console` section of the screen, please run the installation code from above.
-This should not fail as Posit has developed both the `tidyverse` and `rmarkdown` and the code has been tested.
+This should not fail as Posit has developed both the `tidyverse` and `rmarkdown`.
+The installation code has also been tested on this system.

@@ -386,7 +386,7 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2023-09-14
+<strong>Last updated:</strong> 2023-09-15
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -424,10 +424,10 @@ changes </a>
 <div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
+<p>The R Markdown file has staged changes. To know which version of the
+R Markdown file created these results, you’ll want to first commit it to
+the Git repo. If you’re still working on the analysis, you can ignore
+this warning. When you’re finished, you can run
 <code>wflow_publish</code> to commit the R Markdown file and build the
 HTML.</p>
 </div>
@@ -520,15 +520,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomblackochredatalabs230919R4Biotree7ecfdd0ea2a7ac62872b7684ffb529c47ed37a68targetblank7ecfdd0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomblackochredatalabs230919R4Biotree35ce0e89583d439a678d680d9bc6201ee2648d4ftargetblank35ce0e8a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/tree/7ecfdd0ea2a7ac62872b7684ffb529c47ed37a68" target="_blank">7ecfdd0</a>
+<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/tree/35ce0e89583d439a678d680d9bc6201ee2648d4f" target="_blank">35ce0e8</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomblackochredatalabs230919R4Biotree7ecfdd0ea2a7ac62872b7684ffb529c47ed37a68targetblank7ecfdd0a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomblackochredatalabs230919R4Biotree35ce0e89583d439a678d680d9bc6201ee2648d4ftargetblank35ce0e8a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -538,7 +538,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/tree/7ecfdd0ea2a7ac62872b7684ffb529c47ed37a68" target="_blank">7ecfdd0</a>.
+<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/tree/35ce0e89583d439a678d680d9bc6201ee2648d4f" target="_blank">35ce0e8</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -557,7 +557,9 @@ Ignored files:
     Ignored:    .Rproj.user/
 
 Unstaged changes:
-    Modified:   analysis/index.Rmd
+    Modified:   analysis/installation.Rmd
+
+Staged changes:
     Modified:   analysis/installation.Rmd
 
 </code></pre>
@@ -604,6 +606,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/black-ochre-data-labs/230919_R4Bio/blob/35ce0e89583d439a678d680d9bc6201ee2648d4f/analysis/installation.Rmd" target="_blank">35ce0e8</a>
+</td>
+<td>
+Stevie Ped
+</td>
+<td>
+2023-09-14
+</td>
+<td>
+Removed extraneous text
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/black-ochre-data-labs/230919_R4Bio/35ce0e89583d439a678d680d9bc6201ee2648d4f/docs/installation.html" target="_blank">35ce0e8</a>
+</td>
+<td>
+Stevie Ped
+</td>
+<td>
+2023-09-14
+</td>
+<td>
+Removed extraneous text
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -681,6 +717,8 @@ Added installation instructions
 </div>
 <div id="workshop-requirements" class="section level2">
 <h2>Workshop Requirements</h2>
+<p><em>NB: We are assuming that everyone will bring their own laptop. No
+laptops are able to be provided to attendees for this course.</em></p>
 <p>The workshop will require a working installation of</p>
 <ul>
 <li><code>R</code> v4.2.0 or later. The current version is 4.3.1 but
@@ -727,12 +765,14 @@ installation before the workshop begins.</strong> No time will be taken
 during the workshop to assist with this and <em>you will be
 significantly disadvantaged should you not have a working installation
 prior to attendance.</em> Importantly, <strong>installing R on a managed
-device can be unpredictably difficult or easy</strong>. Please assume
-you have a difficult device and prepare early.</p>
+device can be unpredictably difficult or easy</strong>, depending on the
+restrictions applied by your systems administrators. Whilst not strictly
+an issue with <code>R</code> these restrictions can cause problems
+during installation. <em>Please assume you have a difficult device and
+prepare early.</em></p>
 <p>If you require assistance, we are more than happy to help resolve any
 issues. Otherwise, please <a
-href="mailto:stephen.pederson@telethonkids.org.au">email for
-help</a></p>
+href="mailto:stephen.pederson@telethonkids.org.au">email</a></p>
 </div>
 <div id="installation-on-a-laptop" class="section level2">
 <h2>Installation On A Laptop</h2>
@@ -749,25 +789,25 @@ for most operating systems.</p>
 <code>R</code> (or the Console pane in <code>RStudio</code> if you’re
 confident) and paste the following then hit the <code>Enter</code> key
 to begin the package installation.</p>
-<pre class="r"><code>install.packages(c(&quot;tidyverse&quot;, &quot;rmarkdown&quot;))</code></pre>
+<pre class="r"><code>install.packages(c(&quot;tidyverse&quot;, &quot;rmarkdown&quot;, &quot;pander&quot;))</code></pre>
 <p>You will need an internet connection and the installation may take up
 to 10 minutes. A large amount of text will scroll past you as the
 installation takes place. However, if it gives you a message informing
 you that something has failed, please keep reading or attend one of the
 drop-in sessions for help.</p>
 </div>
-<div id="using-a-remote-desktop" class="section level2">
-<h2>Using A Remote Desktop</h2>
+<div id="using-a-remote-installation" class="section level2">
+<h2>Using A Remote Installation</h2>
 <div id="university-provided-options" class="section level3">
-<h3>University Provided Options</h3>
+<h3>University-Provided Options</h3>
 <p><strong>If the above installation fails</strong>, all local
 universities provide a remote desktop with access to R/RStudio. It may
-be an older version, but should be suitable for the workshop These
+be an older version, but will still be suitable for the workshop These
 options are known as <code>ADAPT</code> (University of Adelaide),
 <code>VirtualApps</code> (Flinders University) or <code>Citrix</code>
 (UniSA). Please consider exploring these options if you need to.</p>
 <p>If this is the best option for you, please place the above
-installation code into R (or the Console pane in RStudio), hitting
+installation code into R (or the Console panel within RStudio), hitting
 <code>Enter</code> and letting the installation take place. A failure of
 this installation is very unlikely, but if this does occur, please use
 the Posit Cloud as instructed below.</p>
@@ -776,13 +816,16 @@ the Posit Cloud as instructed below.</p>
 <h3>Posit Cloud</h3>
 <p>If you do not have access to any of the above a cloud instance is
 available from <a href="https://posit.cloud/">Posit</a> as a <em>last
-resort.</em> Once you have registered, go to <code>Your Workspace</code>
-and select <code>New Project</code> from the menu at the top RHS of the
-page, choosing “New R Studio Project”.</p>
-<p>In the <code>Console</code> section of the screen, please run the
-installation code from above. This should not fail as Posit has
-developed both the <code>tidyverse</code> and <code>rmarkdown</code> and
-the code has been tested.</p>
+resort.</em> Almost all of the workshop will work successfully here,
+with the known exception being the creation of an R Project. Everything
+else will reun very well.</p>
+<p>Once you have registered, go to <code>Your Workspace</code> and
+select <code>New Project</code> from the menu at the top RHS of the
+page, choosing “New R Studio Project”. In the <code>Console</code>
+section of the screen, please run the installation code from above. This
+should not fail as Posit has developed both the <code>tidyverse</code>
+and <code>rmarkdown</code>. The installation code has also been tested
+on this system.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
