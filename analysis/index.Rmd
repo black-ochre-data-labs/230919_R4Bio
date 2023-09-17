@@ -16,6 +16,15 @@ editor_options:
 
 <base target="_blank">
 
+```{r, echo=FALSE}
+getTiming <- function(f, by = 0.5, digits = 0){
+  ln <- readLines(here::here(f))
+  n <- sum(grepl("^#{2} ", ln))
+  paste0(round(n * by, digits), "min")
+}
+```
+
+
 ## Setup (Pre-Workshop)
 
 It is vitally important that your R and Rstudio installations are running before we commence.
@@ -28,18 +37,17 @@ Today's workshop will run in 4x90 minute sessions
 
 | Session | Topic | Material | Estimated Duration |
 |:------- |:----- |:-------- |:---------------- |
-| 9:00 - 10:30  | Introduction            | [Slides](intro_slides.html#/title-slide) | `r round(sum(grepl("^##", readLines(here::here("docs/intro_slides.qmd")))) * 0.5, 0)`min |
-|               | What is R and Rstudio   | [Notes](rstudio.html) | `r round(sum(grepl("^##", readLines(here::here("docs/rstudio_slides.qmd")))) * 0.5, 0)`min |
-|               | Bringing Data into R    | [Notes](data_import.html) | `r round(sum(grepl("^##", readLines(here::here("docs/import_slides.qmd")))) * 1.5, -1)`min |
+| 9:00 - 10:30  | Introduction            | [Slides](intro_slides.html#/title-slide) | `r getTiming("docs/intro_slides.qmd")` |
+|               | What is R and Rstudio   | [Notes](rstudio.html) | `r getTiming("docs/rstudio_slides.qmd")` |
+|               | Bringing Data into R    | [Notes](data_import.html) | `r getTiming("docs/import_slides.qmd", 1.5, -1)` |
 | 10:30 - 11:00 | *Morning Tea*           | | |
-| 11:00 - 12:30 | Simple Visualisation    | [Notes](basic_ggplot2.html) | `r round(sum(grepl("^##", readLines(here::here("docs/basic_ggplot2_slides.qmd")))) * 1.5, -1)`min |
-|               | Working With Text       | [Notes](text.html) | `r round(sum(grepl("^##", readLines(here::here("docs/text_slides.qmd")))) * 1.5, -1)`min |
-|               | Spreadsheet-Like Data   | [Notes](tidying_data.html) | `r round(sum(grepl("^##", readLines(here::here("docs/tidying_data_slides.qmd")))) * 1.2, -1)`min  |
+| 11:00 - 12:30 | Simple Visualisation    | [Notes](basic_ggplot2.html) | `r getTiming("docs/basic_ggplot2_slides.qmd", 1.5, -1)` |
+|               | Working With Text       | [Notes](text.html) | `r getTiming("docs/text_slides.qmd", 1.5, -1)` |
 | 12:30 - 1:30  | *Lunch*                 | | |
-| 1:30 - 3:00   | Spreadsheet-Like Data (cont.) | | |
-|               | Advanced `ggplot2`      | [Notes](advanced_ggplot.html) | `r round(sum(grepl("^##", readLines(here::here("docs/advanced_ggplot_slides.qmd")))) * 1.4, -1)`min |
+| 1:30 - 3:00   | Spreadsheet-Like Data   | [Notes](tidying_data.html) | `r getTiming("docs/tidying_data_slides.qmd", 1.5, -1)` |
+|               | Advanced `ggplot2`      | [Notes](advanced_ggplot.html) | `r getTiming("docs/advanced_ggplot_slides.qmd", 1.5, -1)` |
 | 3:00 - 3:30   | *Afternoon Tea*         | | |
-| 3:30 - 5:00   | RMarkdown               | | |
+| 3:30 - 5:00   | RMarkdown               | [Notes](rmarkdown.html) | `r getTiming("docs/rmarkdown_slides.qmd", 1.5, -1)` |
 
 ## Required Data
 

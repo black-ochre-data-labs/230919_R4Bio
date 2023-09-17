@@ -3233,7 +3233,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </div>
 <p>. . .</p>
 <ul>
-<li>All columns of <code>rats</code> were also vectors
+<li>All columns of <code>pigs</code> were also vectors
 <ul>
 <li><code>len</code> was <code>numeric</code> (or <code>double</code>)</li>
 <li><code>dose</code> and <code>supp</code> were <code>character</code> vectors</li>
@@ -3691,8 +3691,8 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <section id="factors-2" class="level2">
 <h2 class="anchored" data-anchor-id="factors-2">Factors</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/rats.csv&quot;</span>)</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">&lt;-</span> rats<span class="sc">$</span>dose</span>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/pigs.csv&quot;</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">&lt;-</span> pigs<span class="sc">$</span>dose</span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>dose</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot; 
@@ -3786,11 +3786,11 @@ Levels: high low med</code></pre>
 <section id="our-previous-plot" class="level2">
 <h2 class="anchored" data-anchor-id="our-previous-plot">Our Previous Plot</h2>
 <div class="cell" data-layout-align="left" data-output-location="column">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>rats<span class="sc">$</span>dose <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  rats<span class="sc">$</span>dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Med&quot;</span>, <span class="st">&quot;High&quot;</span>)</span>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>pigs<span class="sc">$</span>dose <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  pigs<span class="sc">$</span>dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Med&quot;</span>, <span class="st">&quot;High&quot;</span>)</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
 <span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
 <span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>

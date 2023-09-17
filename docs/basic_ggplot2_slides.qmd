@@ -59,10 +59,10 @@ knitr:
 1. Create a new R script called `basic_ggplot.R`
 2. Copy the following chunk from the earlier section
 
-```{r reload-rats}
+```{r reload-pigs}
 library(tidyverse)
-rats <- read_csv("data/rats.csv")
-glimpse(rats)
+pigs <- read_csv("data/pigs.csv")
+glimpse(pigs)
 ```
 
 ## Plotting using `base`
@@ -71,7 +71,7 @@ glimpse(rats)
 #| fig-width: 5
 #| fig-height: 5
 #| fig-align: 'left'
-plot(rats$len)
+plot(pigs$len)
 ```
 
 This has plotted tooth length (`len`) in the order of appearance
@@ -88,7 +88,7 @@ This has plotted tooth length (`len`) in the order of appearance
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: fragment
-boxplot(len ~ dose, data = rats)
+boxplot(len ~ dose, data = pigs)
 ```
 
 
@@ -126,7 +126,7 @@ Instead of a single function $\implies$ build a plot using layers
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: column-fragment
-ggplot(rats, aes(x = dose, y = len))
+ggplot(pigs, aes(x = dose, y = len))
 ```
 
 . . . 
@@ -143,12 +143,12 @@ ggplot(rats, aes(x = dose, y = len))
      
 . . .
 
-```{r rats-gg-boxplot}
+```{r pigs-gg-boxplot}
 #| fig-width: 4.5
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: column
-ggplot(rats, aes(x = dose, y = len)) +
+ggplot(pigs, aes(x = dose, y = len)) +
   geom_boxplot()
 ```
 
@@ -157,13 +157,13 @@ ggplot(rats, aes(x = dose, y = len)) +
 - We can add more mappings to `aes()`
     + Show the supplement method as the boxplot fill
      
-```{r rats-gg-boxplot-fill}
+```{r pigs-gg-boxplot-fill}
 #| fig-width: 5
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: column
 ggplot(
-  rats, aes(x = dose, y = len, fill = supp)
+  pigs, aes(x = dose, y = len, fill = supp)
 ) +
   geom_boxplot()
 ```
@@ -172,13 +172,13 @@ ggplot(
 
 - We can change the palette using `scale_fill_*`
      
-```{r rats-gg-boxplot-scale-fill}
+```{r pigs-gg-boxplot-scale-fill}
 #| fig-width: 5
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: column
 ggplot(
-  rats, aes(x = dose, y = len, fill = supp)
+  pigs, aes(x = dose, y = len, fill = supp)
 ) +
   geom_boxplot() +
   scale_fill_brewer(palette = "Set1")
@@ -205,13 +205,13 @@ ggplot(
 - We can get rid of the horrible grey background using a `theme()`
      
 
-```{r rats-gg-boxplot-theme-bw}
+```{r pigs-gg-boxplot-theme-bw}
 #| fig-width: 5
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: column
 ggplot(
-  rats, aes(x = dose, y = len, fill = supp)
+  pigs, aes(x = dose, y = len, fill = supp)
 ) +
   geom_boxplot() +
   scale_fill_brewer(palette = "Set1") +
@@ -235,13 +235,13 @@ ggplot(
 - Tidy up labels for aesthetic mappings
 
 
-```{r rats-gg-boxplot-labs}
+```{r pigs-gg-boxplot-labs}
 #| fig-width: 5
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: column
 ggplot(
-  rats, aes(x = dose, y = len, fill = supp)
+  pigs, aes(x = dose, y = len, fill = supp)
 ) +
   geom_boxplot() +
   scale_fill_brewer(palette = "Set1") +
@@ -257,13 +257,13 @@ ggplot(
 
 - We could even show each method in it's own panel (i.e. facet)
 
-```{r rats-gg-boxplot-facet}
+```{r pigs-gg-boxplot-facet}
 #| fig-width: 5
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: column
 ggplot(
-  rats, aes(x = dose, y = len, fill = supp)
+  pigs, aes(x = dose, y = len, fill = supp)
 ) +
   geom_boxplot() +
   facet_wrap(~supp) +
@@ -300,13 +300,13 @@ ggplot(
 - Add `geom_point()` with some transparency (alpha) to the boxplot fill
     + Will be drawn before the boxplot (i.e. in order of the code)
   
-```{r rats-gg-boxplot-points}
+```{r pigs-gg-boxplot-points}
 #| fig-width: 5
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: column
 ggplot(
-  rats, aes(x = dose, y = len, fill = supp)
+  pigs, aes(x = dose, y = len, fill = supp)
 ) +
   geom_point() +
   geom_boxplot(alpha = 0.7) +
@@ -325,13 +325,13 @@ ggplot(
 - `geom_jitter()` is `geom_point()` with a bit of noise added
     + width & height control x & y noise respectively
 
-```{r rats-gg-boxplot-jitter}
+```{r pigs-gg-boxplot-jitter}
 #| fig-width: 5
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: column
 ggplot(
-  rats, aes(x = dose, y = len, fill = supp)
+  pigs, aes(x = dose, y = len, fill = supp)
 ) +
   geom_jitter(width = 0.1, height = 0) +
   geom_boxplot(alpha = 0.7) +

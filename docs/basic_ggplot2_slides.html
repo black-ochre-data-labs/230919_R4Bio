@@ -12,7 +12,7 @@
 
   <meta name="author" content="Dr Stevie Pederson">
   <meta name="dcterms.date" content="2023-09-17">
-  <title>Introduction to R</title>
+  <title>Basic Plotting With ggplot2</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -391,8 +391,8 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#3c3c44" data-background-image="assets/bodl_logo_white_background.jpg" data-background-opacity="0.3" data-background-size="90%" class="quarto-title-block center">
-  <h1 class="title">Introduction to R</h1>
-  <p class="subtitle">Basic Plotting With <code>ggplot2</code></p>
+  <h1 class="title">Basic Plotting With <code>ggplot2</code></h1>
+  <p class="subtitle">Introduction to R For Biologists and Bioinformatics</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -441,8 +441,8 @@ Dr Stevie Pederson
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rats.csv"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/pigs.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 60
 Columns: 3
@@ -455,7 +455,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <section id="plotting-using-base" class="slide level2">
 <h2>Plotting using <code>base</code></h2>
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rats<span class="sc">$</span>len)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pigs<span class="sc">$</span>len)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="basic_ggplot2_slides_files/figure-revealjs/baseplot-len-1.png" width="480" class="r-stretch quarto-figure-left"><p>This has plotted tooth length (<code>len</code>) in the order of appearance</p>
@@ -470,7 +470,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(len <span class="sc">~</span> dose, <span class="at">data =</span> rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(len <span class="sc">~</span> dose, <span class="at">data =</span> pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-layout-align="left">
 <div class="cell-output-display">
@@ -525,7 +525,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <h2>A simple boxplot</h2>
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
@@ -558,13 +558,13 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="fragment">
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len)) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-1.png" width="432"></p>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/pigs-gg-boxplot-1.png" width="432"></p>
 </figure>
 </div>
 </div>
@@ -583,14 +583,14 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-fill-1.png" width="480"></p>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/pigs-gg-boxplot-fill-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -605,7 +605,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -613,7 +613,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-scale-fill-1.png" width="480"></p>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/pigs-gg-boxplot-scale-fill-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -651,7 +651,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
@@ -660,7 +660,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-theme-bw-1.png" width="480"></p>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/pigs-gg-boxplot-theme-bw-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -692,7 +692,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
@@ -706,7 +706,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-labs-1.png" width="480"></p>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/pigs-gg-boxplot-labs-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -721,7 +721,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>supp) <span class="sc">+</span></span>
@@ -736,7 +736,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-facet-1.png" width="480"></p>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/pigs-gg-boxplot-facet-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -778,7 +778,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
@@ -794,7 +794,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-points-1.png" width="480"></p>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/pigs-gg-boxplot-points-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -812,7 +812,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  rats, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
@@ -828,7 +828,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/rats-gg-boxplot-jitter-1.png" width="480"></p>
+<p><img data-src="basic_ggplot2_slides_files/figure-revealjs/pigs-gg-boxplot-jitter-1.png" width="480"></p>
 </figure>
 </div>
 </div>

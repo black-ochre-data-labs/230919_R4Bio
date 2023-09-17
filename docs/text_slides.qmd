@@ -81,7 +81,7 @@ typeof(x)
     
 . . .
 
-- All columns of `rats` were also vectors
+- All columns of `pigs` were also vectors
     - `len` was `numeric` (or `double`)
     - `dose` and `supp` were `character` vectors
 
@@ -402,8 +402,8 @@ paste0(pets, "!")
 ## Factors
 
 ```{r}
-rats <- read_csv("data/rats.csv")
-dose <- rats$dose
+pigs <- read_csv("data/pigs.csv")
+dose <- pigs$dose
 dose
 ```
 
@@ -452,11 +452,11 @@ fct_relabel(dose, .fun = str_to_lower)
 #| fig-height: 4.5
 #| fig-align: 'left'
 #| output-location: column
-rats$dose <- factor(
-  rats$dose, levels = c("Low", "Med", "High")
+pigs$dose <- factor(
+  pigs$dose, levels = c("Low", "Med", "High")
 )
 ggplot(
-  rats, aes(x = dose, y = len, fill = supp)
+  pigs, aes(x = dose, y = len, fill = supp)
 ) +
   geom_boxplot() +
   scale_fill_brewer(palette = "Set1") +

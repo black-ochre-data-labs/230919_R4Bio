@@ -491,7 +491,7 @@ Dr Stevie Pederson
 <li>This should contain all of today’s files</li>
 <li>Navigate to the <code>data</code> directory using the <code>Files</code> pane</li>
 </ol>
-<p>(You should see <code>rats.csv</code> in there)</p>
+<p>(You should see <code>pigs.csv</code> in there)</p>
 <aside class="notes">
 <p>Take a moment to make sure people haven’t accidentally created <code>data/data</code></p>
 <style type="text/css">
@@ -515,14 +515,14 @@ Dr Stevie Pederson
 <section id="importing-data-1" class="slide level2">
 <h2>Importing Data</h2>
 <ol type="1">
-<li>Preview the file <code>rats.csv</code> by clicking on it (<code>View File</code>)
+<li>Preview the file <code>pigs.csv</code> by clicking on it (<code>View File</code>)
 <ul>
 <li>Try in Excel if you prefer, but DO NOT save anything from Excel</li>
 </ul></li>
 </ol>
 <div class="fragment">
 <ul>
-<li>The data measures tooth length in rats using 3 dose levels of Vitamin C
+<li>The data measures tooth length in guinea pigs using 3 dose levels of Vitamin C
 <ul>
 <li>Values are: “Low”, “Med”, “High”</li>
 </ul></li>
@@ -548,7 +548,7 @@ Dr Stevie Pederson
 </section>
 <section id="using-the-gui-to-load-data" class="slide level2 smaller">
 <h2>Using the GUI To Load Data</h2>
-<p>Click on the <code>rats.csv</code> and choose <code>Import Dataset</code> <strong>then pause when you see the following</strong></p>
+<p>Click on the <code>pigs.csv</code> and choose <code>Import Dataset</code> <strong>then pause when you see the following</strong></p>
 
 <img data-src="assets/importGUI.png" width="900" class="r-stretch"><p style="text-align: center;">
 (Click <code>Update</code> if you don’t see this)
@@ -600,8 +600,8 @@ Dr Stevie Pederson
 <p>The code we copied has 3 lines:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rats.csv"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">View</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2"></a>pigs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/pigs.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">View</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Loads the package <code>readr</code> using <code>library(readr)</code>
@@ -618,12 +618,12 @@ Dr Stevie Pederson
 <p>The code we copied has 3 lines:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rats.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">View</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a>pigs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/pigs.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">View</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>This line actually loads the data into your <code>R Environment</code></li>
-<li>It created an object named <code>rats</code> by using the file name (rats.csv)</li>
+<li>It created an object named <code>pigs</code> by using the file name (pigs.csv)</li>
 <li>We can change this name easily</li>
 </ul>
 </section>
@@ -632,8 +632,8 @@ Dr Stevie Pederson
 <p>The code we copied has 3 lines:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rats.csv"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">View</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2"></a>pigs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/pigs.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">View</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Opens a preview in a familiar <code>Excel-like</code> format
@@ -647,7 +647,7 @@ Dr Stevie Pederson
 <h2>What just happened?</h2>
 <ul>
 <li>We have just loaded data using the default settings of <code>read_csv()</code></li>
-<li>The object <code>rats</code> is now in our <code>R Environment</code>
+<li>The object <code>pigs</code> is now in our <code>R Environment</code>
 <ul>
 <li>The original file remains on our HDD <strong>without modification</strong>!!!</li>
 </ul></li>
@@ -666,9 +666,9 @@ Dr Stevie Pederson
 <ul>
 <li>(Reloading the packages won’t hurt)</li>
 </ul></li>
-<li>Check the <code>Environment Tab</code> again and <code>rats</code> is back</li>
+<li>Check the <code>Environment Tab</code> again and <code>pigs</code> is back</li>
 </ol>
-<p>You can delete the line <code>View(rats)</code></p>
+<p>You can delete the line <code>View(pigs)</code></p>
 </section></section>
 <section>
 <section id="data-frame-objects" class="title-slide slide level1 center" data-background-color="#3c3c44">
@@ -678,7 +678,7 @@ Dr Stevie Pederson
 <section id="data-frame-objects-1" class="slide level2">
 <h2>Data Frame Objects</h2>
 <ul>
-<li>The object <code>rats</code> is known as a <code>data.frame</code></li>
+<li>The object <code>pigs</code> is known as a <code>data.frame</code></li>
 <li><code>R</code> equivalent to a spreadsheet
 <ul>
 <li>Missing values (blank cells) are usually filled with <code>NA</code></li>
@@ -693,7 +693,7 @@ Dr Stevie Pederson
 <div class="columns">
 <div class="column" style="width:45%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pigs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 3
      len supp  dose 
@@ -734,7 +734,7 @@ Dr Stevie Pederson
 <li><code>data.frame</code> objects can be subset using square brackets <code>[row, col]</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rats[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pigs[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
     len supp  dose 
@@ -743,7 +743,7 @@ Dr Stevie Pederson
 2  11.5 VC    Low  
 3   7.3 VC    Low  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rats[, <span class="st">"len"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pigs[, <span class="st">"len"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 1
      len
@@ -768,7 +768,7 @@ Dr Stevie Pederson
 <li>Entire columns can also be selected using <code>$</code> <br><span class="math inline">\(\implies\)</span> doesn’t return a <code>data.frame</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rats<span class="sc">$</span>len</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pigs<span class="sc">$</span>len</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  4.2 11.5  7.3  5.8  6.4 10.0 11.2 11.2  5.2  7.0 16.5 16.5 15.2 17.3 22.5
 [16] 17.3 13.6 14.5 18.8 15.5 23.6 18.5 33.9 25.5 26.4 32.5 26.7 21.5 23.3 29.5
@@ -840,8 +840,8 @@ Dr Stevie Pederson
 <li>Some additional ways to inspect data frames are:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rats)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>What were the differences between each method?</strong></p>
 </section></section>
@@ -853,13 +853,13 @@ Dr Stevie Pederson
 <section id="functions-in-r" class="slide level2">
 <h2>Functions in <code>R</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rats)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Here we have called two functions: 1) <code>head()</code> and 2) <code>glimpse()</code>
 <ul>
-<li>They were both executed on the object <code>rats</code></li>
+<li>They were both executed on the object <code>pigs</code></li>
 </ul></li>
 </ul>
 <div class="fragment">
@@ -902,14 +902,14 @@ Dr Stevie Pederson
 <h2>Function Arguments</h2>
 <ul>
 <li><code>head()</code> prints the <em>first part</em> of an object</li>
-<li>Useful for very large objects (e.g.&nbsp;if we had 1000 rats)</li>
+<li>Useful for very large objects (e.g.&nbsp;if we had 1000 pigs)</li>
 </ul>
 <div class="fragment">
 <ul>
 <li>We can change the number of rows shown to us</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rats, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
     len supp  dose 
@@ -930,7 +930,7 @@ Dr Stevie Pederson
 </ul>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rats, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
     len supp  dose 
@@ -940,7 +940,7 @@ Dr Stevie Pederson
 3   7.3 VC    Low  
 4   5.8 VC    Low  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> rats, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> pigs, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
     len supp  dose 
@@ -959,7 +959,7 @@ Dr Stevie Pederson
 <li>If we name the arguments, we can pass <em>in any order we choose</em></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">x =</span> rats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">x =</span> pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
     len supp  dose 
