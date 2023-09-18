@@ -43,10 +43,19 @@ knitr:
 
 1. Create a folder on your computer for today's material
     + We recommend `Documents/R_Training` in your home folder
-    + Create a sub-folder called `data`
+    
+. . .
+    
 2. Now we can open `RStudio`
 
+. . .
+
+- `RStudio` will always open in a folder somewhere
+    + Look in the `Files` pane to try figure out where it's looking
+
 ## Create an R Project
+
+(This won't work for those in the posit cloud)
 
 1. `File` > `New Project` > `Existing Directory` >
     + Browse to `Documents/R_Training`
@@ -55,6 +64,7 @@ knitr:
 . . .
 
 - `R Projects` are simply a wrapper for keeping an analysis organised
+    - Will always open in the R Project directory
     - You can easily navigate to a directory with all scripts and data
     - Makes managing file paths from your code **very simple**
     
@@ -72,7 +82,7 @@ knitr:
 
 ## RStudio
 
-```{r, echo = FALSE, include=TRUE, results='asis', fig.show='asis', out.width=900}
+```{r, echo = FALSE, include=TRUE, results='asis', fig.show='asis', out.width=1000}
 knitr::include_graphics("assets/RStudio.png")
 ```
 
@@ -86,7 +96,7 @@ knitr::include_graphics("assets/RStudio.png")
     - Comments start with the `#` symbol
 - We'll return here later
 
-## The Script Window
+## The R Console
 
 ```{r, echo = FALSE, include=TRUE, results='asis', fig.show='asis', out.width=900}
 knitr::include_graphics("assets/RStudio.png")
@@ -122,15 +132,23 @@ I never use a calculator program on my laptop, always R
 
 ## The R Console
 
-As well as performing simple calculations:
+<br>As well as performing simple calculations:
 
 - `R` has what we call an `Environment` (i.e. a Workspace)
 - We can define objects here, or import data
    - Similar to a workbook in Excel
    - **Much more** flexible & powerful
+   
+. . .   
+   
 - Objects can look like spreadsheets, be a single number or even empty
    - 'omics data often has more complicated but defined structures
 - `R` performs calculations & runs processes on these objects
+
+::: {.notes}
+When we create a new sheet in Excel, we're actually creating an object.
+Most commonly, it's named Sheet1 or something similar
+:::
 
 ## Creating an `R` object
 
@@ -162,6 +180,7 @@ x <- 5
 ```{r, echo=TRUE, include=TRUE, results='hide'}
 x
 ```
+
 
 ## The R Environment
 
@@ -206,7 +225,7 @@ Once an object is in the `Environment` we can perform calculations on it
 x^2
 ```
 
-#### NB: R is *case sensitive*
+**NB: R is case sensitive**
 
 . . .
 
@@ -225,18 +244,51 @@ log(x)
     - Has all the base functions other packages are built on
     - Packages group similar/related functions together
     
+. . .    
+    
 ```{r, eval=FALSE}
 ?sqrt
 ```
 
 - This will take you to the `Help` pane for the `sqrt()` function
-    - Click on the underlined word `Index` at the bottom for a list of functions in the `base` packages
+    + Click `Run examples` to run any examples
+
+. . .
+
+- Click on the underlined word `Index` at the bottom for a list of functions in the `base` packages
+   + Absolutely no need to learn any of these
     
 ::: {.notes}
-May be issues with `URL '/help/library/base/html/00Index.html' not found`
+- May be issues with `URL '/help/library/base/html/00Index.html' not found`
+- The examples in this help page are a bit rubbish...
+:::
+
+## Additional Sources For Help
+
+- Help pages in `R` can be hit & miss
+    + Some are excellent and informative $\implies$ some aren't
+
+. . .
+    
+- Bioconductor has a support forum for Bioconductor packages
+    + All packages have a vignette (again varying quality)
+    
+. . .
+
+- Google is your friend [$\implies$ maybe ChatGPT?]{.fragment .fade-in}
+    
+. . .
+
+- StackOverflow is usually very helpful
+- Some blog posts showing how to do something
+- YouTube channels
+
+::: {.notes}
+As a package author, I'm always reading my own help pages.
+I simply can't remember everything I've written
 :::
     
-## Vectors: A Sneak Peek
+## Vectors
 
 - Instead of a single value, we can give an `R` object multiple values
 - Known as a **vector** $\implies$ like a column in Excel
@@ -251,7 +303,7 @@ length(x)
 
 Functions & calculations work on the entire vector
 
-```{r, eval=FALSE}
+```{r}
 x + 1
 x^2
 sqrt(x)
@@ -261,13 +313,13 @@ mean(x)
 sd(x)
 ```
 
-No need to select a column or cells...
+<!-- No need to select a column or cells... -->
 
 . . . 
 
 (We'll discuss subsetting later)
     
-# The Script Window
+# The Script Window {background-color="#3c3c44"}
 
 ## RStudio: The Script Window
 
@@ -279,6 +331,7 @@ Best practice for all analysis is to enter our code in the Script Window
     - enable auto-completion (it can be slower than your typing)
 - Enter code in this window and *send it to the R Console*    
 - We save this file as a record of what we've done
+    - Code is the important object $\implies$ can recreate all results
 
 ## RStudio: The Script Window
 
@@ -303,14 +356,19 @@ x <- 5
 
 To send this to the Console:
 
-- Place the cursor on a line then `Ctrl+Enter` (`Cmd+Enter` on OSX), or
-- Select the lines using the mouse then `Ctrl+Enter` (or `Cmd+Enter`)
+::: {.incremental}
+
+- Place the cursor on the line with `x <- 5` then `Ctrl+Enter` (`Cmd+Enter` on OSX), or
+- Select one or more entire lines using the mouse then `Ctrl+Enter` (or `Cmd+Enter`)
 - Or after selecting one or more lines you can click the `Run` button
-    - Be careful to select all the correct text though...
+    - Be careful to select all the correct text though
+    + It's very easy to miss the first character
+
+:::
 
 ## RStudio: The Script Window
 
-As well as creating objects, we can use this to write general code
+As well as creating objects, we can write general code
 
 ```{r}
 # I'm not sure. Is x greater than zero?
@@ -319,29 +377,35 @@ x > 0
 
 Including comments describing your intention, is **highly advisable**
 
-
-<!-- ## RStudio: Tab Auto-completion -->
-
-<!-- `RStudio` will give us suggestions when we ask it to. -->
-
-<!-- - In either the Console or Script Window type `?bas` then hit the `<tab>` key -->
-<!--     - A whole lot of options will appear -->
-<!--     - Very handy with long variable/function names -->
-<!--     - If you can't quite remember the spelling -->
-<!--     - Sometimes completes when you don't want it to -->
+::: {.notes}
+Note that we haven't saved any objects during this step
+:::
 
 
-# Other Tabs and Features
+## RStudio: Tab Auto-completion
 
-## RStudio: Other Tabs and Features
+`RStudio` will give us suggestions when we ask it to.
+
+. . .
+
+- In either the Console or Script Window type `?me` then hit the `<tab>` key
+    - A whole lot of options will appear
+    - Very handy with long variable/function names
+    - If you can't quite remember the spelling
+    - Sometimes completes when you don't want it to
+
+
+# Other Tabs and Features {background-color="#3c3c44"}
+
+## Other Tabs and Features
 
 - Next to the `Environment` Tab is the `History` Tab
     - Contains everything executed in the `Console`
     - Useful for when we've been lazy
 
-**Best coding practice is to enter code in the `Script Window` and execute**
+**Best practice is to enter code in the `Script Window` and execute**
 
-## RStudio: Other Tabs and Features
+## Other Tabs and Features
 
 In the bottom right are a series of tabs
 
@@ -349,6 +413,10 @@ In the bottom right are a series of tabs
 2. `Plots`: Every time you make a graph it appears here
 3. `Packages`: [__NEVER CLICK OR UN-CLICK ANYTHING HERE__]{.underline}
 4. `Help`: We all use this a lot!
+
+::: {.notes}
+I always disable the packages pane: it takes up space & is both dangerous and useless
+:::
 
 <!-- ## RStudio: Disable The Packages Tab -->
 
@@ -359,12 +427,12 @@ In the bottom right are a series of tabs
 <!-- 3. Uncheck `Enable packages pane` -->
 <!-- 4. `Enter` or `Apply` -->
 
-## RStudio: Other Tabs and Features
+## Other Tabs and Features
 
-- Every tab can be resized using the buttons on the top right
-- Window separators can also be be moved
+- Every tab can be minimised/maximised using the buttons on the top right
+- Window separators can be be moved to resize panes manually
 
-## RStudio: Cheatsheet and Shortcuts
+## Cheatsheet and Shortcuts
 
 `Help > Cheatsheets > RStudio IDE Cheat Sheet`
 
