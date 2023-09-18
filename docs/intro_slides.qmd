@@ -5,7 +5,7 @@ author: "Dr Stevie Pederson"
 institute: |
   | Black Ochre Data Labs
   | Telethon Kids Institute
-date: "2023-09-17"
+date: "2023-09-19"
 date-format: long
 title-slide-attributes:
     data-background-color: "#3c3c44"
@@ -88,24 +88,33 @@ Used to write Excel macros for fun whilst being a musician
 
 ## Housekeeping
 
+- If your supervisor or colleague registered for you
+    + Please take a blank name tag & add your name
+    + I deleted duplicate names but left the affiliation
 - WiFi:
     + `eduroam` for those with access
     + UofA-Guest network for others: (password: `stationwork`)
+
+## Housekeeping
+
 - Toilets are back out by the lifts
 - Morning Tea / Lunch / Afternoon Tea provided in the foyer
-    + Coffee & Tea available from Grind & Press in the UofA Hub
+    + Coffee & Tea available from Grind & Press <br>in the UofA Hub
     + Show your name tag
 - Two HEPA filters running all day
     - Masks encouraged
     
+![](assets/coffee_map.png){.absolute top=250 left=520 width="600" height="500"}
+
+    
 ## Homepage and Material
 
 - The workshop homepage is http://blackochrelabs.au/230919_R4Bio/
-    - All Data is available here
+    - Data and course material available here
     + Will stay live *in perpetuity*
 - Links to notes available
     + Slides are directly re-formatted as a simple webpage
-    + Also in presentation style by clicking the `RevealJS` link below the TOC
+    + Also in presentation style by clicking the `RevealJS` link below the TOC<br>(Top RH Corner)
 
 
 # R {background-color="#3c3c44" background-image=https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/512px-R_logo.svg.png background-size="40%" background-opacity="0.5"}
