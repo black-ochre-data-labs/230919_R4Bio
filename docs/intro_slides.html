@@ -376,11 +376,6 @@ Dr Stevie Pederson
 <li>Microrray analysis</li>
 </ul></li>
 </ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Musician (1991 - 2014)</li>
-</ul>
 <aside class="notes">
 <p>Used to write Excel macros for fun whilst being a musician</p>
 <style type="text/css">
@@ -423,61 +418,23 @@ Dr Stevie Pederson
 <li>Lachlan Baer, Angel Allen, Chris Fusco (University of Adelaide)</li>
 </ul>
 </section>
-<section id="helpful-resources" class="slide level2">
-<h2>Helpful Resources</h2>
-<ul>
-<li>Two excellent books/web resources are
-<ul>
-<li>R For Data Science: https://r4ds.had.co.nz/</li>
-<li>The R Graphics Cookbook: https://r-graphics.org/</li>
-</ul></li>
-</ul>
-<div class="columns">
-<div class="column" style="width:&quot;50%;">
-<div class="r-stack">
-<div class="quarto-figure quarto-figure-left">
-<figure>
-<p><img data-src="https://m.media-amazon.com/images/I/51eTKL+SkeL.jpg" width="320" height="450"></p>
-</figure>
-</div>
-</div>
-</div><div class="column" style="width:&quot;50%;">
-<div class="r-stack">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="https://r-graphics.org/cover.jpg" width="320" height="450"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<aside class="notes">
-<p>Much of today is inspired by a two-day developers workshop I attended with Hadley Wickham. Also gave me an opportunity to have some great conversations with Winston Chang</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
 <section id="housekeeping" class="slide level2">
 <h2>Housekeeping</h2>
 <ul>
-<li>Toilets are back out by the lifts</li>
-<li>Morning Tea / Lunch / Afternoon Tea provided in the foyer</li>
-<li>Two HEPA filters running all day
-<ul>
-<li>Masks encouraged</li>
-</ul></li>
 <li>WiFi:
 <ul>
 <li><code>eduroam</code> for those with access</li>
-<li>UofA-Guest network for others: (password: *****)</li>
+<li>UofA-Guest network for others: (password: <code>stationwork</code>)</li>
+</ul></li>
+<li>Toilets are back out by the lifts</li>
+<li>Morning Tea / Lunch / Afternoon Tea provided in the foyer
+<ul>
+<li>Coffee &amp; Tea available from Grind &amp; Press in the UofA Hub</li>
+<li>Show your name tag</li>
+</ul></li>
+<li>Two HEPA filters running all day
+<ul>
+<li>Masks encouraged</li>
 </ul></li>
 </ul>
 </section></section>
@@ -541,8 +498,11 @@ Dr Stevie Pederson
 <section id="what-is-r" class="slide level2">
 <h2>What is R?</h2>
 <ul>
+<li>Derivative of <code>S</code>
+<ul>
+<li><em>John Chambers et al</em>, Bell Labs 1976</li>
+</ul></li>
 <li>First appeared in 1993</li>
-<li>Derivative of <code>S</code> (<em>John Chambers et al</em>, Bell Labs 1976)</li>
 <li><strong>R</strong>oss Ihaka and <strong>R</strong>obert Gentleman (U of Auckland)</li>
 <li>Authors wrote for their own research and students</li>
 <li>Now estimated &gt;2 million users</li>
@@ -615,12 +575,12 @@ Dr Stevie Pederson
 <ul>
 <li>Are collections (or libraries) of related functions</li>
 <li><code>ggplot2</code> <span class="math inline">\(\implies\)</span> Generating plots</li>
-<li><code>edgeR</code> <span class="math inline">\(\implies\)</span> Analysing RNA-Seq data</li>
+<li><code>edgeR</code> <span class="math inline">\(\implies\)</span> Differential Gene Expression (DGE) for RNA-Seq</li>
 </ul></li>
 </ul>
 <div class="fragment">
 <ul>
-<li>Packages are stored on CRAN (https://cran.r-project.org)
+<li>Most packages are stored on CRAN (https://cran.r-project.org)
 <ul>
 <li>Not curated for statistical quality or documentation</li>
 <li>Automated testing for successful installation</li>
@@ -635,6 +595,23 @@ Dr Stevie Pederson
 <li>Curated for language consistency &amp; documentation</li>
 </ul></li>
 </ul>
+<aside class="notes">
+<ul>
+<li>The gg in ggplot2 stands for “Grammar of Graphics”</li>
+<li>Crap packages are generally identified by the users and then just not-used</li>
+<li>Statistical rigour is usually checked during review of the accompanying publication</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </div>
 </section>
 <section id="where-is-r-used" class="slide level2">
@@ -663,6 +640,48 @@ Dr Stevie Pederson
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section id="helpful-resources" class="slide level2">
+<h2>Helpful Resources</h2>
+<ul>
+<li>Two excellent books/web resources are
+<ul>
+<li>R For Data Science: https://r4ds.had.co.nz/</li>
+<li>The R Graphics Cookbook: https://r-graphics.org/</li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:&quot;50%;">
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="https://m.media-amazon.com/images/I/51eTKL+SkeL.jpg" width="320" height="450"></p>
+</figure>
+</div>
+</div>
+</div><div class="column" style="width:&quot;50%;">
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://r-graphics.org/cover.jpg" width="320" height="450"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Much of today is inspired by a two-day developers workshop I attended with Hadley Wickham. Also gave me an opportunity to have some great conversations with Winston Chang</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="rstudio" class="title-slide slide level1 center" data-background-color="#3c3c44" data-background-image="https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png" data-background-size="60%" data-background-opacity="0.5">
@@ -671,13 +690,21 @@ Dr Stevie Pederson
 </section>
 <section id="introduction-to-rstudio" class="slide level2">
 <h2>Introduction to RStudio</h2>
-<ul>
-<li><code>R</code> and <code>RStudio</code> are <strong>two separate but connected things</strong>
+<p><code>R</code> and <code>RStudio</code> are <strong>two separate but connected things</strong></p>
 <ul>
 <li><code>R</code> is like the engine of your car</li>
-<li><code>RStudio</code> is the ‘cabin’ we use to control the engine</li>
-<li><code>RStudio</code> even comes with extra features not related to <code>R</code></li>
+</ul>
+<div class="fragment">
+<ul>
+<li><code>RStudio</code> is the ‘cabin’ we use to control the engine
+<ul>
+<li>Comes with extra features not related to <code>R</code></li>
+<li>Known as an IDE (Integrated Development Environment)</li>
 </ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li><code>R</code> <em>does all the calculations, manages the data, generates plots</em></li>
 <li><code>RStudio</code> <em>helps manage our code, display the plots etc</em></li>
 </ul>
@@ -694,6 +721,7 @@ Dr Stevie Pederson
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</div>
 </section>
 <section id="what-is-rstudio" class="slide level2">
 <h2>What is RStudio</h2>
@@ -703,16 +731,18 @@ Dr Stevie Pederson
 <li>RStudio (Desktop) is free</li>
 <li>RStudio Server has annual licence fee of $’000s</li>
 </ul></li>
-<li>RStudio <span class="math inline">\(\implies\)</span> an <em>Integrated Development Environment</em> (IDE)
+<li>Other IDEs also exist (e.g.&nbsp;emacs, VSCode)</li>
+<li>Posit employs many of the best &amp; brightest package developers
 <ul>
-<li>Other IDE options also exist (e.g.&nbsp;emacs, VSCode)</li>
+<li>e.g.&nbsp;<code>tidyverse</code>, <code>bookdown</code>, <code>reticulate</code>, <code>roxygen2</code>etc</li>
+<li>The CEO (JJ Allaire) is still an active developer</li>
 </ul></li>
-<li>Posit employs many of the best &amp; brightest package developers (<code>tidyverse</code>, <code>bookdown</code>, <code>reticulate</code>, <code>roxygen2</code> etc)</li>
 </ul>
 <aside class="notes">
 <ul>
 <li>I remember being at the launch of RStudio (Coventry, 2011). It was a room full of R programmers thinking “holy crap, this changes everything”</li>
 <li>RStudio/Posit is a corporation whilst R is an academic-led volunteer community. So far relatively good relationship</li>
+<li>Heard JJ Allaire present some of his latest work a few weeks</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -734,6 +764,7 @@ Dr Stevie Pederson
 <li>Use of <code>R Projects</code> to manage code/data for each project/analysis</li>
 <li>We can see <strong>everything</strong> we need (directories, plots, code, history etc.)</li>
 <li>Integration with markdown, <span class="math inline">\(\LaTeX\)</span>, bash, python, C++, version control software etc.</li>
+<li>Numerous add-ons to simplify larger tasks</li>
 </ul>
 </section>
 <section id="course-outline" class="slide level2">
@@ -757,6 +788,7 @@ Dr Stevie Pederson
 <li>Make amazing looking plots</li>
 <li>Send reports to collaborators made directly from our code</li>
 </ol>
+<p>Underlying focus is <em>Reproducible Research</em></p>
 <aside class="notes">
 <p>We’ll cover a little about data types as this is important for R. Also important for Excel macros</p>
 <style type="text/css">

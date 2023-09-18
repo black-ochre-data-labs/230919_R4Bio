@@ -60,10 +60,6 @@ As a scientist, I'm honoured to be working with many Indigenous Australians, who
     + MCMC Engine written in C & R (No Rstudio. No `Rcpp`)
     + Microrray analysis
     
-. . .
-
-- Musician (1991 - 2014)
-
 ::: {.notes}
 Used to write Excel macros for fun whilst being a musician
 :::
@@ -89,50 +85,18 @@ Used to write Excel macros for fun whilst being a musician
 - Karissa Barthelson (Flinders University)
 - Lachlan Baer, Angel Allen, Chris Fusco (University of Adelaide)
 
-## Helpful Resources
-
-- Two excellent books/web resources are
-    + R For Data Science: https://r4ds.had.co.nz/
-    + The R Graphics Cookbook: https://r-graphics.org/
-
-::: {.columns}
-
-::: {.column width="50%}
-
-::::{.r-stack}
-
-![](https://m.media-amazon.com/images/I/51eTKL+SkeL.jpg){width="320px" height="450px" fig-align="left"}
-::::
-
-:::
-
-::: {.column width="50%}
-
-:::: {.r-stack}
-
-![](https://r-graphics.org/cover.jpg){width="320px" height="450px" fig-align="left}
-
-
-::::
-
-:::
-
-:::
-
-::: {.notes}
-Much of today is inspired by a two-day developers workshop I attended with Hadley Wickham.
-Also gave me an opportunity to have some great conversations with Winston Chang
-:::
 
 ## Housekeeping
 
-- Toilets are back out by the lifts
-- Morning Tea / Lunch / Afternoon Tea provided in the foyer
-- Two HEPA filters running all day
-    - Masks encouraged
 - WiFi:
     + `eduroam` for those with access
-    + UofA-Guest network for others: (password: *****)
+    + UofA-Guest network for others: (password: `stationwork`)
+- Toilets are back out by the lifts
+- Morning Tea / Lunch / Afternoon Tea provided in the foyer
+    + Coffee & Tea available from Grind & Press in the UofA Hub
+    + Show your name tag
+- Two HEPA filters running all day
+    - Masks encouraged
 
 # R {background-color="#3c3c44" background-image=https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/512px-R_logo.svg.png background-size="40%" background-opacity="0.5"}
 
@@ -169,8 +133,9 @@ Experience is the best teacher $\implies$ please practice your skills
 
 ## What is R?
 
+- Derivative of `S` 
+    + *John Chambers et al*, Bell Labs 1976
 - First appeared in 1993
-- Derivative of `S` (*John Chambers et al*, Bell Labs 1976)
 - **R**oss Ihaka and **R**obert Gentleman (U of Auckland)
 - Authors wrote for their own research and students
 - Now estimated >2 million users
@@ -215,11 +180,11 @@ Experience is the best teacher $\implies$ please practice your skills
 - Packages are the key to R's flexibility and power
     - Are collections (or libraries) of related functions
     - `ggplot2` $\implies$ Generating plots
-    - `edgeR` $\implies$ Analysing RNA-Seq data
+    - `edgeR` $\implies$ Differential Gene Expression (DGE) for RNA-Seq 
     
 . . .    
     
-- Packages are stored on CRAN (https://cran.r-project.org)
+- Most packages are stored on CRAN (https://cran.r-project.org)
     - Not curated for statistical quality or documentation
     - Automated testing for successful installation
 
@@ -228,6 +193,12 @@ Experience is the best teacher $\implies$ please practice your skills
 - Bioconductor is a secondary repository (https://www.bioconductor.org)
     - Packages have a more biological/genomics focus
     - Curated for language consistency & documentation
+    
+::: {.notes}
+- The gg in ggplot2 stands for "Grammar of Graphics"
+- Crap packages are generally identified by the users and then just not-used
+- Statistical rigour is usually checked during review of the accompanying publication
+:::
    
 ## Where is R used?
 
@@ -244,15 +215,58 @@ Experience is the best teacher $\implies$ please practice your skills
 - BODL offered me a position the exact same day so I stayed in academia
 :::
 
+## Helpful Resources
+
+- Two excellent books/web resources are
+    + R For Data Science: https://r4ds.had.co.nz/
+    + The R Graphics Cookbook: https://r-graphics.org/
+
+::: {.columns}
+
+::: {.column width="50%}
+
+::::{.r-stack}
+
+![](https://m.media-amazon.com/images/I/51eTKL+SkeL.jpg){width="320px" height="450px" fig-align="left"}
+::::
+
+:::
+
+::: {.column width="50%}
+
+:::: {.r-stack}
+
+![](https://r-graphics.org/cover.jpg){width="320px" height="450px" fig-align="left}
+
+
+::::
+
+:::
+
+:::
+
+::: {.notes}
+Much of today is inspired by a two-day developers workshop I attended with Hadley Wickham.
+Also gave me an opportunity to have some great conversations with Winston Chang
+:::
+
 
 # RStudio {background-color="#3c3c44" background-image=https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png background-size="60%" background-opacity="0.5"}
 
 ## Introduction to RStudio
 
-- `R` and `RStudio` are **two separate but connected things**
-    + `R` is like the engine of your car
-    + `RStudio` is the 'cabin' we use to control the engine
-    + `RStudio` even comes with extra features not related to `R`
+`R` and `RStudio` are **two separate but connected things**
+
+- `R` is like the engine of your car
+    
+. . .
+
+- `RStudio` is the 'cabin' we use to control the engine
+    + Comes with extra features not related to `R`
+    + Known as an IDE (Integrated Development Environment)
+    
+. . .
+
 - `R` *does all the calculations, manages the data, generates plots*
 - `RStudio` *helps manage our code, display the plots etc*
 
@@ -265,13 +279,15 @@ Demonstrate the old-school R terminal first
 - RStudio is product of a **for profit** company (Posit)
     + RStudio (Desktop) is free
     + RStudio Server has annual licence fee of \$'000s
-- RStudio $\implies$ an *Integrated Development Environment* (IDE)
-    + Other IDE options also exist (e.g. emacs, VSCode)
-- Posit employs many of the best & brightest package developers (`tidyverse`, `bookdown`, `reticulate`, `roxygen2` etc)
+- Other IDEs also exist (e.g. emacs, VSCode)
+- Posit employs many of the best & brightest package developers
+    + e.g. `tidyverse`, `bookdown`, `reticulate`, `roxygen2`etc
+    + The CEO (JJ Allaire) is still an active developer
 
 ::: {.notes}
 - I remember being at the launch of RStudio (Coventry, 2011). It was a room full of R programmers thinking "holy crap, this changes everything"
 - RStudio/Posit is a corporation whilst R is an academic-led volunteer community. So far relatively good relationship
+- Heard JJ Allaire present some of his latest work a few weeks
 :::
 
 ## Some very helpful features of `RStudio`
@@ -281,6 +297,7 @@ Demonstrate the old-school R terminal first
 - Use of `R Projects` to manage code/data for each project/analysis
 - We can see **everything** we need (directories, plots, code, history etc.)
 - Integration with markdown, $\LaTeX$, bash, python, C++, version control software etc.
+- Numerous add-ons to simplify larger tasks
 
 ## Course Outline
 
@@ -302,6 +319,8 @@ By the end of the day, we'll be able to
 2. Clean up and edit data datasets
 3. Make amazing looking plots
 4. Send reports to collaborators made directly from our code
+
+Underlying focus is *Reproducible Research*
 
 ::: {.notes}
 We'll cover a little about data types as this is important for R.
