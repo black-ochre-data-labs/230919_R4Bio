@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.353">
 
   <meta name="author" content="Dr Stevie Pederson">
-  <meta name="dcterms.date" content="2023-09-17">
+  <meta name="dcterms.date" content="2023-09-19">
   <title>Working with Text</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -406,7 +406,7 @@ Dr Stevie Pederson
     </div>
 </div>
 
-  <p class="date">September 17, 2023</p>
+  <p class="date">September 19, 2023</p>
 </section>
 <section>
 <section id="working-with-text" class="title-slide slide level1 center" data-background-color="#3c3c44">
@@ -478,7 +478,7 @@ Dr Stevie Pederson
 <ul>
 <li>In <code>R</code> we form vectors using the function <code>c()</code>
 <ul>
-<li>We use to combine values into a single vector</li>
+<li>Used to combine elements into a single vector</li>
 <li>One of the most heavily used functions in <code>R</code></li>
 </ul></li>
 </ul>
@@ -487,26 +487,57 @@ Dr Stevie Pederson
 <li>The shorthand <code>x &lt;- 1:5</code> could also be written as</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(1L, 2L, 3L, 4L, 5L)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "double"</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment">
-<ul>
-<li>To ensure these were integers we could place an <code>L</code> after each</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(1L, 2L, 3L, 4L, 5L)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "integer"</code></pre>
 </div>
 </div>
+<ul>
+<li>To ensure these were integers we placed an <code>L</code> after each</li>
+</ul>
+</div>
+</section>
+
+<section id="vectors-3" class="slide level2">
+<h2>Vectors</h2>
+<blockquote>
+<p><strong>Vectors</strong> are zero or more values of the same type</p>
+</blockquote>
+<div class="fragment">
+<ul>
+<li><code>R</code> has 6 types of atomic vectors
+<ul>
+<li>All relevant internally for how <code>R</code> allocates memory</li>
+<li>Only 4 are relevant to us in practice</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ol type="1">
+<li><code>logical</code>: Can only be <code>TRUE</code> or <code>FALSE</code></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
+<li><code>integer</code>: Whole number values <span class="fragment fade-in"><span class="math inline">\(\implies\)</span> counts, positions etc.</span></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li><code>numeric</code>: Numbers with decimal points (aka <code>double</code>)</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="4" type="1">
+<li><code>character</code>: Any text</li>
+</ol>
 <aside class="notes">
-<p>Difference between integers and numeric not super relevant for today</p>
+<ul>
+<li>Doubles need to store the values after the decimal point to have much larger memory requirements.</li>
+<li>The other atomic types are complex (sqrt(-1)) and <code>raw</code></li>
+<li>Raw vectors hold raw bytes</li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -520,52 +551,19 @@ Dr Stevie Pederson
       }</style></aside>
 </div>
 </section>
-<section id="vectors-2" class="slide level2">
-<h2>Vectors</h2>
-<ul>
-<li><code>R</code> has 6 types of atomic vectors
-<ul>
-<li>Only 4 are relevant to us</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<div>
-<ol type="1">
-<li class="fragment"><code>logical</code>: Can only be <code>TRUE</code> or <code>FALSE</code></li>
-<li class="fragment"><code>integer</code>: Whole number values
-<ul>
-<li class="fragment">Used for counts, positions in an object etc</li>
-</ul></li>
-<li class="fragment"><code>numeric</code>: Numbers with decimal points (aka <code>double</code>)
-<ul>
-<li class="fragment"><code>integer</code> and <code>double</code> values have different memory requirements</li>
-</ul></li>
-<li class="fragment"><code>character</code>: Any text</li>
-</ol>
-</div>
-<div class="fragment">
-<blockquote>
-<p><strong>Vectors</strong> are zero or more values of the same type</p>
-</blockquote>
-</div>
-</div>
-</section>
 <section id="character-vectors" class="slide level2">
 <h2>Character Vectors</h2>
 <ul>
 <li>We can use <code>c()</code> to form a character vector</li>
-<li>Note that all values were quoted
-<ul>
-<li><code>R</code> assumes unquoted text is an <code>R</code> object</li>
-</ul></li>
+<li>All values must be quoted <span class="fragment fade-in"><span class="math inline">\(\implies\)</span> unquoted text represents an <code>R</code> object</span></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"My dog"</span>, <span class="st">"Your cat"</span>, <span class="st">"No-one's rat"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"My dog"</span>, <span class="st">"Your cat"</span>, <span class="st">"No-one's rat"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My dog"       "Your cat"     "No-one's rat"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
@@ -575,7 +573,7 @@ Dr Stevie Pederson
 <li>We can extract values using square brackets <code>[]</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pets[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pets[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "No-one's rat"</code></pre>
 </div>
@@ -598,7 +596,7 @@ Dr Stevie Pederson
 <li>Count the characters</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  6  8 12</code></pre>
 </div>
@@ -609,7 +607,7 @@ Dr Stevie Pederson
 <li>Trim to a set length</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trunc</span>(pets, <span class="at">width =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trunc</span>(pets, <span class="at">width =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My dog" "You..." "No-..."</code></pre>
 </div>
@@ -622,46 +620,73 @@ Dr Stevie Pederson
 <li>Change the case of strings</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_upper</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_upper</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "MY DOG"       "YOUR CAT"     "NO-ONE'S RAT"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_lower</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_lower</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "my dog"       "your cat"     "no-one's rat"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_title</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_title</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My Dog"       "Your Cat"     "No-One's Rat"</code></pre>
 </div>
 </div>
+</section>
+<section id="text-manipulation-2" class="slide level2">
+<h2>Text Manipulation</h2>
 <ul>
 <li>Sort vectors</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sort</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sort</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My dog"       "No-one's rat" "Your cat"    </code></pre>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>Including when numbers are included</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>street_nums <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"1A"</span>, <span class="st">"2"</span>, <span class="st">"11A"</span>, <span class="st">"9C"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sort</span>(street_nums)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "11A" "1A"  "2"   "9C" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sort</span>(street_nums, <span class="at">numeric =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1A"  "2"   "9C"  "11A"</code></pre>
+</div>
 </div>
 </div>
 </section>
 <section id="pattern-matching" class="slide level2">
 <h2>Pattern Matching</h2>
-<ul>
-<li>We can search for single letters</li>
-</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(pets, <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE FALSE</code></pre>
+<pre><code>[1] "My dog"       "Your cat"     "No-one's rat"</code></pre>
 </div>
 </div>
 <div class="fragment">
 <ul>
-<li>Or words</li>
+<li>We can search for single letters <span class="fragment fade-in"><span class="math inline">\(\implies\)</span> case-sensitive</span></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(pets, <span class="st">"dog"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(pets, <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>Or patterns</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(pets, <span class="st">"dog"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE FALSE</code></pre>
 </div>
@@ -674,7 +699,7 @@ Dr Stevie Pederson
 <li>We can extract patterns from within each value</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"dog"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"dog"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "dog" NA    NA   </code></pre>
 </div>
@@ -684,7 +709,7 @@ Dr Stevie Pederson
 <li>We can use the <code>|</code> to represent <code>OR</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"dog|cat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"dog|cat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "dog" "cat" NA   </code></pre>
 </div>
@@ -694,7 +719,8 @@ Dr Stevie Pederson
 <ul>
 <li>Note that <code>NA</code> is returned where no pattern is found
 <ul>
-<li>i.e.&nbsp;the pattern is missing from that string</li>
+<li>i.e.&nbsp;the pattern is <em>missing</em> from that string</li>
+<li><code>NA</code> is Not Available / Missing</li>
 </ul></li>
 </ul>
 </div>
@@ -704,24 +730,24 @@ Dr Stevie Pederson
 <ul>
 <li>We can specify a range of values
 <ul>
-<li><code>"[A-Z]"</code> restricts the pattern to all <em>uppercase</em> letters</li>
+<li><code>"[A-Z]"</code> restricts the pattern to any <em>uppercase</em> letters</li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"[A-Z]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"[A-Z]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "M" "Y" "N"</code></pre>
 </div>
 </div>
 <div class="fragment">
 <ul>
-<li>Changeing to lower-case using <code>"[a-z]"</code>
+<li>Changing to lower-case using <code>"[a-z]"</code>
 <ul>
-<li>If multiple matches occur, only the first match is returned</li>
+<li>If multiple matches occur, <em>only the first match is returned</em></li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"[a-z]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"[a-z]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "y" "o" "o"</code></pre>
 </div>
@@ -731,13 +757,13 @@ Dr Stevie Pederson
 <section id="extracting-text-2" class="slide level2">
 <h2>Extracting Text</h2>
 <ul>
-<li>Patterns can be extended by adding a <code>+</code> symbol
+<li>Patterns can be extended by adding a <code>+</code> symbol <br><span class="math inline">\(\implies\)</span> Match one or more values
 <ul>
-<li>“Match one or more values”</li>
+<li>Will return the first run of one or more <em>lowercase letters</em></li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"[a-z]+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"[a-z]+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "y"   "our" "o"  </code></pre>
 </div>
@@ -747,7 +773,7 @@ Dr Stevie Pederson
 <li><code>[A-Za-z]</code> can be combined as <code>[:alpha:]</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"[:alpha:]+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">"[:alpha:]+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My"   "Your" "No"  </code></pre>
 </div>
@@ -765,7 +791,7 @@ Dr Stevie Pederson
 <li>We can remove patterns using <code>str_remove()</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(pets, <span class="st">"o"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(pets, <span class="st">"o"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My dg"       "Yur cat"     "N-one's rat"</code></pre>
 </div>
@@ -778,11 +804,11 @@ Dr Stevie Pederson
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">"o"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">"o"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My dg"      "Yur cat"    "N-ne's rat"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">"[A-Z]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">"[A-Z]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "y dog"       "our cat"     "o-one's rat"</code></pre>
 </div>
@@ -792,30 +818,31 @@ Dr Stevie Pederson
 <section id="wildcards" class="slide level2">
 <h2>Wildcards</h2>
 <ul>
-<li>Regular Expressions use <code>"."</code> as a wildcard
-<ul>
-<li><code>"*"</code> extends patterns is like <code>"+"</code> <br><span class="math inline">\(\implies\)</span> zero or more times</li>
-</ul></li>
+<li>Regular Expressions use <code>"."</code> as a wildcard <br><span class="math inline">\(\implies\)</span> <code>*</code> extends a match <em>zero</em> or more times (similar to <code>+</code>)</li>
 </ul>
+<div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Mydog"       "Yourcat"     "No-one'srat"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">" ."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">" ."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Myog"       "Yourat"     "No-one'sat"</code></pre>
 </div>
 </div>
+</div>
 <div class="fragment">
 <ul>
-<li>A very common patterns is <code>".+"</code>
+<li>A very common pattern is <code>".+"</code>
 <ul>
-<li>Means match anything any number of times</li>
+<li>Means <em>match anything any number of times</em></li>
 </ul></li>
 </ul>
+</div>
+<div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">" .+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">" .+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My"       "Your"     "No-one's"</code></pre>
 </div>
@@ -831,15 +858,26 @@ Dr Stevie Pederson
 <h2>Replacing Patterns</h2>
 <ul>
 <li><code>str_replace_all()</code> is the most powerful of the core functions</li>
+<li>Has arguments <code>string</code>, <code>pattern</code> and <code>replacement</code>
+<ul>
+<li>The pattern <code>"a"</code> will be replaced by <code>"o"</code></li>
+</ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">"a"</span>, <span class="st">"o"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="at">pattern =</span> <span class="st">"a"</span>, <span class="at">replacement =</span> <span class="st">"o"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My dog"       "Your cot"     "No-one's rot"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">"[a-z]"</span>, <span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<ul>
+<li>Turn all lowercase letters into <code>a</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">"[a-z]"</span>, <span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ma aaa"       "Yaaa aaa"     "Na-aaa'a aaa"</code></pre>
+</div>
 </div>
 </div>
 </section>
@@ -848,19 +886,23 @@ Dr Stevie Pederson
 <ul>
 <li>We can capture patterns and return however we wish
 <ul>
-<li>Captures are placed within the <code>"()"</code></li>
-<li>Captures are returned in order using <code>\\1</code></li>
+<li>Patterns to capture are placed within a <code>"()"</code></li>
+<li>Captures are returned in order using <code>\\1</code> or <code>\\2</code> etc</li>
 </ul></li>
-<li>The follow pattern captures the entire pattern <code>"(.+)"</code>
+</ul>
+<div class="fragment">
+<ul>
+<li>The follow pattern captures the entire text string <code>"(.+)"</code>
 <ul>
 <li>Match anything, any number of times</li>
 <li>Then return with exclamations added</li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">"(.+)"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1!!!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">"(.+)"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1!!!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My dog!!!"       "Your cat!!!"     "No-one's rat!!!"</code></pre>
+</div>
 </div>
 </div>
 </section>
@@ -873,20 +915,20 @@ Dr Stevie Pederson
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">"([A-Z]).+ (.+)"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">2 </span><span class="sc">\\</span><span class="st">1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">"([A-Z]).+ (.+)"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">2 </span><span class="sc">\\</span><span class="st">1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "dog M" "cat Y" "rat N"</code></pre>
 </div>
 </div>
-<div class="fragment">
+<div>
 <ol type="1">
-<li>We captured an uppercase letter</li>
-<li>We didn’t capture the rest of the word
+<li class="fragment">We captured an uppercase letter: <code>([A-Z])</code></li>
+<li class="fragment">We matched anything up to a space: <code>.+</code>
 <ul>
-<li>We still matched it though!!!</li>
+<li class="fragment">But we didn’t capture it <span class="math inline">\(\implies\)</span> was outside the <code>()</code></li>
 </ul></li>
-<li>We captured everything after a space</li>
-<li>We returned the two captures in reverse order</li>
+<li class="fragment">We captured everything after the space: <code>(.+)</code></li>
+<li class="fragment">We returned the two captures in reverse order with a space between</li>
 </ol>
 </div>
 </section>
@@ -900,7 +942,7 @@ Dr Stevie Pederson
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(pets, <span class="st">"is great"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(pets, <span class="st">"is great"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My dog is great"       "Your cat is great"     "No-one's rat is great"</code></pre>
 </div>
@@ -909,11 +951,11 @@ Dr Stevie Pederson
 <ul>
 <li><code>paste()</code> uses <code>sep = " "</code> as the default separator
 <ul>
-<li>Can be any character at all</li>
+<li>Can be any characters at all</li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(pets, <span class="st">"Hmm..."</span>, <span class="at">sep =</span> <span class="st">"? "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(pets, <span class="st">"Hmm..."</span>, <span class="at">sep =</span> <span class="st">"? "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My dog? Hmm..."       "Your cat? Hmm..."     "No-one's rat? Hmm..."</code></pre>
 </div>
@@ -924,12 +966,22 @@ Dr Stevie Pederson
 <li><code>paste0()</code> is a shortcut for <code>paste(sep = "")</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(pets, <span class="st">"!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(pets, <span class="st">"!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "My dog!"       "Your cat!"     "No-one's rat!"</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="working-with-strings" class="slide level2">
+<h2>Working With Strings</h2>
+<ul>
+<li>Is an incredibly common and important part of working with R</li>
+<li>Extract sample IDs from file names</li>
+<li>Pull key information from file names</li>
+<li>Remove prefixes/suffixes</li>
+<li>Format for pretty plotting</li>
+</ul>
 </section></section>
 <section>
 <section id="factors" class="title-slide slide level1 center" data-background-color="#3c3c44" data-background-image="https://forcats.tidyverse.org/logo.png" data-background-size="30%" data-background-opacity="0.5">
@@ -940,8 +992,11 @@ Dr Stevie Pederson
 <h2>Factors</h2>
 <ul>
 <li>Categorical variables are called <code>factors</code></li>
-<li><code>forcats</code> is the <code>tidyverse</code> package</li>
-<li><code>base</code> functions are still very common
+<li><code>forcats</code> is the <code>tidyverse</code> package
+<ul>
+<li>Genius name…</li>
+</ul></li>
+<li><code>base</code> functions are still very commonly used and simple
 <ul>
 <li><code>as.factor()</code> and <code>factor()</code></li>
 </ul></li>
@@ -956,10 +1011,11 @@ Dr Stevie Pederson
 </section>
 <section id="factors-2" class="slide level2">
 <h2>Factors</h2>
+<div style="font-size:95%">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/pigs.csv"</span>)</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">&lt;-</span> pigs<span class="sc">$</span>dose</span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>dose</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/pigs.csv"</span>)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">&lt;-</span> pigs<span class="sc">$</span>dose</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>dose</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Low"  "Low"  "Low"  "Low"  "Low"  "Low"  "Low"  "Low"  "Low"  "Low" 
 [11] "Med"  "Med"  "Med"  "Med"  "Med"  "Med"  "Med"  "Med"  "Med"  "Med" 
@@ -976,9 +1032,15 @@ Dr Stevie Pederson
 </ul></li>
 </ul>
 <div class="fragment">
+<ul>
+<li><code>as.factor()</code> from <code>base</code> creates factors in alphanumeric order
+<ul>
+<li>Prints the category levels at the bottom</li>
+</ul></li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>dose_fct <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dose)</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>dose_fct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>dose_fct <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dose)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>dose_fct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
 [16] Med  Med  Med  Med  Med  High High High High High High High High High High
@@ -987,23 +1049,26 @@ Dr Stevie Pederson
 Levels: High Low Med</code></pre>
 </div>
 </div>
+</div>
+<div class="fragment">
 <ul>
-<li><code>as.factor()</code> from <code>base</code> always creates factors in alphanumeric order</li>
-<li>This is how our boxplots were produced</li>
+<li>This is how our first boxplots were produced</li>
 </ul>
+</div>
 </div>
 </section>
 <section id="factors-3" class="slide level2">
 <h2>Factors</h2>
 <ul>
-<li>We can manually set the levels us <code>factor()</code>
+<li>We can manually set the levels using <code>factor()</code>
 <ul>
-<li>Levels are passed as a character vector</li>
+<li>Levels are passed <em>as a character vector</em></li>
+<li>Enables us to manually set the order</li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>dose_fct <span class="ot">&lt;-</span> <span class="fu">factor</span>(dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Med"</span>, <span class="st">"High"</span>))</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>dose_fct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>dose_fct <span class="ot">&lt;-</span> <span class="fu">factor</span>(dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Med"</span>, <span class="st">"High"</span>))</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>dose_fct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
 [16] Med  Med  Med  Med  Med  High High High High High High High High High High
@@ -1022,7 +1087,7 @@ Levels: Low Med High</code></pre>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct</span>(dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct</span>(dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
 [16] Med  Med  Med  Med  Med  High High High High High High High High High High
@@ -1030,7 +1095,7 @@ Levels: Low Med High</code></pre>
 [46] Med  Med  Med  Med  Med  High High High High High High High High High High
 Levels: Low Med High</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_inorder</span>(dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_inorder</span>(dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
 [16] Med  Med  Med  Med  Med  High High High High High High High High High High
@@ -1039,47 +1104,77 @@ Levels: Low Med High</code></pre>
 Levels: Low Med High</code></pre>
 </div>
 </div>
+</section>
+<section id="forcats-1" class="slide level2">
+<h2>Forcats</h2>
+<ul>
+<li>Additional strategies for manipulating levels</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_relabel</span>(dose, <span class="at">.fun =</span> str_to_lower)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_relabel</span>(dose_fct, <span class="at">.fun =</span> str_to_lower)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] low  low  low  low  low  low  low  low  low  low  med  med  med  med  med 
 [16] med  med  med  med  med  high high high high high high high high high high
 [31] low  low  low  low  low  low  low  low  low  low  med  med  med  med  med 
 [46] med  med  med  med  med  high high high high high high high high high high
-Levels: high low med</code></pre>
+Levels: low med high</code></pre>
+</div>
+</div>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_rev</span>(dose_fct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
+[16] Med  Med  Med  Med  Med  High High High High High High High High High High
+[31] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
+[46] Med  Med  Med  Med  Med  High High High High High High High High High High
+Levels: High Med Low</code></pre>
+</div>
 </div>
 </div>
 </section>
 <section id="our-previous-plot" class="slide level2">
 <h2>Our Previous Plot</h2>
+<div style="font-size:92%">
 <div class="cell columns column-output-location" data-layout-align="left">
 <div class="column">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>pigs<span class="sc">$</span>dose <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  pigs<span class="sc">$</span>dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Med"</span>, <span class="st">"High"</span>)</span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
-<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Vitamin C Dose"</span>, </span>
-<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Odontoblast Length"</span>, </span>
-<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Method"</span></span>
-<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
+<div class="sourceCode cell-code" id="cb89" data-code-line-numbers="1-4|5-16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a><span class="do">## First change the original column</span></span>
+<span id="cb89-2"><a href="#cb89-2"></a>pigs<span class="sc">$</span>dose <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb89-3"><a href="#cb89-3"></a>  pigs<span class="sc">$</span>dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Med"</span>, <span class="st">"High"</span>)</span>
+<span id="cb89-4"><a href="#cb89-4"></a>)</span>
+<span id="cb89-5"><a href="#cb89-5"></a><span class="do">## Then make the plot</span></span>
+<span id="cb89-6"><a href="#cb89-6"></a><span class="fu">ggplot</span>(</span>
+<span id="cb89-7"><a href="#cb89-7"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb89-8"><a href="#cb89-8"></a>) <span class="sc">+</span></span>
+<span id="cb89-9"><a href="#cb89-9"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb89-10"><a href="#cb89-10"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb89-11"><a href="#cb89-11"></a>  <span class="fu">labs</span>(</span>
+<span id="cb89-12"><a href="#cb89-12"></a>    <span class="at">x =</span> <span class="st">"Vitamin C Dose"</span>, </span>
+<span id="cb89-13"><a href="#cb89-13"></a>    <span class="at">y =</span> <span class="st">"Odontoblast Length"</span>, </span>
+<span id="cb89-14"><a href="#cb89-14"></a>    <span class="at">fill =</span> <span class="st">"Method"</span></span>
+<span id="cb89-15"><a href="#cb89-15"></a>  ) <span class="sc">+</span></span>
+<span id="cb89-16"><a href="#cb89-16"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="text_slides_files/figure-revealjs/unnamed-chunk-33-1.png" width="480"></p>
+<p><img data-src="text_slides_files/figure-revealjs/boxplot-pigs-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p><img src="assets/bodl_logo_white_background.jpg" class="slide-logo"></p>
-<div class="footer footer-default">
+</div>
+</section>
+<section id="factors-4" class="slide level2">
+<h2>Factors</h2>
+<ul>
+<li>All plotting functions automatically coerce strings to factors</li>
+<li>Performing manually gives far greater control</li>
+<li>Also useful for setting reference levels during statistical analysis</li>
+</ul>
+
+<img src="assets/bodl_logo_white_background.jpg" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
 </section></section>

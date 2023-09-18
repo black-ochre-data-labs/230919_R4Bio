@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr Stevie Pederson">
-<meta name="dcterms.date" content="2023-09-17">
+<meta name="dcterms.date" content="2023-09-19">
 
 <title>Working with Text</title>
 <style>
@@ -3171,7 +3171,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 17, 2023</p>
+      <p class="date">September 19, 2023</p>
     </div>
   </div>
   
@@ -3245,7 +3245,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <ul>
 <li>In <code>R</code> we form vectors using the function <code>c()</code>
 <ul>
-<li>We use to combine values into a single vector</li>
+<li>Used to combine elements into a single vector</li>
 <li>One of the most heavily used functions in <code>R</code></li>
 </ul></li>
 </ul>
@@ -3254,72 +3254,102 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li>The shorthand <code>x &lt;- 1:5</code> could also be written as</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(1L, 2L, 3L, 4L, 5L)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;integer&quot;</code></pre>
+</div>
+</div>
+<ul>
+<li>To ensure these were integers we placed an <code>L</code> after each</li>
+</ul>
+</section>
+<section id="vectors-2" class="level2" data-visibility="hidden">
+<h2 data-visibility="hidden" class="anchored" data-anchor-id="vectors-2">Vectors</h2>
+<ul>
+<li>By default <code>R</code> usually assumes numbers are doubles
+<ul>
+<li>Doubles are numbers with something after decimal point</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;double&quot;</code></pre>
 </div>
 </div>
 <p>. . .</p>
 <ul>
-<li>To ensure these were integers we could place an <code>L</code> after each</li>
+<li>Can coerce doubles to integers using <code>as.integer()</code>
+<ul>
+<li>Just drops anything after the decimal point</li>
+</ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(1L, 2L, 3L, 4L, 5L)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(x)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;integer&quot;</code></pre>
 </div>
 </div>
+<ul>
+<li>Won’t explore in much detail today</li>
+</ul>
 <div class="notes">
 <p>Difference between integers and numeric not super relevant for today</p>
 </div>
 </section>
-<section id="vectors-2" class="level2">
-<h2 class="anchored" data-anchor-id="vectors-2">Vectors</h2>
-<ul>
-<li><code>R</code> has 6 types of atomic vectors
-<ul>
-<li>Only 4 are relevant to us</li>
-</ul></li>
-</ul>
-<p>. . .</p>
-<div class="incremental">
-<ol class="incremental" type="1">
-<li><code>logical</code>: Can only be <code>TRUE</code> or <code>FALSE</code></li>
-<li><code>integer</code>: Whole number values
-<ul class="incremental">
-<li>Used for counts, positions in an object etc</li>
-</ul></li>
-<li><code>numeric</code>: Numbers with decimal points (aka <code>double</code>)
-<ul class="incremental">
-<li><code>integer</code> and <code>double</code> values have different memory requirements</li>
-</ul></li>
-<li><code>character</code>: Any text</li>
-</ol>
-</div>
-<div class="fragment">
+<section id="vectors-3" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-3">Vectors</h2>
 <blockquote class="blockquote">
 <p><strong>Vectors</strong> are zero or more values of the same type</p>
 </blockquote>
+<p>. . .</p>
+<ul>
+<li><code>R</code> has 6 types of atomic vectors
+<ul>
+<li>All relevant internally for how <code>R</code> allocates memory</li>
+<li>Only 4 are relevant to us in practice</li>
+</ul></li>
+</ul>
+<p>. . .</p>
+<ol type="1">
+<li><code>logical</code>: Can only be <code>TRUE</code> or <code>FALSE</code></li>
+</ol>
+<p>. . .</p>
+<ol start="2" type="1">
+<li><code>integer</code>: Whole number values <span class="fragment fade-in"><span class="math inline">\(\implies\)</span> counts, positions etc.</span></li>
+</ol>
+<p>. . .</p>
+<ol start="3" type="1">
+<li><code>numeric</code>: Numbers with decimal points (aka <code>double</code>)</li>
+</ol>
+<p>. . .</p>
+<ol start="4" type="1">
+<li><code>character</code>: Any text</li>
+</ol>
+<div class="notes">
+<ul>
+<li>Doubles need to store the values after the decimal point to have much larger memory requirements.</li>
+<li>The other atomic types are complex (sqrt(-1)) and <code>raw</code></li>
+<li>Raw vectors hold raw bytes</li>
+</ul>
 </div>
 </section>
 <section id="character-vectors" class="level2">
 <h2 class="anchored" data-anchor-id="character-vectors">Character Vectors</h2>
 <ul>
 <li>We can use <code>c()</code> to form a character vector</li>
-<li>Note that all values were quoted
-<ul>
-<li><code>R</code> assumes unquoted text is an <code>R</code> object</li>
-</ul></li>
+<li>All values must be quoted <span class="fragment fade-in"><span class="math inline">\(\implies\)</span> unquoted text represents an <code>R</code> object</span></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;My dog&quot;</span>, <span class="st">&quot;Your cat&quot;</span>, <span class="st">&quot;No-one&#39;s rat&quot;</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;My dog&quot;</span>, <span class="st">&quot;Your cat&quot;</span>, <span class="st">&quot;No-one&#39;s rat&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My dog&quot;       &quot;Your cat&quot;     &quot;No-one&#39;s rat&quot;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
@@ -3329,7 +3359,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li>We can extract values using square brackets <code>[]</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pets[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pets[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;No-one&#39;s rat&quot;</code></pre>
 </div>
@@ -3349,7 +3379,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li>Count the characters</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  6  8 12</code></pre>
 </div>
@@ -3359,7 +3389,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li>Trim to a set length</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trunc</span>(pets, <span class="at">width =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trunc</span>(pets, <span class="at">width =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My dog&quot; &quot;You...&quot; &quot;No-...&quot;</code></pre>
 </div>
@@ -3371,46 +3401,71 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li>Change the case of strings</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_upper</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_upper</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;MY DOG&quot;       &quot;YOUR CAT&quot;     &quot;NO-ONE&#39;S RAT&quot;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_lower</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_lower</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;my dog&quot;       &quot;your cat&quot;     &quot;no-one&#39;s rat&quot;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_title</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_title</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My Dog&quot;       &quot;Your Cat&quot;     &quot;No-One&#39;s Rat&quot;</code></pre>
 </div>
 </div>
+</section>
+<section id="text-manipulation-2" class="level2">
+<h2 class="anchored" data-anchor-id="text-manipulation-2">Text Manipulation</h2>
 <ul>
 <li>Sort vectors</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sort</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sort</span>(pets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My dog&quot;       &quot;No-one&#39;s rat&quot; &quot;Your cat&quot;    </code></pre>
+</div>
+</div>
+<p>. . .</p>
+<ul>
+<li>Including when numbers are included</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>street_nums <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1A&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;11A&quot;</span>, <span class="st">&quot;9C&quot;</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sort</span>(street_nums)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;11A&quot; &quot;1A&quot;  &quot;2&quot;   &quot;9C&quot; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sort</span>(street_nums, <span class="at">numeric =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;1A&quot;  &quot;2&quot;   &quot;9C&quot;  &quot;11A&quot;</code></pre>
 </div>
 </div>
 </section>
 <section id="pattern-matching" class="level2">
 <h2 class="anchored" data-anchor-id="pattern-matching">Pattern Matching</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;My dog&quot;       &quot;Your cat&quot;     &quot;No-one&#39;s rat&quot;</code></pre>
+</div>
+</div>
+<p>. . .</p>
 <ul>
-<li>We can search for single letters</li>
+<li>We can search for single letters <span class="fragment fade-in"><span class="math inline">\(\implies\)</span> case-sensitive</span></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(pets, <span class="st">&quot;y&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(pets, <span class="st">&quot;y&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE FALSE</code></pre>
 </div>
 </div>
 <p>. . .</p>
 <ul>
-<li>Or words</li>
+<li>Or patterns</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(pets, <span class="st">&quot;dog&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(pets, <span class="st">&quot;dog&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE FALSE</code></pre>
 </div>
@@ -3422,7 +3477,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li>We can extract patterns from within each value</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;dog&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;dog&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;dog&quot; NA    NA   </code></pre>
 </div>
@@ -3432,7 +3487,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li>We can use the <code>|</code> to represent <code>OR</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;dog|cat&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;dog|cat&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;dog&quot; &quot;cat&quot; NA   </code></pre>
 </div>
@@ -3441,7 +3496,8 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <ul>
 <li>Note that <code>NA</code> is returned where no pattern is found
 <ul>
-<li>i.e. the pattern is missing from that string</li>
+<li>i.e. the pattern is <em>missing</em> from that string</li>
+<li><code>NA</code> is Not Available / Missing</li>
 </ul></li>
 </ul>
 </section>
@@ -3450,24 +3506,24 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <ul>
 <li>We can specify a range of values
 <ul>
-<li><code>&quot;[A-Z]&quot;</code> restricts the pattern to all <em>uppercase</em> letters</li>
+<li><code>&quot;[A-Z]&quot;</code> restricts the pattern to any <em>uppercase</em> letters</li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;[A-Z]&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;[A-Z]&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;M&quot; &quot;Y&quot; &quot;N&quot;</code></pre>
 </div>
 </div>
 <p>. . .</p>
 <ul>
-<li>Changeing to lower-case using <code>&quot;[a-z]&quot;</code>
+<li>Changing to lower-case using <code>&quot;[a-z]&quot;</code>
 <ul>
-<li>If multiple matches occur, only the first match is returned</li>
+<li>If multiple matches occur, <em>only the first match is returned</em></li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;[a-z]&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;[a-z]&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;y&quot; &quot;o&quot; &quot;o&quot;</code></pre>
 </div>
@@ -3476,13 +3532,13 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <section id="extracting-text-2" class="level2">
 <h2 class="anchored" data-anchor-id="extracting-text-2">Extracting Text</h2>
 <ul>
-<li>Patterns can be extended by adding a <code>+</code> symbol
+<li>Patterns can be extended by adding a <code>+</code> symbol <br><span class="math inline">\(\implies\)</span> Match one or more values
 <ul>
-<li>“Match one or more values”</li>
+<li>Will return the first run of one or more <em>lowercase letters</em></li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;[a-z]+&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;[a-z]+&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;y&quot;   &quot;our&quot; &quot;o&quot;  </code></pre>
 </div>
@@ -3492,7 +3548,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li><code>[A-Za-z]</code> can be combined as <code>[:alpha:]</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;[:alpha:]+&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(pets, <span class="st">&quot;[:alpha:]+&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My&quot;   &quot;Your&quot; &quot;No&quot;  </code></pre>
 </div>
@@ -3508,7 +3564,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li>We can remove patterns using <code>str_remove()</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(pets, <span class="st">&quot;o&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(pets, <span class="st">&quot;o&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My dg&quot;       &quot;Yur cat&quot;     &quot;N-one&#39;s rat&quot;</code></pre>
 </div>
@@ -3521,11 +3577,11 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">&quot;o&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">&quot;o&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My dg&quot;      &quot;Yur cat&quot;    &quot;N-ne&#39;s rat&quot;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">&quot;[A-Z]&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">&quot;[A-Z]&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;y dog&quot;       &quot;our cat&quot;     &quot;o-one&#39;s rat&quot;</code></pre>
 </div>
@@ -3534,30 +3590,29 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <section id="wildcards" class="level2">
 <h2 class="anchored" data-anchor-id="wildcards">Wildcards</h2>
 <ul>
-<li>Regular Expressions use <code>&quot;.&quot;</code> as a wildcard
-<ul>
-<li><code>&quot;*&quot;</code> extends patterns is like <code>&quot;+&quot;</code> <br><span class="math inline">\(\implies\)</span> zero or more times</li>
-</ul></li>
+<li>Regular Expressions use <code>&quot;.&quot;</code> as a wildcard <br><span class="math inline">\(\implies\)</span> <code>*</code> extends a match <em>zero</em> or more times (similar to <code>+</code>)</li>
 </ul>
+<p>. . .</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">&quot; &quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">&quot; &quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;Mydog&quot;       &quot;Yourcat&quot;     &quot;No-one&#39;srat&quot;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">&quot; .&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">&quot; .&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;Myog&quot;       &quot;Yourat&quot;     &quot;No-one&#39;sat&quot;</code></pre>
 </div>
 </div>
 <p>. . .</p>
 <ul>
-<li>A very common patterns is <code>&quot;.+&quot;</code>
+<li>A very common pattern is <code>&quot;.+&quot;</code>
 <ul>
-<li>Means match anything any number of times</li>
+<li>Means <em>match anything any number of times</em></li>
 </ul></li>
 </ul>
+<p>. . .</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">&quot; .+&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(pets, <span class="st">&quot; .+&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My&quot;       &quot;Your&quot;     &quot;No-one&#39;s&quot;</code></pre>
 </div>
@@ -3571,13 +3626,23 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <h2 class="anchored" data-anchor-id="replacing-patterns">Replacing Patterns</h2>
 <ul>
 <li><code>str_replace_all()</code> is the most powerful of the core functions</li>
+<li>Has arguments <code>string</code>, <code>pattern</code> and <code>replacement</code>
+<ul>
+<li>The pattern <code>&quot;a&quot;</code> will be replaced by <code>&quot;o&quot;</code></li>
+</ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;o&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="at">pattern =</span> <span class="st">&quot;a&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;o&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My dog&quot;       &quot;Your cot&quot;     &quot;No-one&#39;s rot&quot;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">&quot;[a-z]&quot;</span>, <span class="st">&quot;a&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>. . .</p>
+<ul>
+<li>Turn all lowercase letters into <code>a</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">&quot;[a-z]&quot;</span>, <span class="st">&quot;a&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;Ma aaa&quot;       &quot;Yaaa aaa&quot;     &quot;Na-aaa&#39;a aaa&quot;</code></pre>
 </div>
@@ -3588,17 +3653,20 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <ul>
 <li>We can capture patterns and return however we wish
 <ul>
-<li>Captures are placed within the <code>&quot;()&quot;</code></li>
-<li>Captures are returned in order using <code>\\1</code></li>
+<li>Patterns to capture are placed within a <code>&quot;()&quot;</code></li>
+<li>Captures are returned in order using <code>\\1</code> or <code>\\2</code> etc</li>
 </ul></li>
-<li>The follow pattern captures the entire pattern <code>&quot;(.+)&quot;</code>
+</ul>
+<p>. . .</p>
+<ul>
+<li>The follow pattern captures the entire text string <code>&quot;(.+)&quot;</code>
 <ul>
 <li>Match anything, any number of times</li>
 <li>Then return with exclamations added</li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">&quot;(.+)&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1!!!&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">&quot;(.+)&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1!!!&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My dog!!!&quot;       &quot;Your cat!!!&quot;     &quot;No-one&#39;s rat!!!&quot;</code></pre>
 </div>
@@ -3613,21 +3681,22 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">&quot;([A-Z]).+ (.+)&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">2 </span><span class="sc">\\</span><span class="st">1&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(pets, <span class="st">&quot;([A-Z]).+ (.+)&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">2 </span><span class="sc">\\</span><span class="st">1&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;dog M&quot; &quot;cat Y&quot; &quot;rat N&quot;</code></pre>
 </div>
 </div>
-<p>. . .</p>
-<ol type="1">
-<li>We captured an uppercase letter</li>
-<li>We didn’t capture the rest of the word
-<ul>
-<li>We still matched it though!!!</li>
+<div class="incremental">
+<ol class="incremental" type="1">
+<li>We captured an uppercase letter: <code>([A-Z])</code></li>
+<li>We matched anything up to a space: <code>.+</code>
+<ul class="incremental">
+<li>But we didn’t capture it <span class="math inline">\(\implies\)</span> was outside the <code>()</code></li>
 </ul></li>
-<li>We captured everything after a space</li>
-<li>We returned the two captures in reverse order</li>
+<li>We captured everything after the space: <code>(.+)</code></li>
+<li>We returned the two captures in reverse order with a space between</li>
 </ol>
+</div>
 </section>
 <section id="other-useful-functions" class="level2">
 <h2 class="anchored" data-anchor-id="other-useful-functions">Other Useful Functions</h2>
@@ -3639,7 +3708,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(pets, <span class="st">&quot;is great&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(pets, <span class="st">&quot;is great&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My dog is great&quot;       &quot;Your cat is great&quot;     &quot;No-one&#39;s rat is great&quot;</code></pre>
 </div>
@@ -3648,11 +3717,11 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <ul>
 <li><code>paste()</code> uses <code>sep = &quot; &quot;</code> as the default separator
 <ul>
-<li>Can be any character at all</li>
+<li>Can be any characters at all</li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(pets, <span class="st">&quot;Hmm...&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;? &quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(pets, <span class="st">&quot;Hmm...&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;? &quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My dog? Hmm...&quot;       &quot;Your cat? Hmm...&quot;     &quot;No-one&#39;s rat? Hmm...&quot;</code></pre>
 </div>
@@ -3662,11 +3731,21 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li><code>paste0()</code> is a shortcut for <code>paste(sep = &quot;&quot;)</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(pets, <span class="st">&quot;!&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(pets, <span class="st">&quot;!&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;My dog!&quot;       &quot;Your cat!&quot;     &quot;No-one&#39;s rat!&quot;</code></pre>
 </div>
 </div>
+</section>
+<section id="working-with-strings" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-strings">Working With Strings</h2>
+<ul>
+<li>Is an incredibly common and important part of working with R</li>
+<li>Extract sample IDs from file names</li>
+<li>Pull key information from file names</li>
+<li>Remove prefixes/suffixes</li>
+<li>Format for pretty plotting</li>
+</ul>
 </section>
 </section>
 <section id="factors" class="level1" data-background-color="#3c3c44" data-background-image="data:image/png;base64,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" data-background-size="30%" data-background-opacity="0.5">
@@ -3675,8 +3754,11 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <h2 class="anchored" data-anchor-id="factors-1">Factors</h2>
 <ul>
 <li>Categorical variables are called <code>factors</code></li>
-<li><code>forcats</code> is the <code>tidyverse</code> package</li>
-<li><code>base</code> functions are still very common
+<li><code>forcats</code> is the <code>tidyverse</code> package
+<ul>
+<li>Genius name…</li>
+</ul></li>
+<li><code>base</code> functions are still very commonly used and simple
 <ul>
 <li><code>as.factor()</code> and <code>factor()</code></li>
 </ul></li>
@@ -3690,10 +3772,11 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 </section>
 <section id="factors-2" class="level2">
 <h2 class="anchored" data-anchor-id="factors-2">Factors</h2>
+<div style="font-size:95%">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/pigs.csv&quot;</span>)</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">&lt;-</span> pigs<span class="sc">$</span>dose</span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>dose</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/pigs.csv&quot;</span>)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">&lt;-</span> pigs<span class="sc">$</span>dose</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>dose</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot;  &quot;Low&quot; 
 [11] &quot;Med&quot;  &quot;Med&quot;  &quot;Med&quot;  &quot;Med&quot;  &quot;Med&quot;  &quot;Med&quot;  &quot;Med&quot;  &quot;Med&quot;  &quot;Med&quot;  &quot;Med&quot; 
@@ -3709,10 +3792,16 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 <li>Very common for categorical variables</li>
 </ul></li>
 </ul>
-<p>. . .</p>
+<div class="fragment">
+<ul>
+<li><code>as.factor()</code> from <code>base</code> creates factors in alphanumeric order
+<ul>
+<li>Prints the category levels at the bottom</li>
+</ul></li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>dose_fct <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dose)</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>dose_fct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>dose_fct <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dose)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>dose_fct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
 [16] Med  Med  Med  Med  Med  High High High High High High High High High High
@@ -3721,22 +3810,26 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 Levels: High Low Med</code></pre>
 </div>
 </div>
+</div>
+<div class="fragment">
 <ul>
-<li><code>as.factor()</code> from <code>base</code> always creates factors in alphanumeric order</li>
-<li>This is how our boxplots were produced</li>
+<li>This is how our first boxplots were produced</li>
 </ul>
+</div>
+</div>
 </section>
 <section id="factors-3" class="level2">
 <h2 class="anchored" data-anchor-id="factors-3">Factors</h2>
 <ul>
-<li>We can manually set the levels us <code>factor()</code>
+<li>We can manually set the levels using <code>factor()</code>
 <ul>
-<li>Levels are passed as a character vector</li>
+<li>Levels are passed <em>as a character vector</em></li>
+<li>Enables us to manually set the order</li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>dose_fct <span class="ot">&lt;-</span> <span class="fu">factor</span>(dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Med&quot;</span>, <span class="st">&quot;High&quot;</span>))</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>dose_fct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>dose_fct <span class="ot">&lt;-</span> <span class="fu">factor</span>(dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Med&quot;</span>, <span class="st">&quot;High&quot;</span>))</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>dose_fct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
 [16] Med  Med  Med  Med  Med  High High High High High High High High High High
@@ -3755,7 +3848,7 @@ Levels: Low Med High</code></pre>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct</span>(dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct</span>(dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
 [16] Med  Med  Med  Med  Med  High High High High High High High High High High
@@ -3763,7 +3856,7 @@ Levels: Low Med High</code></pre>
 [46] Med  Med  Med  Med  Med  High High High High High High High High High High
 Levels: Low Med High</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_inorder</span>(dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_inorder</span>(dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
 [16] Med  Med  Med  Med  Med  High High High High High High High High High High
@@ -3772,34 +3865,54 @@ Levels: Low Med High</code></pre>
 Levels: Low Med High</code></pre>
 </div>
 </div>
+</section>
+<section id="forcats-1" class="level2">
+<h2 class="anchored" data-anchor-id="forcats-1">Forcats</h2>
+<ul>
+<li>Additional strategies for manipulating levels</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_relabel</span>(dose, <span class="at">.fun =</span> str_to_lower)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_relabel</span>(dose_fct, <span class="at">.fun =</span> str_to_lower)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] low  low  low  low  low  low  low  low  low  low  med  med  med  med  med 
 [16] med  med  med  med  med  high high high high high high high high high high
 [31] low  low  low  low  low  low  low  low  low  low  med  med  med  med  med 
 [46] med  med  med  med  med  high high high high high high high high high high
-Levels: high low med</code></pre>
+Levels: low med high</code></pre>
+</div>
+</div>
+<p>. . .</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_rev</span>(dose_fct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
+[16] Med  Med  Med  Med  Med  High High High High High High High High High High
+[31] Low  Low  Low  Low  Low  Low  Low  Low  Low  Low  Med  Med  Med  Med  Med 
+[46] Med  Med  Med  Med  Med  High High High High High High High High High High
+Levels: High Med Low</code></pre>
 </div>
 </div>
 </section>
 <section id="our-previous-plot" class="level2">
 <h2 class="anchored" data-anchor-id="our-previous-plot">Our Previous Plot</h2>
-<div class="cell" data-layout-align="left" data-output-location="column">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>pigs<span class="sc">$</span>dose <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  pigs<span class="sc">$</span>dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Med&quot;</span>, <span class="st">&quot;High&quot;</span>)</span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
-<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Vitamin C Dose&quot;</span>, </span>
-<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Odontoblast Length&quot;</span>, </span>
-<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Method&quot;</span></span>
-<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size:92%">
+<div class="cell" data-layout-align="left" data-output-location="column-fragment">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a><span class="do">## First change the original column</span></span>
+<span id="cb89-2"><a href="#cb89-2"></a>pigs<span class="sc">$</span>dose <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb89-3"><a href="#cb89-3"></a>  pigs<span class="sc">$</span>dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Med&quot;</span>, <span class="st">&quot;High&quot;</span>)</span>
+<span id="cb89-4"><a href="#cb89-4"></a>)</span>
+<span id="cb89-5"><a href="#cb89-5"></a><span class="do">## Then make the plot</span></span>
+<span id="cb89-6"><a href="#cb89-6"></a><span class="fu">ggplot</span>(</span>
+<span id="cb89-7"><a href="#cb89-7"></a>  pigs, <span class="fu">aes</span>(<span class="at">x =</span> dose, <span class="at">y =</span> len, <span class="at">fill =</span> supp)</span>
+<span id="cb89-8"><a href="#cb89-8"></a>) <span class="sc">+</span></span>
+<span id="cb89-9"><a href="#cb89-9"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb89-10"><a href="#cb89-10"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb89-11"><a href="#cb89-11"></a>  <span class="fu">labs</span>(</span>
+<span id="cb89-12"><a href="#cb89-12"></a>    <span class="at">x =</span> <span class="st">&quot;Vitamin C Dose&quot;</span>, </span>
+<span id="cb89-13"><a href="#cb89-13"></a>    <span class="at">y =</span> <span class="st">&quot;Odontoblast Length&quot;</span>, </span>
+<span id="cb89-14"><a href="#cb89-14"></a>    <span class="at">fill =</span> <span class="st">&quot;Method&quot;</span></span>
+<span id="cb89-15"><a href="#cb89-15"></a>  ) <span class="sc">+</span></span>
+<span id="cb89-16"><a href="#cb89-16"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
@@ -3808,6 +3921,15 @@ Levels: high low med</code></pre>
 </div>
 </div>
 </div>
+</div>
+</section>
+<section id="factors-4" class="level2">
+<h2 class="anchored" data-anchor-id="factors-4">Factors</h2>
+<ul>
+<li>All plotting functions automatically coerce strings to factors</li>
+<li>Performing manually gives far greater control</li>
+<li>Also useful for setting reference levels during statistical analysis</li>
+</ul>
 </section>
 </section>
 
