@@ -420,8 +420,9 @@ Dr Stevie Pederson
 <li>Can have complicated structures or be very simple (e.g.&nbsp;<code>x &lt;- 1:5</code>)</li>
 <li>Spreadsheet-like data is very common
 <ul>
-<li>Uses a data structure known as a <code>data.frame</code></li>
+<li>The <code>R</code> equivalent is known as a <code>data.frame</code></li>
 <li>Has many variants, e.g.&nbsp;<code>tbl_df</code> or <code>tibble</code> (SQL-inspired)</li>
+<li>We’ll mainly use the <code>tibble</code> form today <br><span class="math inline">\(\implies\)</span> is a <code>data.frame</code> with pretty bows &amp; ribbons</li>
 </ul></li>
 </ul>
 <div class="fragment">
@@ -429,8 +430,8 @@ Dr Stevie Pederson
 <li>We import the data as an <code>R</code> object
 <ul>
 <li>All analysis is performed on the <code>R</code> object</li>
-</ul></li>
 <li><strong>Almost never</strong> modify the source file</li>
+</ul></li>
 </ul>
 <!-- ## Setting Up For Today -->
 <!-- - Before we start playing with data, we'll need some core packages -->
@@ -453,28 +454,54 @@ Dr Stevie Pederson
 </section>
 <section id="importing-data" class="slide level2">
 <h2>Importing Data</h2>
+<p>Things we do to make it “look nice” in Excel:</p>
+<div>
 <ul>
-<li>Things we do to make it “look nice” in Excel:
+<li class="fragment"><em>Cell formatting will be ignored by R</em></li>
+<li class="fragment"><em>Plots will also be ignored</em></li>
+<li class="fragment">Blank rows are not fatal, just annoying</li>
+<li class="fragment">Mixtures of numbers and text in a column
 <ul>
-<li><em>Cell formatting will be ignored by R</em></li>
-<li><em>Plots will also be ignored</em></li>
-<li>Blank rows are not fatal, just annoying</li>
-<li>Mixtures of numbers and text in a column</li>
-<li>Deleted cells are sometimes imported as blank rows/columns</li>
+<li class="fragment"><code>R</code> structures <code>data.frame</code> object by column</li>
 </ul></li>
-<li>Comma-separated or tab-separated files are favoured for <code>R</code></li>
+<li class="fragment">Deleted cells are sometimes imported as blank rows/columns</li>
+<li class="fragment">Comma-separated or tab-separated files are favoured for <code>R</code>
+<ul>
+<li class="fragment">i.e.&nbsp;plain text, or <em>just the data</em></li>
+</ul></li>
 </ul>
+</div>
 </section>
 <section id="other-common-excel-issues" class="slide level2">
 <h2>Other Common Excel Issues</h2>
 <ol type="1">
 <li>Excel thinks everything is a date:
 <ul>
-<li>Septin genes are now <em>SEPTIN2</em> etc</li>
+<li>Septin genes are now officialy named<em>SEPTIN2</em> etc (not <em>SEPT2</em>)</li>
 <li>Fractions are also not dates…</li>
 </ul></li>
 <li>Excel will remove leading zeroes (e.g.&nbsp;phone numbers, catalog ids)</li>
+<li>No record of any steps we’ve performed by clicking on something</li>
 </ol>
+<div class="fragment">
+<ul>
+<li>These are very common sources of broken data</li>
+<li>There are large numbers of publications with dates for gene names or results</li>
+</ul>
+<aside class="notes">
+<p>Mention Simon (former collaborator) who would often have completely different results in the ones I’d send him - To sort by p-value, he’d select the p-value column &amp; sort (just that column) - There was no record of this. Only discovered by sitting down with him</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
 </section>
 <section id="preparation" class="slide level2">
 <h2>Preparation</h2>
@@ -482,7 +509,9 @@ Dr Stevie Pederson
 <li><code>File</code> &gt; <code>New File</code> &gt; <code>R Script</code> (Or <code>Ctrl+Shift+N</code>)</li>
 <li>Save as <code>DataImport.R</code></li>
 </ol>
-<div class="fragment">
+</section>
+<section id="preparation-1" class="slide level2">
+<h2>Preparation</h2>
 <p>Then get the data for this exercise.</p>
 <ol type="1">
 <li>Download the file <code>data.zip</code> from the workshop homepage</li>
@@ -505,7 +534,6 @@ Dr Stevie Pederson
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</div>
 </section></section>
 <section>
 <section id="import-using-the-gui" class="title-slide slide level1 center" data-background-color="#3c3c44">
@@ -522,9 +550,9 @@ Dr Stevie Pederson
 </ol>
 <div class="fragment">
 <ul>
-<li>The data measures tooth length in guinea pigs using 3 dose levels of Vitamin C
+<li>The data measures tooth (i.e.&nbsp;odontoblast) length in guinea pigs
 <ul>
-<li>Values are: “Low”, “Med”, “High”</li>
+<li>Using 3 dose levels of Vitamin C (“Low”, “Med”, “High”)</li>
 </ul></li>
 <li>Vitamin C was given in drinking water or using orange juice
 <ul>
@@ -546,19 +574,21 @@ Dr Stevie Pederson
 </ul></li>
 </ul>
 </section>
-<section id="using-the-gui-to-load-data" class="slide level2 smaller">
+<section id="using-the-gui-to-load-data" class="slide level2">
 <h2>Using the GUI To Load Data</h2>
-<p>Click on the <code>pigs.csv</code> and choose <code>Import Dataset</code> <strong>then pause when you see the following</strong></p>
-
-<img data-src="assets/importGUI.png" width="900" class="r-stretch"><p style="text-align: center;">
+<div style="font-size:95%">
+<p>Click on the <code>pigs.csv</code> and choose <code>Import Dataset</code> then <strong>stop</strong>!</p>
+<p><img data-src="assets/importGUI.png" width="1000"></p>
+<p style="text-align: center;">
 (Click <code>Update</code> if you don’t see this)
 </p>
+</div>
 </section>
 <section id="the-preview-window" class="slide level2">
 <h2>The Preview Window</h2>
 <p><br></p>
 
-<img data-src="assets/importGUI_preview.png" width="900" class="r-stretch quarto-figure-center"><p class="caption">We have a preview of the data</p><aside class="notes">
+<img data-src="assets/importGUI_preview.png" width="1000" class="r-stretch quarto-figure-center"><p class="caption">We have a preview of the data</p><aside class="notes">
 <p>This is another preview of the data before we import it</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -576,23 +606,31 @@ Dr Stevie Pederson
 <h2>The Preview Window</h2>
 <p><br></p>
 
-<img data-src="assets/importGUI_code.png" width="900" class="r-stretch quarto-figure-center"><p class="caption">We also have a preview of the code we’re about to execute</p></section>
+<img data-src="assets/importGUI_code.png" width="1000" class="r-stretch quarto-figure-center"><p class="caption">We also have a preview of the code we’re about to execute</p></section>
 <section id="the-preview-window-2" class="slide level2">
 <h2>The Preview Window</h2>
 <ol type="1">
 <li>Select and copy all the code in the <code>Code Preview</code> Box
 <ul>
-<li>(We’ll paste this somewhere in a minute…)</li>
+<li>We’ll paste this somewhere in a minute…</li>
 </ul></li>
+</ol>
+<div class="fragment">
+<ol start="2" type="1">
 <li>Click <code>Import</code></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
 <li>Magic happens!!!
 <ul>
 <li>Ignore the red/blue text. This is just ‘helpful’ information</li>
 </ul></li>
 </ol>
+</div>
 <div class="fragment">
 <p><br></p>
-<p><em>Now paste the copied code into your script</em></p>
+<p><em>Now paste the copied code at the top of your script</em></p>
 </div>
 </section>
 <section id="what-just-happened" class="slide level2">
@@ -662,13 +700,36 @@ Dr Stevie Pederson
 <li>This will delete everything from your <code>R Environment</code></li>
 <li>It won’t unload the packages</li>
 </ul></li>
+</ol>
+<div class="fragment">
+<ol start="2" type="1">
 <li>Select the code we’ve just pasted and send it to the console
 <ul>
-<li>(Reloading the packages won’t hurt)</li>
+<li>Reloading the packages won’t hurt</li>
 </ul></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
 <li>Check the <code>Environment Tab</code> again and <code>pigs</code> is back</li>
 </ol>
+</div>
+<div class="fragment">
 <p>You can delete the line <code>View(pigs)</code></p>
+<aside class="notes">
+<p>Realistically we only need to preview it the first time. Having that preview open every time actually ends up being really annoying</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
 </section></section>
 <section>
 <section id="data-frame-objects" class="title-slide slide level1 center" data-background-color="#3c3c44">
@@ -725,7 +786,7 @@ Dr Stevie Pederson
 </div>
 <p><br></p>
 <div class="fragment">
-<p>I find this more informative than <code>View()</code></p>
+<p>I presonally find this more informative than <code>View()</code></p>
 </div>
 </section>
 <section id="data-frame-objects-3" class="slide level2">
@@ -780,14 +841,14 @@ Dr Stevie Pederson
 <ul>
 <li class="fragment">Each column is an <code>R</code> object known as <em>vector</em>
 <ul>
-<li class="fragment">Literally like columns in a spreadsheet</li>
+<li class="fragment">Literally like a spreadsheet column</li>
 </ul></li>
 <li class="fragment">Vectors <strong>must have all values as the same data type</strong>
 <ul>
 <li class="fragment"><code>logical</code>, <code>integer</code>, <code>numeric</code> (i.e.&nbsp;doubles), <code>character</code></li>
 <li class="fragment"><code>len</code> values are all <code>numeric</code> (or <code>dbl</code>)</li>
 </ul></li>
-<li class="fragment">All types are given when printing the object</li>
+<li class="fragment">All types are given when printing a <code>tibble</code></li>
 </ul>
 </div>
 </section>
@@ -806,9 +867,10 @@ Dr Stevie Pederson
 <section id="the-tidyverse" class="slide level2">
 <h2>The Tidyverse</h2>
 <ul>
-<li>The <code>tidyverse</code> is a collection of <em>thematically-linked</em> packages from RStudio
+<li>The <code>tidyverse</code> is a collection of <em>thematically-linked</em> packages
 <ul>
-<li>Often referred to a <em>tidy</em>-programming or similar</li>
+<li>Produced by developers from RStudio/Posit</li>
+<li>Often referred to as <em>tidy</em>-programming or similar</li>
 </ul></li>
 <li>Calling <code>library(tidyverse)</code> loads <strong>all</strong> of these packages
 <ul>
@@ -835,7 +897,8 @@ Dr Stevie Pederson
 </section>
 <section id="tibble-objects-1" class="slide level2">
 <h2>Tibble Objects</h2>
-<p><strong>Now replace <code>library(readr)</code> with <code>library(tidyverse)</code></strong> and execute</p>
+<p><strong>Replace <code>library(readr)</code> with <code>library(tidyverse)</code></strong> and execute</p>
+<div class="fragment">
 <ul>
 <li>Some additional ways to inspect data frames are:</li>
 </ul>
@@ -844,6 +907,7 @@ Dr Stevie Pederson
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>What were the differences between each method?</strong></p>
+</div>
 </section></section>
 <section>
 <section id="functions" class="title-slide slide level1 center" data-background-color="#3c3c44">
@@ -857,7 +921,7 @@ Dr Stevie Pederson
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Here we have called two functions: 1) <code>head()</code> and 2) <code>glimpse()</code>
+<li>Here we have called the functions 1) <code>head()</code> and 2) <code>glimpse()</code>
 <ul>
 <li>They were both executed on the object <code>pigs</code></li>
 </ul></li>
@@ -879,19 +943,31 @@ Dr Stevie Pederson
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Default S3 method:</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x, <span class="at">n =</span> 6L, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>This tells us we have two arguments to <code>head()</code>: <code>x</code> and <code>n</code>
+<li>there are two arguments to <code>head()</code> <span class="math inline">\(\implies\)</span> <code>x</code> and <code>n</code>
 <ul>
 <li><code>x</code> has no default value <span class="math inline">\(\implies\)</span> we need to provide something</li>
 <li><code>n = 6L</code> means <code>n</code> has a default value of 6 (L <span class="math inline">\(\implies\)</span> <code>integer</code>)</li>
 </ul></li>
 </ul>
-<div class="fragment">
-<ul>
-<li>Lower down the page you’ll see</li>
-</ul>
+<aside class="notes">
+<p>Execute <code>head()</code> to show the error!!!</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="functions-in-r-2" class="slide level2">
+<h2>Functions in <code>R</code></h2>
+<p>Lower down the page you’ll see</p>
 <p><strong>Arguments</strong></p>
-<p><code>x</code> an object<br> <code>n</code> an integer vector of length up to dim(x) (or 1, for non-dimensioned objects). <em>Blah, blah, blah…</em></p>
-</div>
+<p><code>x</code> &nbsp;&nbsp; an object<br> <code>n</code> &nbsp;&nbsp; an integer vector of length up to dim(x) (or 1, for non-dimensioned objects). <em>Blah, blah, blah…</em></p>
 <div class="fragment">
 <ul>
 <li>Some of the rest is technical detail (sometimes <em>very helpful</em>)</li>
@@ -1020,16 +1096,31 @@ Dr Stevie Pederson
 <li>The default assumes there are column names in the first row (<code>col_names = TRUE</code>)</li>
 </ul></li>
 </ul>
-<div class="fragment">
+</section>
+<section id="understanding-read_csv-2" class="slide level2">
+<h2>Understanding <code>read_csv()</code></h2>
+<p>All <code>arguments</code> for the function were defined somewhere in the GUI.</p>
+<ol type="1">
+<li>Open the GUI Preview by clicking on the file again</li>
+<li>Uncheck the <code>First Row as Names</code> checkbox</li>
+</ol>
+
+<img data-src="assets/importGUI.png" width="900" class="r-stretch"></section>
+<section id="understanding-read_csv-3" class="slide level2">
+<h2>Understanding <code>read_csv()</code></h2>
+<p>All <code>arguments</code> for the function were defined somewhere in the GUI.</p>
+<ol type="1">
+<li>Open the GUI Preview by clicking on the file again</li>
+<li>Uncheck the <code>First Row as Names</code> checkbox
 <ul>
-<li>We’ll explore some of the important ones later today</li>
-</ul>
+<li><em>What happened to the code?</em></li>
+<li><em>How did the columns change?</em></li>
+</ul></li>
+</ol>
+<div class="fragment">
+<p>Try clicking/unclicking a few more &amp; try understand the consequences</p>
 </div>
-</section>
-
-
-
-</section>
+</section></section>
 <section>
 <section id="closing-comments" class="title-slide slide level1 center" data-background-color="#3c3c44">
 <h1>Closing Comments</h1>
@@ -1064,14 +1155,14 @@ Dr Stevie Pederson
 <li>Not part of the core tidyverse but <strong>very</strong> compatible</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <ul>
 <li>The main function is <code>read_excel()</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>?read_excel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>?read_excel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">

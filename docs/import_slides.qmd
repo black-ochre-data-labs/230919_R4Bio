@@ -42,14 +42,15 @@ knitr:
 - Working with data in R is **very different** to Excel
 - Can have complicated structures or be very simple (e.g. `x <- 1:5`)
 - Spreadsheet-like data is very common
-    - Uses a data structure known as a `data.frame`
+    - The `R` equivalent is known as a `data.frame`
     - Has many variants, e.g. `tbl_df` or `tibble` (SQL-inspired)
+    + We'll mainly use the `tibble` form today <br>$\implies$ is a `data.frame` with pretty bows & ribbons
     
 . . .
     
 - We import the data as an `R` object
     - All analysis is performed on the `R` object
-- **Almost never** modify the source file
+    - **Almost never** modify the source file
 
 
 <!-- ## Setting Up For Today -->
@@ -80,27 +81,46 @@ knitr:
 
 ## Importing Data
 
-- Things we do to make it "look nice" in Excel:
-    - *Cell formatting will be ignored by R*
-    - *Plots will also be ignored*
-    - Blank rows are not fatal, just annoying
-    - Mixtures of numbers and text in a column
-    - Deleted cells are sometimes imported as blank rows/columns
+Things we do to make it "look nice" in Excel:
+
+::: {.incremental}
+
+- *Cell formatting will be ignored by R*
+- *Plots will also be ignored*
+- Blank rows are not fatal, just annoying
+- Mixtures of numbers and text in a column
+    + `R` structures `data.frame` object by column
+- Deleted cells are sometimes imported as blank rows/columns
 - Comma-separated or tab-separated files are favoured for `R`
+    + i.e. plain text, or *just the data*
+    
+:::    
     
 ## Other Common Excel Issues
 
 1. Excel thinks everything is a date:
-    + Septin genes are now *SEPTIN2* etc
+    + Septin genes are now officialy named*SEPTIN2* etc (not *SEPT2*)
     + Fractions are also not dates...
 2. Excel will remove leading zeroes (e.g. phone numbers, catalog ids)
-    
+3. No record of any steps we've performed by clicking on something
+
+. . .
+
+- These are very common sources of broken data
+- There are large numbers of publications with dates for gene names or results
+
+::: {.notes}
+Mention Simon (former collaborator) who would often have completely different results in the ones I'd send him
+- To sort by p-value, he'd select the p-value column & sort (just that column)
+- There was no record of this. Only discovered by sitting down with him
+:::
+
 ## Preparation
 
 1. `File` > `New File` > `R Script` (Or `Ctrl+Shift+N`)
 2. Save as `DataImport.R`
 
-. . .
+## Preparation
 
 Then get the data for this exercise.
 
@@ -125,8 +145,8 @@ Take a moment to make sure people haven't accidentally created `data/data`
     
 . . .
 
-- The data measures tooth length in guinea pigs using 3 dose levels of Vitamin C
-    + Values are: "Low", "Med", "High"
+- The data measures tooth (i.e. odontoblast) length in guinea pigs
+    + Using 3 dose levels of Vitamin C ("Low", "Med", "High")
 - Vitamin C was given in drinking water or using orange juice
     + "OJ" or "VC"
 
@@ -140,20 +160,24 @@ Take a moment to make sure people haven't accidentally created `data/data`
     - No rownames
 
 
-## Using the GUI To Load Data {.smaller}
+## Using the GUI To Load Data 
 
-Click on the `pigs.csv` and choose `Import Dataset` **then pause when you see the following**
+::: {style="font-size:95%"}
 
-![](assets/importGUI.png){width="900px"}
+Click on the `pigs.csv` and choose `Import Dataset` then **stop**!
+
+![](assets/importGUI.png){width="1000px"}
 
 
 <p style="text-align: center;">(Click `Update` if you don't see this)</p>
+
+:::
 
 ## The Preview Window
 
 <br>
 
-![We have a preview of the data](assets/importGUI_preview.png){width="900px"}
+![We have a preview of the data](assets/importGUI_preview.png){width="1000px"}
 
 ::: {.notes}
 This is another preview of the data before we import it
@@ -163,14 +187,20 @@ This is another preview of the data before we import it
 
 <br>
 
-![We also have a preview of the code we're about to execute](assets/importGUI_code.png){width="900px"}
+![We also have a preview of the code we're about to execute](assets/importGUI_code.png){width="1000px"}
 
 
 ## The Preview Window
 
 1. Select and copy all the code in the `Code Preview` Box
-    + (We'll paste this somewhere in a minute...)
+    + We'll paste this somewhere in a minute...
+    
+. . .
+
 2. Click `Import`
+
+. . .
+
 3. Magic happens!!!
     + Ignore the red/blue text. This is just 'helpful' information
     
@@ -178,7 +208,7 @@ This is another preview of the data before we import it
 
 <br>
 
-*Now paste the copied code into your script*
+*Now paste the copied code at the top of your script*
 
 ## What just happened? 
 
@@ -241,11 +271,24 @@ Close the preview by clicking the cross
 1. In the `Environment Tab` click the broom icon (![](assets/broom.png))
     + This will delete everything from your `R Environment`
     + It won't unload the packages
+    
+. . .    
+    
 2. Select the code we've just pasted and send it to the console
-    + (Reloading the packages won't hurt)
+    + Reloading the packages won't hurt
+    
+. . .    
+    
 3. Check the `Environment Tab` again and `pigs` is back
 
+. . .
+
 You can delete the line `View(pigs)`
+
+::: {.notes}
+Realistically we only need to preview it the first time. Having that preview open every time actually ends up being really annoying
+:::
+
 
 # Data Frame Objects {background-color="#3c3c44"}
 
@@ -299,7 +342,7 @@ Gives a preview up to 10 lines with:
 <br>
 
 ::: {.fragment}
-I find this more informative than `View()`
+I presonally find this more informative than `View()`
 :::
 
 
@@ -323,11 +366,11 @@ pigs$len
 ::: {.incremental}
 
 - Each column is an `R` object known as *vector*
-    + Literally like columns in a spreadsheet
+    + Literally like a spreadsheet column
 - Vectors **must have all values as the same data type**
     + `logical`, `integer`, `numeric` (i.e. doubles), `character`
     + `len` values are all `numeric` (or `dbl`)
-- All types are given when printing the object
+- All types are given when printing a `tibble`
 
 :::
 
@@ -343,8 +386,9 @@ pigs$len
 
 ## The Tidyverse
 
-- The `tidyverse` is a collection of *thematically-linked* packages from RStudio
-    + Often referred to a *tidy*-programming or similar
+- The `tidyverse` is a collection of *thematically-linked* packages
+    + Produced by developers from RStudio/Posit
+    + Often referred to as *tidy*-programming or similar
 - Calling `library(tidyverse)` loads **all** of these packages
     + $>$ 30 convenient packages in one line
     + `readr` is one of these $\implies$ usually just load the tidyverse
@@ -359,7 +403,9 @@ tidyverse_packages()
 
 ## Tibble Objects
 
-**Now replace `library(readr)` with `library(tidyverse)`** and execute
+**Replace `library(readr)` with `library(tidyverse)`** and execute
+
+. . .
 
 - Some additional ways to inspect data frames are:
 
@@ -379,7 +425,7 @@ head(pigs)
 glimpse(pigs)
 ```
 
-- Here we have called two functions: 1) `head()` and 2) `glimpse()`
+- Here we have called the functions 1) `head()` and 2) `glimpse()`
     + They were both executed on the object `pigs`
 
 . . .
@@ -402,22 +448,27 @@ head(x, ...)
 head(x, n = 6L, ...)
 ```
 
-- This tells us we have two arguments to `head()`: `x` and `n`
+- there are two arguments to `head()` $\implies$ `x` and `n`
     + `x` has no default value $\implies$ we need to provide something
     + `n = 6L` means `n` has a default value of 6 (L $\implies$ `integer`)
     
-. . . 
+::: {.notes}
+Execute `head()` to show the error!!!
+:::
 
-- Lower down the page you'll see
+## Functions in `R`
+
+Lower down the page you'll see
 
 **Arguments**
 
-`x`	an object<br>
-`n` an integer vector of length up to dim(x) (or 1, for non-dimensioned objects). *Blah, blah, blah...*
+`x`	&nbsp;&nbsp; an object<br>
+`n` &nbsp;&nbsp; an integer vector of length up to dim(x) (or 1, for non-dimensioned objects). *Blah, blah, blah...*
 
 . . .
 
 - Some of the rest is technical detail (sometimes *very helpful*)
+
 
 ## Function Arguments
 
@@ -496,42 +547,8 @@ read_csv(
     + All were defined *somewhere in the GUI*
     + The default assumes there are column names in the first row (`col_names = TRUE`)
     
-. . .
-    
-- We'll explore some of the important ones later today
 
-## Understanding `read_csv()` {visibility='hidden'}
-
-```r
-read_csv(
-  file,
-  col_names = TRUE, col_types = NULL, col_select = NULL,
-  id = NULL, locale = default_locale(), 
-  na = c("", "NA"), quoted_na = TRUE,
-  quote = "\"", comment = "",
-  trim_ws = TRUE,
-  skip = 0, n_max = Inf,
-  guess_max = min(1000, n_max),
-  name_repair = "unique",
-  num_threads = readr_threads(),
-  progress = show_progress(),
-  show_col_types = should_show_types(),
-  skip_empty_rows = TRUE,
-  lazy = should_read_lazy()
-)
-```
-
-- If specifying in order, we don't need to name arguments
-
-. . .
-
-`pigs <- read_csv("data/pigs.csv")` 
-
-is identical to  
-
-`pigs <- read_csv(file = "data/pigs.csv")`
-
-## Understanding `read_csv()` {visibility='hidden'}
+## Understanding `read_csv()` 
 
 All `arguments` for the function were defined somewhere in the GUI.
 
@@ -540,7 +557,7 @@ All `arguments` for the function were defined somewhere in the GUI.
 
 ![](assets/importGUI.png){width="900px"}
 
-## Understanding `read_csv()` {visibility='hidden'}
+## Understanding `read_csv()` 
 
 All `arguments` for the function were defined somewhere in the GUI.
 
@@ -553,15 +570,6 @@ All `arguments` for the function were defined somewhere in the GUI.
 
 Try clicking/unclicking a few more & try understand the consequences
 
-## Understanding `read_csv()` {visibility='hidden'}
-
-__What if the first three lines were comments starting with `#`?__
-
-- It could be the same, or we can specify the comment symbol
-
-```{r, eval=FALSE}
-pigs <- read_csv("data/pigs.csv", comment = "#")
-```
 
 # Closing Comments  {background-color="#3c3c44"}
 

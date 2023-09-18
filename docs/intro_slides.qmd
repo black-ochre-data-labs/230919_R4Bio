@@ -97,6 +97,16 @@ Used to write Excel macros for fun whilst being a musician
     + Show your name tag
 - Two HEPA filters running all day
     - Masks encouraged
+    
+## Homepage and Material
+
+- The workshop homepage is http://blackochrelabs.au/230919_R4Bio/
+    - All Data is available here
+    + Will stay live *in perpetuity*
+- Links to notes available
+    + Slides are directly re-formatted as a simple webpage
+    + Also in presentation style by clicking the `RevealJS` link below the TOC
+
 
 # R {background-color="#3c3c44" background-image=https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/512px-R_logo.svg.png background-size="40%" background-opacity="0.5"}
 
