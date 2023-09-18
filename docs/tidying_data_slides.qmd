@@ -5,7 +5,7 @@ author: "Dr Stevie Pederson"
 institute: |
   | Black Ochre Data Labs
   | Telethon Kids Institute
-date: "2023-09-17"
+date: "2023-09-19"
 date-format: long
 title-slide-attributes:
     data-background-color: "#3c3c44"
@@ -21,11 +21,31 @@ format:
     height: 768
     sansfont: Times New Roman
     logo: assets/bodl_logo_white_background.jpg
+    slide-number: c/t
+    show-slide-number: all        
   html: 
     output-file: tidying_data.html
     embed-resources: true
     toc: true
     toc-depth: 1
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
 knitr: 
   opts_chunk: 
     echo: true
@@ -41,7 +61,7 @@ knitr::opts_chunk$set(results = "hide")
 ```
 
 
-# Tidying Data {background-color="#3c3c44" background-image=https://www.tidyverse.org/images/hex-tidyverse.png background-size="30%" background-opacity="0.4"}
+# Tidying Data {background-color="#3c3c44" background-image=https://www.tidyverse.org/images/hex-tidyverse.png background-size="30%" background-opacity="0.4" background-position="67% 50%"}
 
 ## Section Setup
 
@@ -99,7 +119,7 @@ Planning the import:
 - We have:
     1. Set `comment = "#"` to skip lines beginning with `#`
     2. Provided a vector of appropriate column names
-    3. Asked `read_csv()` to skip the first column
+    3. Asked `read_csv()` to skip the first column (`"-ccnnc"`)<br>$\implies$ actually defined column types as 'skip', 'character', 'character', 'numeric', 'numeric', 'character'
 
 ```{r load-transport}
 cols <- c("gender", "name", "weight", "height", "method")
@@ -154,16 +174,23 @@ which(transport$height > 180)
 ```
 
 
-# The package `dplyr` {background-color="#3c3c44" background-image=https://swag.rstudio.com/uploads/1/3/1/3/131335021/s815253891256106552_p2_i4_w660.png background-size="40%" background-opacity="0.5"}
+# The package <br>`dplyr` {background-color="#3c3c44" background-image=https://swag.rstudio.com/uploads/1/3/1/3/131335021/s815253891256106552_p2_i4_w660.png background-size="35%" background-opacity="0.5" background-position="70% 50%"}
 
 ## Working with `tibble` Objects
 
 - Conventional subsetting and explorations <br>$\implies$ mostly square brackets along with `subset()`
 
+. . .
+
 ```{r, results='markup'}
 ## Just get the first 4 rows
 transport[1:4, ]
-## The weight & height columns only
+```
+
+. . .
+
+```{r, results='markup'}
+## The weight & height columns only (could also use numeric position)
 transport[, c("weight", "height")]
 ```
 
@@ -190,6 +217,8 @@ transport[, c("weight", "height")]
 ```{r}
 select(transport, gender, name, weight)
 ```
+
+. . .
 
 Or by position
 
@@ -233,9 +262,11 @@ The `select()` function has a few helper functions
 - `everything()`, `last_col()`
 - Provided in the package `tidyselect` (always loaded by `dplyr`)
 
-```{r}
+```{r dplyr-select-helpers, eval = FALSE}
 select(transport, ends_with("ght"))
 select(transport, contains("t"))
+select(transport, any_of(c("name", "not_here")))
+select(transport, all_of(c("name", "not_here")))
 ```
 
 . . . 
@@ -244,8 +275,8 @@ select(transport, contains("t"))
 
 ## Selecting Rows with `dplyr::slice()`
 
-- We can choose columns by *name* or *position* using `select()`
-- `tibble` objects have no rownames
+- We can choose *columns by name or position* using `select()`
+- `tibble` objects *have no rownames*
 - Can only select rows using *position*, or *filtering by value*
 
 . . .
@@ -282,9 +313,7 @@ filter(transport, method == "car", gender == "female")
 - Using two queries with a comma is the same as typing `&`
     + Queries are executed in order
 
-. . .
-
-::: {.notes{
+::: {.notes}
 We'll fix those weird gender entries very soon
 :::
 
@@ -305,7 +334,7 @@ arrange(transport, method, height)
 arrange(transport, desc(height))
 ```
 
-# Combining Functions {background-color="#3c3c44" background-image=https://magrittr.tidyverse.org/logo.png background-size="40%" background-opacity="0.5"}
+# Combining <br>Functions {background-color="#3c3c44" background-image=https://magrittr.tidyverse.org/logo.png background-size="35%" background-opacity="0.5" background-position="70% 50%"}
 
 ```{r reset-results-to-visible, echo = FALSE}
 knitr::opts_chunk$set(results = "markup")
@@ -318,13 +347,13 @@ knitr::opts_chunk$set(results = "markup")
 - We can chain functions together using `|>`
 - This behaves like a pipe (`|`) in the bash shell
 - Originally introduced as `%>%` from the package `magrittr`
-    + `|>` Added at R 4.2.0
+    + `|>` Added to `base` in R v4.2.0
     + Older code may contain `%>%`
     + (My current code still contains `%>%`)
 
 . . .
 
-> `|>` (or `%>%`) places the **output of the a function** as the **first argument** of the next function!
+> `|>` places the **output of the a function** as the **first argument** of the next function!
 
 
 
@@ -334,6 +363,8 @@ knitr::opts_chunk$set(results = "markup")
 :::
 
 ## Combining Functions
+
+Both of these are identical in their results
 
 :::: {.columns}
 
@@ -355,9 +386,6 @@ transport |> filter(method == "bike")
 
 ::::
 
-::: {.fragment}
-<br>Both of these are identical in their results
-:::
 
 
 ## Combining Functions
@@ -372,20 +400,32 @@ transport |> filter(method == "bike") |> arrange(weight)
 
 <br>There is __no limit__ to the number of operations you can chain together
 
-## For the technically minded {visibility="hidden"}
+::: {.notes}
+Also note that we have not modified our original data frame
+:::
+
+## For the technically minded 
+
+:::: {style="font-size:95%"}
 
 1. Each function in `dplyr` takes a `data.frame` as the first argument
 2. Each function returns a `data.frame`
 
 ```{r}
-transport |> filter(method == "bike") |> arrange(height)
+#| output-location: column
+transport |> 
+  filter(method == "bike") |> 
+  arrange(height)
 ```
 
-. . .
+::: {.fragment}
 
-1. The `|>` placed `transport` into the first argument of `filter()`
-2. The output of `filter()` was a `data.frame` <br>$\implies$ this was placed as the first argument to `arrange()`
+1. `|>` placed `transport` into the first argument of `filter()`
+2. The output of `filter()` was a `data.frame` <br>$\implies$ became the first argument to `arrange()`
 
+::: 
+
+::::
 
 ## Using `dplyr::mutate()`
 
@@ -622,9 +662,7 @@ transport |>
 
 . . .
 
-<br>Can use any function that spits out a single value
-
-- `sd()`, `min()`, `median()`
+<br>Can use any function that spits out a single value e.g. `sd()`, `min()`, `median()`
 
 ## Getting Group Summaries
 
@@ -663,6 +701,7 @@ transport |>
 
 - We can pass multiple functions to multiple columns
     + Naming these functions makes the output clearer
+    + Function name is appended to the end of the column name
 
 ```{r}
 transport |>
@@ -774,7 +813,7 @@ Will be missing values in both directions
 
 ## The `tidyverse`
 
-- The packages `dplyr`, `ggplot1` and `readr` are used in most workflows
+- The packages `dplyr`, `ggplot2` and `readr` are used in most workflows
 - Additional near-essential packages: `tidyr` and `forcats`
 - All can be loaded with `library(tidyverse)`
     + A few less obvious packages like `purrr` are also loaded
@@ -803,6 +842,5 @@ library(GO.db)
 transport |> select(gender)
 transport |> dplyr::select(gender)
 ```
-
 
 

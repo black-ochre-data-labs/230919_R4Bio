@@ -5,7 +5,7 @@ author: "Dr Stevie Pederson"
 institute: |
   | Black Ochre Data Labs
   | Telethon Kids Institute
-date: "2023-09-17"
+date: "2023-09-19"
 date-format: long
 title-slide-attributes:
     data-background-color: "#3c3c44"
@@ -21,11 +21,31 @@ format:
     height: 768
     sansfont: Times New Roman
     logo: assets/bodl_logo_white_background.jpg
+    slide-number: c/t
+    show-slide-number: all        
   html: 
     output-file: rmarkdown.html
     embed-resources: true
     toc: true
     toc-depth: 1
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>    
 knitr: 
   opts_chunk: 
     echo: true
@@ -44,7 +64,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# R Markdown {background-color="#3c3c44" background-image=https://raw.githubusercontent.com/rstudio/rmarkdown/main/man/figures/logo.png background-size="30%" background-opacity="0.4"}
+# R Markdown {background-color="#3c3c44" background-image=https://raw.githubusercontent.com/rstudio/rmarkdown/main/man/figures/logo.png background-size="35%" background-opacity="0.4" background-position="70% 50%"}
 
 ## Writing Reports Using `rmarkdown`
 
@@ -91,11 +111,11 @@ Extends the `markdown` language **to incorporate R code**
 
 . . .
 
-- Italic text is set by surrounding text with a single asterisk (`*`) or underscore (`_`)
+- Italic text is set by enclosing text between a single asterisk (`*`) or underscore (`_`)
 
 . . .
 
-- Bold text is set by using *two asterisks* (`**`) or *two underscores* )`__`
+- Bold text is set by using *two asterisks* (`**`) or *two underscores* (`__`)
 
 . . .
 
@@ -150,7 +170,7 @@ Underneath the list enter:
     + Sites like github/gitlab render this automatically
     + Obsidian also renders interactively
 
-# R Markdown {background-color="#3c3c44" background-image=https://raw.githubusercontent.com/rstudio/rmarkdown/main/man/figures/logo.png background-size="30%" background-opacity="0.4"}
+# R Markdown {background-color="#3c3c44" background-image=https://raw.githubusercontent.com/rstudio/rmarkdown/main/man/figures/logo.png background-size="35%" background-opacity="0.4" background-position="70% 50%"}
 
 ## Writing Reports Using `rmarkdown`
 
@@ -666,6 +686,10 @@ I learned using R scripts but now I only use these in formal packages, or if def
     + Bootstrap themes etc.
     + Can use custom `css` files 
     + Interactive plots using `plotly`
+
+. . .
+
+- An example of a larger analysis using all `Rmd` files is at<br>[https://smped.github.io/PRJNA509779/](https://smped.github.io/PRJNA509779/)
     
     
 # Bonus Challenge

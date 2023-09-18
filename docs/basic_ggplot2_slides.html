@@ -507,7 +507,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
 </div>
 </section></section>
 <section>
-<section id="using-ggplot2" class="title-slide slide level1 center" data-background-color="#3c3c44" data-background-image="https://ggplot2.tidyverse.org/logo.png" data-background-size="40%" data-background-opacity="0.5">
+<section id="using-ggplot2" class="title-slide slide level1 center" data-background-color="#3c3c44" data-background-image="https://ggplot2.tidyverse.org/logo.png" data-background-size="30%" data-background-opacity="0.4" data-background-position="67% 50%">
 <h1>Using <code>ggplot2</code></h1>
 
 </section>
@@ -1008,7 +1008,7 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -1350,6 +1350,23 @@ $ dose &lt;chr&gt; "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low", "Low"
         }
       }
     });
+    </script>
+    <script type="text/javascript">
+      Reveal.on('ready', event => {
+        if (event.indexh === 0) {
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        if (event.indexh === 0) {
+          Reveal.configure({ slideNumber: null });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+        if (event.indexh === 1) {
+          Reveal.configure({ slideNumber: 'c' });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+        }
+      });
     </script>
     
 

@@ -21,11 +21,31 @@ format:
     height: 768
     sansfont: Times New Roman
     logo: assets/bodl_logo_white_background.jpg
+    slide-number: c/t
+    show-slide-number: all         
   html: 
     output-file: text.html
     embed-resources: true
     toc: true
     toc-depth: 1
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>    
 knitr: 
   opts_chunk: 
     echo: true
@@ -102,7 +122,7 @@ typeof(x)
 
 - To ensure these were integers we placed an `L` after each
         
-## Vectors {visibility="hidden"}
+## Vectors
 
 - By default `R` usually assumes numbers are doubles
     + Doubles are numbers with something after decimal point
@@ -122,7 +142,7 @@ x2 <- as.integer(x)
 typeof(x2)
 ```
     
-- Won't explore in much detail today
+- Won't explore in any more detail today
 
 
 ::: {.notes}
@@ -181,7 +201,35 @@ length(pets)
 pets[3]
 ```
 
-# Text Manipulation Using `stringr` {background-color="#3c3c44" background-image=https://stringr.tidyverse.org/logo.png background-size="30%" background-opacity="0.5"}
+## Named Vectors
+
+- Vectors can also have names
+    + Names are character vectors
+- The exchange rate at the time the EURO commenced is an object in `R`
+    + Names indicate the original currency
+
+```{r}
+euro
+names(euro)
+```
+
+## Named Vectors
+
+- We can use these to subset, as well as by position
+    + Note we have created a character vector to call-by-name<br>$\implies$ `c("ATS", "BEF", "DEM")`
+    + No need to save it $\implies$ we created it 'on-the-fly'
+
+```{r}
+euro[1:3]
+euro[c("ATS", "BEF", "DEM")]
+```
+
+. . .
+
+- `pets` has no names so we have to use position only
+- Using names makes your code *much easier* to read back later
+
+# Text Manipulation Using `stringr` {background-color="#3c3c44" background-image=https://stringr.tidyverse.org/logo.png background-size="35%" background-opacity="0.5" background-position="70% 50%"}
 
 ## Text Manipulation
 
@@ -224,7 +272,7 @@ str_sort(pets)
 
 . . . 
 
-- Including when numbers are included
+- Can even be intelligent when numbers are included
 
 ```{r}
 street_nums <- c("1A", "2", "11A", "9C")
@@ -299,7 +347,7 @@ str_extract(pets, "[a-z]")
 ## Extracting Text
 
 - Patterns can be extended by adding a `+` symbol <br>$\implies$ Match one or more values
-    + Will return the first run of one or more *lowercase letters*
+    + Will return the first match of *one or more lowercase letters*
 
 ```{r}
 str_extract(pets, "[a-z]+")
@@ -338,8 +386,10 @@ str_remove_all(pets, "[A-Z]")
 ## Wildcards
 
 - Regular Expressions use `"."` as a wildcard <br>$\implies$ `*` extends a match *zero* or more times (similar to `+`)
-    
+
 . . .
+
+- The pattern `" ."` matches a space followed by anything
 
 ```{r}
 str_remove_all(pets, " ")
@@ -418,15 +468,16 @@ str_replace_all(pets, "([A-Z]).+ (.+)", "\\2 \\1")
 
 ## Other Useful Functions
 
-- `paste()` is a key function
+- `paste()` is a key `base` function
     + Combines text from two vectors
     + `R` automatically recycles values when vector lengths don't match
 
 ```{r}
+paste(c("A", "B", "C"), 1:3)
 paste(pets, "is great")
 ```
 
-. . .
+## Other Useful Functions
 
 - `paste()` uses `sep = " "` as the default separator
     + Can be any characters at all
@@ -440,7 +491,7 @@ paste(pets, "Hmm...", sep = "? ")
 - `paste0()` is a shortcut for `paste(sep = "")`
 
 ```{r}
-paste0(pets, "!")
+paste0(pets, "!!!")
 ```
 
 ## Working With Strings
@@ -449,6 +500,7 @@ paste0(pets, "!")
 - Extract sample IDs from file names
 - Pull key information from file names
 - Remove prefixes/suffixes
+- Correct data entry errors in your spreadsheet
 - Format for pretty plotting
 
 # Factors {background-color="#3c3c44" background-image=https://forcats.tidyverse.org/logo.png background-size="30%" background-opacity="0.5"}
@@ -524,13 +576,15 @@ fct_inorder(dose)
 
 ## Forcats
 
-- Additional strategies for manipulating levels
+- Can reformat the category levels
 
 ```{r}
 fct_relabel(dose_fct, .fun = str_to_lower)
 ```
 
 . . .
+
+- Reverse the order
 
 ```{r}
 fct_rev(dose_fct)

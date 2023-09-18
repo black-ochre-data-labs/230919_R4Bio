@@ -5,7 +5,7 @@ author: "Dr Stevie Pederson"
 institute: |
   | Black Ochre Data Labs
   | Telethon Kids Institute
-date: "2023-09-17"
+date: "2023-09-19"
 date-format: long
 title-slide-attributes:
     data-background-color: "#3c3c44"
@@ -21,11 +21,31 @@ format:
     height: 768
     sansfont: Times New Roman
     logo: assets/bodl_logo_white_background.jpg
+    slide-number: c/t
+    show-slide-number: all            
   html: 
     output-file: advanced_ggplot.html
     embed-resources: true
     toc: true
     toc-depth: 1
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>    
 knitr: 
   opts_chunk: 
     echo: true
@@ -41,7 +61,7 @@ knitr::opts_chunk$set(results = "hide")
 ```
 
 
-# Using the Complete Tidyverse {background-color="#3c3c44" background-image=https://www.tidyverse.org/images/hex-tidyverse.png background-size="30%" background-opacity="0.2"}
+# Using the<br>Tidyverse<br>Together {background-color="#3c3c44" background-image=https://www.tidyverse.org/images/hex-tidyverse.png background-size="30%" background-opacity="0.3" background-position="70% 50%"}
 
 ## Using the Tidyverse
 
@@ -119,7 +139,7 @@ transport <- "data/transport.csv" |>
 - Customising plots in detail
 - Reshaping data using `tidyr`
 
-# Visualising Data {background-color="#3c3c44" background-image=https://ggplot2.tidyverse.org/logo.png background-size="40%" background-opacity="0.4"}
+# Visualising Data {background-color="#3c3c44" background-image=https://ggplot2.tidyverse.org/logo.png background-size="35%" background-opacity="0.4" background-position="70% 50%"}
 
 ## Visualising Our Data
 
@@ -200,7 +220,7 @@ transport |>
 
 - Similarly for the points: `colour = "grey30"`
     + The range of shapes is visible using `?pch`
-    + Note that for 21-25 colour is outline, fill is the internal colour
+    + For shapes 21-25 colour is outline, fill is the internal colour
 
 
 ```{r transport-grey-points}
@@ -459,7 +479,7 @@ transport |>
     )
 ```
 
-# Modifying Data Prior To Plotting {background-color="#3c3c44" background-image=https://carpentries-incubator.github.io/open-science-with-r/img/05-tidyr.png background-size="40%" background-opacity="0.4"}
+# Modifying Data<br>Prior To Plotting {background-color="#3c3c44" background-image=https://carpentries-incubator.github.io/open-science-with-r/img/05-tidyr.png background-size="35%" background-opacity="0.4" background-position="70% 50%"}
 
 ## Summary Plots
 
@@ -919,7 +939,7 @@ summ_df |>
 
 :::
 
-# Themes {background-color="#3c3c44" background-image=https://ggplot2.tidyverse.org/logo.png background-size="40%" background-opacity="0.4"}
+# Themes {background-color="#3c3c44" background-image=https://ggplot2.tidyverse.org/logo.png background-size="35%" background-opacity="0.4" background-position="70% 50%"}
 
 ## Using Themes
 

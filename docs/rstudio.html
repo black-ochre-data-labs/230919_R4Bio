@@ -3181,8 +3181,8 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 
 </header>
 
-<section id="rstudio" class="level1" data-background-color="#3c3c44">
-<h1 data-background-color="#3c3c44">RStudio</h1>
+<section id="rstudio" class="level1" data-background-color="#3c3c44" data-hide-slide-number="true">
+<h1 data-background-color="#3c3c44" data-hide-slide-number="true">RStudio</h1>
 <section id="before-we-start" class="level2">
 <h2 class="anchored" data-anchor-id="before-we-start">Before we start</h2>
 <ol type="1">
@@ -3922,6 +3922,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script type="text/javascript">
+  Reveal.on('ready', event => {
+    if (event.indexh === 0) {
+      document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+    }
+  });
+  Reveal.addEventListener('slidechanged', (event) => {
+    if (event.indexh === 0) {
+      Reveal.configure({ slideNumber: null });
+      document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+    }
+    if (event.indexh === 1) {
+      Reveal.configure({ slideNumber: 'c' });
+      document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+    }
+  });
+</script>
 
 
 

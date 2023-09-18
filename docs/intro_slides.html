@@ -815,6 +815,20 @@ Dr Stevie Pederson
 <li>Send reports to collaborators made directly from our code</li>
 </ol>
 <p>Underlying focus is <em>Reproducible Research</em></p>
+</section>
+<section id="course-outline-2" class="slide level2">
+<h2>Course Outline</h2>
+<ul>
+<li>No way to cover everything <span class="math inline">\(\implies\)</span> experience</li>
+<li>Learning concepts in technical order is dull
+<ul>
+<li>Will address many important technical concepts as we go</li>
+</ul></li>
+<li>Try to use a hands-on, practical approach to learn
+<ul>
+<li>Applying concepts as we learn the technical detail</li>
+</ul></li>
+</ul>
 <aside class="notes">
 <p>We’ll cover a little about data types as this is important for R. Also important for Excel macros</p>
 <style type="text/css">
@@ -885,7 +899,7 @@ Dr Stevie Pederson
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -1227,6 +1241,23 @@ Dr Stevie Pederson
         }
       }
     });
+    </script>
+    <script type="text/javascript">
+      Reveal.on('ready', event => {
+        if (event.indexh === 0) {
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        if (event.indexh === 0) {
+          Reveal.configure({ slideNumber: null });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+        if (event.indexh === 1) {
+          Reveal.configure({ slideNumber: 'c' });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+        }
+      });
     </script>
     
 

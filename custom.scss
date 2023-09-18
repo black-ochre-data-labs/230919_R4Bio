@@ -20,3 +20,8 @@ $code-block-border-color: #87b9dc;
   max-height: unset !important;
 }
 
+.reveal .slide-number > a[href*='title-slide'] {
+  display: none;
+}
+
+

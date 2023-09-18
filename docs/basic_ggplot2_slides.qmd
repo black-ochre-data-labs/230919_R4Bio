@@ -21,11 +21,31 @@ format:
     height: 768
     sansfont: Times New Roman
     logo: assets/bodl_logo_white_background.jpg
+    slide-number: c/t
+    show-slide-number: all        
   html: 
     output-file: basic_ggplot2.html
     embed-resources: true
     toc: true
     toc-depth: 1
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>      
 knitr: 
   opts_chunk: 
     echo: true
@@ -109,7 +129,7 @@ hist(pigs$len)
 
 
 
-# Using `ggplot2` {background-color="#3c3c44" background-image=https://ggplot2.tidyverse.org/logo.png background-size="40%" background-opacity="0.5"}
+# Using `ggplot2` {background-color="#3c3c44" background-image=https://ggplot2.tidyverse.org/logo.png background-size="30%" background-opacity="0.4" background-position="67% 50%"}
 
 ## `ggplot2` Basics
 
