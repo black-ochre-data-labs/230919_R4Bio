@@ -51,13 +51,17 @@ knitr:
 
 - The main plotting package from the `tidyverse` is `ggplot2`
     + Incredibly powerful approach to plotting
-- Less intuitive than traditional `R` plots $\implies$ far simpler after some practice
+    + Uses an approach known as "Grammar of Graphics" (`gg`)
+- Less intuitive than traditional `R` plots 
+    + Far simpler after some practice
+    + Much more powerful
 
 
 ## Setup For This Section
 
-1. Create a new R script called `basic_ggplot.R`
-2. Copy the following chunk from the earlier section
+1. Clear your R Environment
+2. Create a new R script called `basic_ggplot.R`
+3. Copy the following chunk from the earlier section
 
 ```{r reload-pigs}
 library(tidyverse)
@@ -90,6 +94,19 @@ This has plotted tooth length (`len`) in the order of appearance
 #| output-location: fragment
 boxplot(len ~ dose, data = pigs)
 ```
+
+## Histograms
+
+- Histograms using `hist()` can be pretty useful
+
+```{r hist-len}
+#| fig-width: 6
+#| fig-height: 5
+#| fig-align: 'left'
+#| output-location: fragment
+hist(pigs$len)
+```
+
 
 
 # Using `ggplot2` {background-color="#3c3c44" background-image=https://ggplot2.tidyverse.org/logo.png background-size="40%" background-opacity="0.5"}
@@ -152,6 +169,11 @@ ggplot(pigs, aes(x = dose, y = len)) +
   geom_boxplot()
 ```
 
+::: {.notes}
+Any mappings provided to `aes()` in the initial call are passed to subsequent `geom_*` functions
+:::
+
+
 ## Using Colours
 
 - We can add more mappings to `aes()`
@@ -186,6 +208,8 @@ ggplot(
 
 ## `scale_fill_*()`
 
+:::: {style="font-size:95%"}
+
 - There are multiple options for defining colour palettes (i.e. scales)
     - `scale_fill_discrete()` is applied by default
     - `scale_fill_viridis_d()` (`_d` for discrete)
@@ -193,12 +217,22 @@ ggplot(
     - `scale_fill_manual()`
     - ...
     
-. . .
+::: {.fragment}
 
 - We will explore more of these as we learn more
 - The difference between *discrete* & *continuous* values is important
-- Colour/Fill palettes $\implies$
-    + `colour` is for shape outlines + `fill` is for filled shapes
+- Colour/Fill palettes:
+    + `colour` is for shape outlines 
+    + `fill` is for filled shapes
+    
+:::
+
+::::
+
+::: {.notes}
+Hadley Wickham is from NZ so he uses the correct spelling of colour
+ggplot2 can recognise both...
+:::
 
 ## Using Existing Themes
 
@@ -247,7 +281,7 @@ ggplot(
   scale_fill_brewer(palette = "Set1") +
   labs(
     x = "Vitamin C Dose", 
-    y = "Odontoblast Length", 
+    y = "Odontoblast Length (pm)", 
     fill = "Method"
   ) +
   theme_bw() 
@@ -270,7 +304,7 @@ ggplot(
   scale_fill_brewer(palette = "Set1") +
   labs(
     x = "Vitamin C Dose", 
-    y = "Odontoblast Length", 
+    y = "Odontoblast Length (pm)", 
     fill = "Method"
   ) +
   theme_bw() 
@@ -294,6 +328,10 @@ ggplot(
     + Heatmaps: `geom_rect()`, `geom_raster()`, `geom_tile()`
     
 :::
+
+::: {.notes}
+Our data will often demand a certain geometry
+:::
     
 ## Overlaying points
 
@@ -314,7 +352,7 @@ ggplot(
   scale_fill_brewer(palette = "Set1") +
   labs(
     x = "Vitamin C Dose", 
-    y = "Odontoblast Length", 
+    y = "Odontoblast Length (pm)", 
     fill = "Method"
   ) +
   theme_bw() 
@@ -339,7 +377,7 @@ ggplot(
   scale_fill_brewer(palette = "Set1") +
   labs(
     x = "Vitamin C Dose", 
-    y = "Odontoblast Length", 
+    y = "Odontoblast Length (pm)", 
     fill = "Method"
   ) +
   theme_bw() 
@@ -368,7 +406,7 @@ ggplot(
 
 ## Conclusion
 
-- Beyond the first boxplot <br>$\implies$ all very difficult to draw using `base`/`graphics`
+- Beyond the first boxplot <br>$\implies$ can be very difficult to draw using `base`/`graphics`
 - The dataset determines what geometry is appropriate
 - Highly customisable plots
     + Colour/Fill palettes
