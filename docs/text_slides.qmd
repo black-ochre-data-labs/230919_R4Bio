@@ -376,7 +376,7 @@ str_remove(pets, "o")
 . . .
 
 - This only removed the first match
-    + `str_remove_al()` removes all matches
+    + `str_remove_all()` removes all matches
     
 ```{r}
 str_remove_all(pets, "o")

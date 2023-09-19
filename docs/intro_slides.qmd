@@ -136,6 +136,7 @@ Used to write Excel macros for fun whilst being a musician
     + Slides are directly re-formatted as a simple webpage
     + Also in presentation style by clicking the `RevealJS` link below the TOC<br>(Top RH Corner)
 
+- A helpful slack channel is bioinformaticshubsa.slack.com
 
 # R {background-color="#3c3c44" background-image=https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/512px-R_logo.svg.png background-size="40%" background-opacity="0.5"}
 
